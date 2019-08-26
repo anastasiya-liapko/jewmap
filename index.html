@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<title>jewmap</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="shortcut icon" href="#" type="image/png">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap&subset=cyrillic-ext,latin-ext" rel="stylesheet">
+		<!-- <link rel="stylesheet" href="/wp-content/themes/feor/public/css/scrollBar.css"> -->
+		<link href='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.css' rel='stylesheet' />
+		<!-- <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
+		<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css' rel='stylesheet' /> -->
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+
+	<body>
+        <div class="jewmap__wrapper">
+            <div class="jewmap__map">
+                <!-- <button id="js-mapHamburger" class="hamburger hamburger--squeeze" type="button" style="display: none">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button> -->
+                <div id="jewmap" style="height: 100vh"></div>
+
+
+                <div class="jewmap__menu-wrapper">
+                    <button id="js-jewmap-menu-hamburger" class="jewmap-menu-hamburger hamburger hamburger--squeeze" type="button" style="display: none">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+
+                    <ul class="jewmap__menu">
+                        <li class="jewmap__menu-item">
+                            <a class="jewmap__menu-link">О нас</a>
+                        </li>
+                        <li class="jewmap__menu-item">
+                            <a class="jewmap__menu-link">География</a>
+                        </li>
+                        <li class="jewmap__menu-item">
+                            <a class="jewmap__menu-link">Организации</a>
+                        </li>
+                        <li class="jewmap__menu-item">
+                            <a class="jewmap__menu-link">Традиции</a>
+                        </li>
+                        <li class="jewmap__menu-item">
+                            <a class="jewmap__menu-link">Календарь</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <template id="js-templatePopupMenu" style="display: none">
+                <div class="popup popup-menu">
+                    <form id="js-mapPageSearch" class="popup-menu__search-wrapper d-flex">
+                        <div class="popup-menu__search d-flex">
+                            <input class="popup-menu__search-input flex-grow-1" type="text" name="city" placeholder="Поиск">
+                            <button class="popup-menu__search-submit flex-shrink-0 d-flex align-items-center justify-content-center" type="submit">
+                                <span class="popup-menu__search-icon icon-search d-flex align-items-center justify-content-center"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="popup-menu__scrollbar mCustomScrollbar">
+                        <ul class="popup-menu__list "></ul>
+                    </div>
+                </div>
+            </template>
+
+            <template id="js-templatePopupMenuItem" style="display: none">
+                <li class="popup-menu__list-item">
+                    <a class="popup-menu__list-link"></a>
+                    <ul class="popup-menu__dropdown"></ul>
+                </li>
+            </template>
+
+            <!-- <template id="js-templatePopupCity" style="display: none">
+                <div class="popup popup-city">
+                    <span class="popup__close"></span>
+                    <img src="" class="popup__img"/> <br/>
+                    <strong class="popup__name"></strong> <br/>
+                    <span class="popup__address"></span>
+                    <p class="popup__descr"></p>
+                    <a href="" class="popup__more" target="_blank">Подробнее</a>
+                </div>
+            </template> -->
+
+        <!--  <template id="js-templatePopupPlace" style="display: none">
+                <div class="popup popup-place d-flex flex-column">
+                    <p class="popup__name"></p>
+                    <p class="popup__person d-flex align-items-start">
+                        <span class="popup__icon icon-map-person d-flex align-items-center justify-content-center"></span>
+                        <span class="popup__text d-flex align-items-center"></span>
+                    </p>
+                    <a href="" class="popup__address d-flex align-items-start" target="_blank">
+                        <span class="popup__icon icon-map d-flex align-items-center justify-content-center"></span>
+                        <span class="popup__text d-flex align-items-center"></span>
+                    </a>
+                    <a href="" class="popup__phone d-flex align-items-start">
+                        <span class="popup__icon icon-phone d-flex align-items-center justify-content-center"></span>
+                        <span class="popup__text d-flex align-items-center"></span>
+                    </div>
+                </div>
+            </template> -->
+
+        </div>
+        <!-- map-page -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <!-- <script src="/wp-content/themes/feor/public/js/scrollBar.js"></script> -->
+        <script src='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.js'></script>
+        <!-- <script src="https://unpkg.com/rbush@2.0.1/rbush.min.js"></script> -->
+        <!-- <script src="https://unpkg.com/labelgun@6.0.0/lib/labelgun.min.js"></script> -->
+        <!-- <script type="text/javascript" src="/wp-content/themes/feor/public/js/map-page-mapbox/fill_template_popup_menu.js"> </script> -->
+        <!-- <script type="text/javascript" src="/wp-content/themes/feor/public/js/map-page-mapbox/add_popup_menu.js"> </script> -->
+        <!-- <script type="text/javascript" src="/wp-content/themes/feor/public/js/map-page-mapbox/util.js"> </script> -->
+        <script type="text/javascript" src="js/main.js"> </script>
+    </body>
+</html>
