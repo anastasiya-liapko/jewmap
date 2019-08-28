@@ -38,30 +38,6 @@ $(function () {
     });
         
 
-    // sort cities list in menu
-    // cities.sort(function(a, b){
-    //     if(a.name < b.name) { return -1; }
-    //     if(a.name > b.name) { return 1; }
-    //     return 0;
-    // })
-
-    // cities.forEach(function (elem) {
-    //     if (elem.name === 'Санкт-Петербург') {
-    //         cities.splice(cities.indexOf(elem), 1)
-    //         cities.unshift(elem);
-    //         return false;
-    //     }
-    // })
-
-    // cities.forEach(function (elem) {
-    //     if (elem.name === 'Москва') {
-    //         cities.splice(cities.indexOf(elem), 1)
-    //         cities.unshift(elem);
-    //         return false;
-    //     }
-    // })
-
-
     // // add menu on map
     // window.map_menu.addMenu(map, cities);
 

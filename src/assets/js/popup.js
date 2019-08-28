@@ -4,10 +4,10 @@ $(function () {
     $('#js-navListWrapper>ul>li>a').on('click', function () {
         var popup = $(this).attr('data-popup');
         if ($('#js-' + popup).hasClass('open')) return;
-        $('.popup').removeClass('open');
         $('#js-jewmapHamburger').removeClass('open');
-        $('#js-' + popup).addClass('open');
         $('#js-jewmapHamburger').addClass('open');
+        $('.popup').removeClass('open');
+        $('#js-' + popup).addClass('open');
     });
 
     // hide popup on close click

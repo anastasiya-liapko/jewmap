@@ -93,9 +93,9 @@ gulp.task('clean', () => del([
 
 gulp.task('watch', () => {
   gulp.watch('src/sass/**/*', { usePolling: true }, gulp.series('styles'));
-  gulp.watch('src/js/**/*.js', { usePolling: true }, gulp.series('js'));
-  gulp.watch('src/img/*.{png,jpg,svg}', { usePolling: true }, gulp.series('images'));
-  gulp.watch('src/fonts/**/*', { usePolling: true }, gulp.series('fonts'));
+  gulp.watch('src/assets/js/**/*.js', { usePolling: true }, gulp.series('js'));
+  gulp.watch('src/assets/img/*.{png,jpg,svg}', { usePolling: true }, gulp.series('images'));
+  gulp.watch('src/assets/fonts/**/*', { usePolling: true }, gulp.series('fonts'));
 });
 
 gulp.task('build', gulp.series('clean', gulp.parallel('styles', 'js', 'fonts', 'images')));

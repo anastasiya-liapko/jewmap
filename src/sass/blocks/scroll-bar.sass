@@ -1,0 +1,33 @@
+.sb-container
+    position: relative
+    overflow: hidden
+    padding-right: 10px
+
+.sb-content
+    height: 100%
+    width: 120%
+    padding-right: 20%
+    overflow-y: scroll
+    box-sizing: border-box
+
+.sb-scrollbar-container
+    position: absolute
+    right: 0
+    bottom: 0
+    top: 0
+    width: 6px
+    background: #000000
+
+.sb-container-noscroll .sb-scrollbar-container
+    right: -20px
+
+.sb-scrollbar
+    position: absolute
+    right: 0
+    height: 100px
+    width: 6px
+    border-radius: 3px
+    background: #9d9d9d
+    
+.sb-scrollbar:hover
+    background: rgba(0, 0, 0, 0.5)

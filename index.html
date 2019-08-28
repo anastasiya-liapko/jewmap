@@ -15,7 +15,7 @@
 
 	<body>
         <!-- <div class="jewmap__wrapper"> -->
-            <div class="jewmap">
+            <div id="js-jewmap" class="jewmap">
                 <button id="js-jewmapHamburger" class="jewmap__button jewmap__hamburger hamburger hamburger_squeeze" type="button">
                     <span class="hamburger-box">
                         <span class="hamburger-inner"></span>
@@ -24,6 +24,19 @@
 
                 <button id="js-jewmapSearch" class="jewmap__button jewmap__search" type="button"></button>
 
+                <!-- <div id="js-classifier" class="classifier">
+                    <form id="js-classifierSearch" class="classifier__search-wrapper">
+                        <div class="classifier__search">
+                            <input class="classifier__search-input" type="text" name="classifier" placeholder="Поиск">
+                            <button class="classifier__search-submit" type="submit">
+                                <span class="classifier__search-icon icon-search"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="classifier__scrollbar mCustomScrollbar">
+                        <ul class="classifier__list"></ul>
+                    </div>
+                </div> -->
 
                 <div id="map" class="jewmap__map map" style="height: 100vh"></div>
 
@@ -130,26 +143,25 @@
                 <!-- calendar -->
             </div>
 
-            <template id="js-templatePopupMenu" style="display: none">
-                <div class="popup popup-menu">
-                    <form id="js-mapPageSearch" class="popup-menu__search-wrapper d-flex">
-                        <div class="popup-menu__search d-flex">
-                            <input class="popup-menu__search-input flex-grow-1" type="text" name="city" placeholder="Поиск">
-                            <button class="popup-menu__search-submit flex-shrink-0 d-flex align-items-center justify-content-center" type="submit">
-                                <span class="popup-menu__search-icon icon-search d-flex align-items-center justify-content-center"></span>
+            <template id="js-templateClassifier" style="display: none">
+                <div id="js-classifier" class="classifier">
+                    <form id="js-classifierSearch" class="classifier__search-wrapper">
+                        <div class="classifier__search">
+                            <input class="classifier__search-input" type="text" name="classifier" placeholder="Поиск">
+                            <button class="classifier__search-submit" type="submit">
+                                <span class="classifier__search-icon icon-search"></span>
                             </button>
                         </div>
                     </form>
-                    <div class="popup-menu__scrollbar mCustomScrollbar">
-                        <ul class="popup-menu__list "></ul>
+                    <div id="js-classifierScrollbar" class="classifier__scrollbar mCustomScrollbar">
+                        <ul class="classifier__list"></ul>
                     </div>
                 </div>
             </template>
 
-            <template id="js-templatePopupMenuItem" style="display: none">
-                <li class="popup-menu__list-item">
-                    <a class="popup-menu__list-link"></a>
-                    <ul class="popup-menu__dropdown"></ul>
+            <template id="js-templateClassifierItem" style="display: none">
+                <li class="classifier__list-item">
+                    <a class="classifier__list-link"></a>
                 </li>
             </template>
 
