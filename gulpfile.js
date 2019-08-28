@@ -8,11 +8,11 @@ const rename = require('gulp-rename');
 const browserSync = require('browser-sync').create();
 const imagemin = require('gulp-imagemin');
 const concat = require('gulp-concat');
-const eslint = require('gulp-eslint');
+// const eslint = require('gulp-eslint');
 // const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const newer = require('gulp-newer');
-const pkg = require('./package.json');
+// const pkg = require('./package.json');
 
 gulp.task('styles', () => gulp.src('src/sass/style.sass')
   .pipe(sourcemaps.init())

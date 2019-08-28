@@ -1,0 +1,185 @@
+.nav
+    position: fixed
+    top: 0
+    right: 0
+    display: flex
+    // width: 128px
+    width: 6.667vw
+    height: 100vh
+    background-color: #ffffff
+    // box-shadow: 6px 0 60px 0 rgba(0, 0, 0, 0.5)
+    box-shadow: 0.313vw 0 3.125vw 0 rgba(0, 0, 0, 0.5)
+    box-sizing: border-box
+
+.nav__hamburger
+    display: none
+
+.nav__logo
+    display: none
+    font-family: inherit
+    font-size: 20px
+    font-weight: 900
+    line-height: 0.88
+    text-transform: uppercase
+    color: #000000
+
+.nav__list-wrapper
+    display: block
+
+.nav__list
+    display: flex
+    flex-direction: row-reverse
+    align-items: center
+    justify-content: center
+    width: 100vh
+    // height: 128px
+    height: 6.667vw
+    margin: 0
+    padding: 0
+    list-style: none
+    transform: rotate(-90deg) translateY(-100vh)
+    transform-origin: right top
+
+.nav__list-item
+    height: inherit
+
+.nav__list-link
+    position: relative
+    display: inline-block
+    width: inherit
+    height: inherit
+    // padding: 0 20px
+    padding: 0 1.042vw
+    font-family: inherit
+    font-size: 18px
+    font-weight: 400
+    // line-height: 128px
+    line-height: 6.667vw
+    text-align: center
+    text-transform: uppercase
+    vertical-align: middle
+    color: #000000
+    white-space: nowrap
+    transition: color 0.5s
+
+.nav__list-link:hover
+    cursor: pointer
+
+.nav__list-link.active
+    color: #ffffff
+    transition: color 0.5s 0.5s
+
+.nav__list-link:before
+    content: ""
+    position: absolute
+    left: 50%
+    bottom: 0
+    width: 0
+    // height: 8px
+    height: 0.417vw
+    background-color: #147eb3
+    transition: width 0.5s, left 0.5s
+
+.nav__list-link:hover:before
+    left: 20%
+    width: 60%
+
+.nav__list-link:after
+    content: ''
+    z-index: -1
+    position: absolute
+    left: 50%
+    bottom: 0
+    display: block
+    width: 0
+    // height: 8px
+    height: 0.417vw
+    margin: 0
+    background: #147eb3
+    opacity: 0
+    transition: left 0.5s 0.5s, width 0.5s 0.5s, height 0.5s, opacity 0s 1s
+
+.nav__list-link.active:after
+    left: 0
+    width: 100%
+    height: 100%
+    opacity: 1
+    transition: left 0.5s -0.1s, width 0.5s -0.1s, height 0.5s 0.5s
+
+@media (max-width: 991px) 
+    .nav
+        width: calc(6.667vw * 1.5)
+        box-shadow: calc(0.313vw * 1.5) 0 calc(3.125vw * 1.5) 0 rgba(0, 0, 0, 0.5)
+
+    .nav__list
+        height: calc(6.667vw * 1.5)
+
+    .nav__list-link
+        padding: 0 calc(1.042vw * 1.5)
+        line-height: calc(6.667vw * 1.5)
+
+    .nav__list-link:before
+        height: calc(0.417vw * 1.5)
+
+    .nav__list-link:after
+        height: calc(0.417vw * 1.5)
+
+@media (max-width: 575px) 
+    .nav
+        align-items: center
+        justify-content: space-between
+        width: 100%
+        height: 50px
+        padding-left: 10px
+        padding-right: 15px
+        box-shadow: calc(0.313vw * 2) 0 calc(3.125vw * 2) 0 rgba(0, 0, 0, 0.5)
+
+    .nav__hamburger
+        display: flex
+
+    .nav__logo
+        display: block
+
+    .nav__list-wrapper
+        position: absolute
+        top: 50px
+        left: 0
+        display: none
+        width: inherit
+        height: auto
+        box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2)
+
+    .nav__list
+        flex-direction: column
+        width: inherit
+        height: auto
+        background-color: #f0f0f0
+        transform: rotate(0) translateY(0)
+
+    .nav__list-item
+        width: 100%
+
+    .nav__list-link
+        padding: 0
+        font-size: 14px
+        line-height: calc(6.667vw * 2)
+
+    .nav__list-link.active
+        transition: color 0.5s
+    
+    .nav__list-link:before
+        height: calc(0.417vw * 2)
+
+    .nav__list-link:hover:before
+        left: 0
+        width: 100%
+
+    .nav__list-link:after
+        height: calc(0.417vw * 2)
+        transition: left 0.5s 0.5s, width 0.5s 0.5s, height 0.5s, opacity 0s 1s
+
+    .nav__list-link.active:after
+        transition: left 0s, width 0s, height 0.5s
+
+    
+        

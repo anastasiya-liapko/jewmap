@@ -1,9 +1,5 @@
 $(function () {
 
-    $('.jewmap__menu-link').on('click', function () {
-        $('.jewmap__menu-link').removeClass('active')
-        $(this).addClass('active')
-    })
     // var cities = {
     //     0: {
     //         id: "1",
@@ -24,7 +20,7 @@ $(function () {
     L.mapbox.accessToken = 'pk.eyJ1IjoiYWxpYXBrbyIsImEiOiJjangyenVmeGMwcTFjM3lvNGhsdmUzejRoIn0.zdJYMN5sxS2SJXZV2Lb3aA';
 
     
-    var map = L.map('jewmap', {
+    var map = L.map('map', {
         doubleClickZoom: false,
         zoomControl: true,
         zoomDelta: 0.25,

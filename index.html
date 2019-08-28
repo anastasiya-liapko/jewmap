@@ -10,45 +10,48 @@
 		<link href='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.css' rel='stylesheet' />
 		<!-- <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
 		<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css' rel='stylesheet' /> -->
-        <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="public/css/main.min.css">
 	</head>
 
 	<body>
-        <div class="jewmap__wrapper">
-            <div class="jewmap__map">
+        <!-- <div class="jewmap__wrapper"> -->
+            <div class="jewmap">
                 <!-- <button id="js-mapHamburger" class="hamburger hamburger--squeeze" type="button" style="display: none">
                     <span class="hamburger-box">
                         <span class="hamburger-inner"></span>
                     </span>
                 </button> -->
-                <div id="jewmap" style="height: 100vh"></div>
+                <div id="map" class="jewmap__map map" style="height: 100vh"></div>
 
 
-                <div class="jewmap__menu-wrapper">
-                    <button id="js-jewmap-menu-hamburger" class="jewmap-menu-hamburger hamburger hamburger--squeeze" type="button" style="display: none">
+                <div class="jewmap__nav nav">
+                    <button id="js-navHamburger" class="nav__hamburger hamburger hamburger_squeeze" type="button">
                         <span class="hamburger-box">
                             <span class="hamburger-inner"></span>
                         </span>
                     </button>
 
-                    <ul class="jewmap__menu">
-                        <li class="jewmap__menu-item">
-                            <a class="jewmap__menu-link">О нас</a>
-                        </li>
-                        <li class="jewmap__menu-item">
-                            <a class="jewmap__menu-link">География</a>
-                        </li>
-                        <li class="jewmap__menu-item">
-                            <a class="jewmap__menu-link">Организации</a>
-                        </li>
-                        <li class="jewmap__menu-item">
-                            <a class="jewmap__menu-link">Традиции</a>
-                        </li>
-                        <li class="jewmap__menu-item">
-                            <a class="jewmap__menu-link">Календарь</a>
-                        </li>
-                    </ul>
+                    <a class="nav__logo">Еврейская<br>Община России</a>
+
+                    <div id="js-navListWrapper" class="nav__list-wrapper">
+                        <ul class="nav__list">
+                            <li class="nav__list-item">
+                                <a class="nav__list-link">О нас</a>
+                            </li>
+                            <li class="nav__list-item">
+                                <a class="nav__list-link">География</a>
+                            </li>
+                            <li class="nav__list-item">
+                                <a class="nav__list-link">Организации</a>
+                            </li>
+                            <li class="nav__list-item">
+                                <a class="nav__list-link">Традиции</a>
+                            </li>
+                            <li class="nav__list-item">
+                                <a class="nav__list-link">Календарь</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -104,8 +107,7 @@
                 </div>
             </template> -->
 
-        </div>
-        <!-- map-page -->
+        <!-- </div> -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <!-- <script src="/wp-content/themes/feor/public/js/scrollBar.js"></script> -->
