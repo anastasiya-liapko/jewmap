@@ -1,0 +1,138 @@
+.popup
+    z-index: 49
+    position: fixed
+    top: 0
+    right: 6.667vw
+    width: 600px
+    height: 100vh
+    opacity: 0
+    transform: translateX(600px)
+    transition: transform 0.4s, opacity 0s 0.4s
+
+.popup.open
+    z-index: 50
+    opacity: 1
+    transform: translateX(0)
+    transition: transform 0.5s
+
+.popup__content
+    display: flex
+    flex-direction: column
+    width: inherit
+    height: inherit
+    // padding: 78px 60px
+    padding: 4.063vw 3.125vw
+    background-color: $color-main
+
+.popup__header
+    display: flex
+    flex-wrap: nowrap
+    align-items: center
+    justify-content: space-between
+    height: 35px
+    // margin-bottom: 41px
+    margin-bottom: 2.135vw
+    border: 1px solid red
+
+.popup__title
+    margin: 0
+    font-family: inherit
+    font-size: 32px
+    font-weight: 700
+    line-height: 1
+    color: #ffffff
+
+.popup__close
+    position: relative
+    width: 35px
+    height: 35px
+    background-color: transparent
+    opacity: 1
+    border: none
+    transition: opacity 0.3s
+    border: 1px solid red
+    &::before,
+    &::after
+        content: ''
+        position: absolute
+        top: 50%
+        left: 0
+        width: 39px
+        height: 2px
+        margin-top: -1px
+        margin-left: -2px
+        background-color: #ffffff
+    &::before
+        transform: rotate(45deg)
+    &::after
+        transform: rotate(-45deg)
+    &:hover
+        opacity: 0.5
+        cursor: pointer
+
+.popup__main
+    flex-grow: 1
+    padding-right: 15px
+    overflow-y: scroll
+    scrollbar-width: none
+    scrollbar-base-color: transparent
+    scrollbar-face-color: transparent
+    scrollbar-highlight-color: transparent
+    scrollbar-3dlight-color: transparent
+    scrollbar-shadow-color: transparent
+    scrollbar-darkshadow-color: transparent
+    scrollbar-track-color: transparent
+    scrollbar-arrow-color: transparent
+    border: 1px solid green
+    &::-webkit-scrollbar
+        display: none
+    p
+        margin-top: 0
+        font-family: inherit
+        font-size: 22px
+        font-weight: 400
+        line-height: normal
+        color: #ffffff
+    p:first-child
+        // margin-bottom: 50px
+        margin-bottom: 2.604vw
+        font-weight: 700
+
+@media(max-width: 991px)
+    .popup
+        right: calc(6.667vw * 1.5)
+
+    .popup__content
+        padding: calc(4.063vw * 1.5) calc(3.125vw * 1.5)
+
+    .popup__header
+        margin-bottom: calc(2.135vw * 1.5)
+
+    .popup__main
+        p:first-child
+            margin-bottom: calc(2.604vw * 1.5)
+
+@media(max-width: 767px)
+    .popup
+        width: calc(100vw - 6.667vw * 1.5)
+
+@media(max-width: 600px)
+    .popup
+        top: 50px
+        right: 0
+        width: 100vw
+        height: calc(100vh - 50px)
+        transform: translateX(-100vw)
+
+    .popup__content
+        padding: 15px
+
+    .popup__header
+        margin-bottom: 15px
+
+    .popup__title
+        font-size: 24px
+
+    .popup__main
+        p
+            font-size: 18px

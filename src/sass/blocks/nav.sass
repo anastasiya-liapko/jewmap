@@ -1,4 +1,5 @@
 .nav
+    z-index: 100
     position: fixed
     top: 0
     right: 0
@@ -60,14 +61,14 @@
     vertical-align: middle
     color: #000000
     white-space: nowrap
-    transition: color 0.5s
+    transition: color 0.25s
 
 .nav__list-link:hover
     cursor: pointer
 
 .nav__list-link.active
     color: #ffffff
-    transition: color 0.5s 0.5s
+    transition: color 0.25s 0.25s
 
 .nav__list-link:before
     content: ""
@@ -78,7 +79,7 @@
     // height: 8px
     height: 0.417vw
     background-color: #147eb3
-    transition: width 0.5s, left 0.5s
+    transition: width 0.25s, left 0.25s
 
 .nav__list-link:hover:before
     left: 20%
@@ -97,14 +98,14 @@
     margin: 0
     background: #147eb3
     opacity: 0
-    transition: left 0.5s 0.5s, width 0.5s 0.5s, height 0.5s, opacity 0s 1s
+    transition: left 0.25s 0.25s, width 0.25s 0.25s, height 0.25s, opacity 0s 0.5s
 
 .nav__list-link.active:after
     left: 0
     width: 100%
     height: 100%
     opacity: 1
-    transition: left 0.5s -0.1s, width 0.5s -0.1s, height 0.5s 0.5s
+    transition: left 0.25s -0.1s, width 0.25s -0.1s, height 0.25s 0.25s
 
 @media (max-width: 991px) 
     .nav
@@ -124,7 +125,7 @@
     .nav__list-link:after
         height: calc(0.417vw * 1.5)
 
-@media (max-width: 575px) 
+@media (max-width: 600px) 
     .nav
         align-items: center
         justify-content: space-between
@@ -165,7 +166,7 @@
         line-height: calc(6.667vw * 2)
 
     .nav__list-link.active
-        transition: color 0.5s
+        transition: color 0.25s
     
     .nav__list-link:before
         height: calc(0.417vw * 2)
@@ -176,10 +177,10 @@
 
     .nav__list-link:after
         height: calc(0.417vw * 2)
-        transition: left 0.5s 0.5s, width 0.5s 0.5s, height 0.5s, opacity 0s 1s
+        transition: left 0.25s 0.25s, width 0.25s 0.25s, height 0.25s, opacity 0s 0.5s
 
     .nav__list-link.active:after
-        transition: left 0s, width 0s, height 0.5s
+        transition: left 0s, width 0s, height 0.25s
 
     
         

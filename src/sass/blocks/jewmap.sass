@@ -2,3 +2,47 @@
     flex-grow: 1
     display: flex
     flex-direction: column
+
+.jewmap__button
+    z-index: 50
+    position: fixed
+    width: 80px
+    height: 80px
+    padding: 25px
+    box-shadow: 6px 0 60px 0 rgba(0, 0, 0, 0.5)
+    background-color: rgba(255, 255, 255, 0.75)
+    transition: right 0.4s
+
+.jewmap__button.open
+    transition: right 0.5s
+
+.jewmap__hamburger
+    top: 75px
+    right: calc(55px + 6.667vw)
+    .hamburger-box
+        width: 30px
+        height: 30px
+    .hamburger-inner
+        width: 30px
+        background-color: $color-main
+    .hamburger-inner::before
+        width: 24px
+    .hamburger-inner::after
+        width: 26px
+    &:hover,
+    &.active:hover
+        .hamburger-inner,
+        .hamburger-inner::before,
+        .hamburger-inner::after
+            background-color: $color-main
+    &.active
+        .hamburger-inner,
+        .hamburger-inner::before,
+        .hamburger-inner::after
+            width: 30px
+    &.open
+        right: calc(55px + 6.667vw + 600px)
+
+.jewmap__search
+    top: 75px
+    right: calc(55px + 6.667vw + 80px + 20px)

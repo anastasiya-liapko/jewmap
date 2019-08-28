@@ -1,25 +1,17 @@
 $(function () {
 
-    // var cities = {
-    //     0: {
-    //         id: "1",
-    //         name: "Москва",
-    //         point: (2) [55.755826, 37.6172999],
-    //         show: true,
-    //         slug: "moskva"
-    //     }
-    // }
-
+    $('#js-jewmapHamburger').on('click', function () {
+        $('#js-jewmapHamburger').toggleClass('active');
+    })
+    
     var ZOOM = 4;
     var BOUNDS_RUSSIA = new L.LatLngBounds([30.0, 15.0], [78.0, 188.0]);
     if ($(window).width() < 575) {
         BOUNDS_RUSSIA = new L.LatLngBounds([40.0, 25.0], [35.0, 180.0]);
     }
 
-
     L.mapbox.accessToken = 'pk.eyJ1IjoiYWxpYXBrbyIsImEiOiJjangyenVmeGMwcTFjM3lvNGhsdmUzejRoIn0.zdJYMN5sxS2SJXZV2Lb3aA';
 
-    
     var map = L.map('map', {
         doubleClickZoom: false,
         zoomControl: true,
@@ -34,7 +26,16 @@ $(function () {
         .setView([63.674041, 99.742382], ZOOM)
         .addLayer(L.mapbox.styleLayer('mapbox://styles/aliapko/cjzle879c057t1cn6tnldfw7p'));
 
-        map.fitBounds(BOUNDS_RUSSIA, { padding: [20, 20] });
+    map.fitBounds(BOUNDS_RUSSIA, { padding: [20, 20] });
+
+    var southWest = L.latLng(-89.98155760646617, -180),
+    northEast = L.latLng(89.99346179538875, 180);
+    var bounds = L.latLngBounds(southWest, northEast);
+
+    map.setMaxBounds(bounds);
+    map.on('drag', function() {
+        map.panInsideBounds(bounds, { animate: false });
+    });
         
 
     // sort cities list in menu

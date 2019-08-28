@@ -31,7 +31,9 @@
 .hamburger-box
     width: 35px
     height: 35px
-    display: inline-block
+    display: flex
+    align-items: center
+    justify-content: center
     position: relative
 
 .hamburger-inner
@@ -57,10 +59,10 @@
     display: block
 
 .hamburger-inner::before
-    top: -10px
+    top: -9px
 
 .hamburger-inner::after
-    bottom: -10px
+    bottom: -9px
 
 .hamburger_squeeze .hamburger-inner
     transition-duration: 0.075s

@@ -16,15 +16,19 @@
 	<body>
         <!-- <div class="jewmap__wrapper"> -->
             <div class="jewmap">
-                <!-- <button id="js-mapHamburger" class="hamburger hamburger--squeeze" type="button" style="display: none">
+                <button id="js-jewmapHamburger" class="jewmap__button jewmap__hamburger hamburger hamburger_squeeze" type="button">
                     <span class="hamburger-box">
                         <span class="hamburger-inner"></span>
                     </span>
-                </button> -->
+                </button>
+
+                <button id="js-jewmapSearch" class="jewmap__button jewmap__search" type="button"></button>
+
+
                 <div id="map" class="jewmap__map map" style="height: 100vh"></div>
 
 
-                <div class="jewmap__nav nav">
+                <div id="js-nav" class="jewmap__nav nav">
                     <button id="js-navHamburger" class="nav__hamburger hamburger hamburger_squeeze" type="button">
                         <span class="hamburger-box">
                             <span class="hamburger-inner"></span>
@@ -36,23 +40,94 @@
                     <div id="js-navListWrapper" class="nav__list-wrapper">
                         <ul class="nav__list">
                             <li class="nav__list-item">
-                                <a class="nav__list-link">О нас</a>
+                                <a class="nav__list-link" data-popup="about">О нас</a>
                             </li>
                             <li class="nav__list-item">
-                                <a class="nav__list-link">География</a>
+                                <a class="nav__list-link" data-popup="geo">География</a>
                             </li>
                             <li class="nav__list-item">
-                                <a class="nav__list-link">Организации</a>
+                                <a class="nav__list-link" data-popup="orgs">Организации</a>
                             </li>
                             <li class="nav__list-item">
-                                <a class="nav__list-link">Традиции</a>
+                                <a class="nav__list-link" data-popup="traditions">Традиции</a>
                             </li>
                             <li class="nav__list-item">
-                                <a class="nav__list-link">Календарь</a>
+                                <a class="nav__list-link" data-popup="calendar">Календарь</a>
                             </li>
                         </ul>
                     </div>
                 </div>
+                <!-- nav -->
+
+                <div id="js-about" class="popup about">
+                    <div class="popup__content">
+                        <div class="popup__header">
+                            <h2 class="popup__title">О нас</h2>
+                            <button class="popup__close" type="button"></button>
+                        </div>
+                        <div class="popup__main">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            </p>
+                            <p>
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- about -->
+
+                <div id="js-geo" class="popup geo">
+                    <div class="popup__content">
+                        <div class="popup__header">
+                            <h2 class="popup__title">География</h2>
+                            <button class="popup__close" type="button"></button>
+                        </div>
+                        <div class="popup__main">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- geo -->
+
+                <div id="js-orgs" class="popup orgs">
+                    <div class="popup__content">
+                        <div class="popup__header">
+                            <h2 class="popup__title">Организации</h2>
+                            <button class="popup__close" type="button"></button>
+                        </div>
+                        <div class="popup__main">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- orgs -->
+
+                <div id="js-traditions" class="popup traditions">
+                    <div class="popup__content">
+                        <div class="popup__header">
+                            <h2 class="popup__title">Традиции</h2>
+                            <button class="popup__close" type="button"></button>
+                        </div>
+                        <div class="popup__main">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- traditions -->
+
+                <div id="js-calendar" class="popup calendar">
+                    <div class="popup__content">
+                        <div class="popup__header">
+                            <h2 class="popup__title">Календарь</h2>
+                            <button class="popup__close" type="button"></button>
+                        </div>
+                        <div class="popup__main">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- calendar -->
             </div>
 
             <template id="js-templatePopupMenu" style="display: none">
