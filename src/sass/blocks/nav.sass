@@ -17,6 +17,7 @@
 
 .nav__logo
     display: none
+    margin-left: auto
     font-family: inherit
     font-size: 20px
     font-weight: 900
@@ -61,14 +62,14 @@
     vertical-align: middle
     color: #000000
     white-space: nowrap
-    transition: color 0.25s
+    transition: color 0.5s
 
 .nav__list-link:hover
     cursor: pointer
 
 .nav__list-link.active
     color: #ffffff
-    transition: color 0.25s 0.25s
+    transition: color 0.5s
 
 .nav__list-link:before
     content: ""
@@ -89,23 +90,20 @@
     content: ''
     z-index: -1
     position: absolute
-    left: 50%
+    left: 0
     bottom: 0
     display: block
-    width: 0
-    // height: 8px
-    height: 0.417vw
+    width: 100%
+    height: 0
     margin: 0
     background: #147eb3
     opacity: 0
-    transition: left 0.25s 0.25s, width 0.25s 0.25s, height 0.25s, opacity 0s 0.5s
+    transition: height 0.25s, opacity 0s 0.5s
 
 .nav__list-link.active:after
-    left: 0
-    width: 100%
     height: 100%
     opacity: 1
-    transition: left 0.25s -0.05s, width 0.25s -0.05s, height 0.25s 0.25s
+    transition: height 0.5s
 
 @media (max-width: 991px) 
     .nav
@@ -120,9 +118,6 @@
         line-height: calc(6.667vw * 1.5)
 
     .nav__list-link:before
-        height: calc(0.417vw * 1.5)
-
-    .nav__list-link:after
         height: calc(0.417vw * 1.5)
 
 @media (max-width: 600px) 
@@ -166,7 +161,7 @@
         line-height: calc(6.667vw * 2)
 
     .nav__list-link.active
-        transition: color 0.25s
+        transition: color 0.5s
     
     .nav__list-link:before
         height: calc(0.417vw * 2)
@@ -174,13 +169,6 @@
     .nav__list-link:hover:before
         left: 0
         width: 100%
-
-    .nav__list-link:after
-        height: calc(0.417vw * 2)
-        transition: left 0.25s 0.25s, width 0.25s 0.25s, height 0.25s, opacity 0s 0.5s
-
-    .nav__list-link.active:after
-        transition: left 0s, width 0s, height 0.25s
 
     
         

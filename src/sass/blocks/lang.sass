@@ -1,0 +1,70 @@
+.lang
+    z-index: 30
+    position: fixed
+    left: 3.854vw
+    bottom: 22.760vw
+    display: flex
+    flex-wrap: nowrap
+    align-items: flex-end
+    margin: 0
+    padding: 0
+    opacity: 1
+    list-style: none
+    transition: opacity 0.3s 0.3s
+    pointer-events: auto
+    &.hide
+        opacity: 0
+        pointer-events: none
+        transition: opacity 0.3s
+
+.lang__item
+    &:first-child
+        // margin-right: 25px
+        margin-right: 1.302vw
+
+.lang__link
+    position: relative
+    display: block
+    padding-bottom: 6px
+    font-family: 'Montserrat', sans-serif
+    font-size: 14px
+    font-weight: 700
+    line-height: 14px
+    color: #555555
+    transition: font-size 0.3s, color 0.3s
+    &::after
+        content: ''
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 100%
+        height: 1px
+        background-color: #000000
+        opacity: 0
+        transition: opacity 0.3s
+    &:hover
+        cursor: pointer
+
+.lang__link.active
+    font-size: 17px
+    color: #000000
+    &::after
+        opacity: 1
+
+@media(max-width: 991px)
+    .lang
+        left: calc(3.854vw * 1.5)
+        bottom: calc(22.760vw * 1.5)
+
+    .lang__item
+        &:first-child
+            margin-right: calc(1.302vw * 1.5)
+
+@media(max-width: 600px)
+    .lang
+        left: 15px
+        bottom: calc(15px + 50px + 15px + 50px + 15px)
+
+    .lang__item
+        &:first-child
+            margin-right: 10px

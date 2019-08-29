@@ -1,8 +1,4 @@
 $(function () {
-
-    $('#js-jewmapHamburger').on('click', function () {
-        $('#js-jewmapHamburger').toggleClass('active');
-    })
     
     var ZOOM = 4;
     var BOUNDS_RUSSIA = new L.LatLngBounds([30.0, 15.0], [78.0, 188.0]);

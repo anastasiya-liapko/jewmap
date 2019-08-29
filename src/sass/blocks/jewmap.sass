@@ -3,27 +3,46 @@
     display: flex
     flex-direction: column
 
-.jewmap__button
-    z-index: 50
+.jewmap__logo
+    z-index: 30
     position: fixed
-    width: 80px
-    height: 80px
-    padding: 25px
-    box-shadow: 6px 0 60px 0 rgba(0, 0, 0, 0.5)
-    background-color: rgba(255, 255, 255, 0.75)
-    transition: right 0.4s
+    left: 3.854vw
+    bottom: 3.854vw
+    font-family: inherit
+    // font-size: 72px
+    font-size: 3.750vw
+    font-weight: 900
+    line-height: 0.88
+    text-transform: uppercase
+    color: #000000
 
-.jewmap__button.open
-    transition: right 0.5s
+.jewmap__button
+    z-index: 30
+    position: fixed
+    // width: 80px
+    // height: 80px
+    // padding: 25px
+    // box-shadow: 6px 0 60px 0 rgba(0, 0, 0, 0.5)
+    width: 4.167vw
+    height: 4.167vw
+    padding: 0
+    box-shadow: 0.313vw 0 3.125vw 0 rgba(0, 0, 0, 0.5)
+    background-color: rgba(255, 255, 255, 0.75)
+    transition: transform 0.4s
+
+.jewmap__button.move
+    transition: transform 0.5s
 
 .jewmap__hamburger
-    top: 75px
-    right: calc(55px + 6.667vw)
+    // top: 55px
+    // right: calc(55px + 6.667vw)
+    top: 2.865vw
+    right: calc(2.865vw + 6.667vw)
     .hamburger-box
         width: 30px
         height: 30px
     .hamburger-inner
-        width: 30px
+        width: inherit
         background-color: $color-main
     .hamburger-inner::before
         width: 24px
@@ -40,9 +59,70 @@
         .hamburger-inner::before,
         .hamburger-inner::after
             width: 30px
-    &.open
-        right: calc(55px + 6.667vw + 600px)
 
 .jewmap__search
-    top: 75px
-    right: calc(55px + 6.667vw + 80px + 20px)
+    // top: 55px
+    // right: calc(55px + 6.667vw + 80px + 20px)
+    top: 2.865vw
+    right: calc(2.865vw + 6.667vw + 4.167vw + 1.042vw)
+    border: none
+    &:hover
+        .jewmap__search-icon
+            &::before
+                color: $color-main
+
+
+.jewmap__search-icon
+    display: inline-block
+    width: 30px
+    height: 30px
+    &::before
+        font-size: 28px
+        transition: color 0.3s
+
+.jewmap__hamburger,
+.jewmap__search
+    &.move
+        transform: translateX(-600px)
+
+@media(max-width: 991px)
+    .jewmap__logo
+        left: calc(3.854vw * 1.5)
+        bottom: calc(3.854vw * 1.5)
+        font-size: calc(3.750vw * 1.5)
+
+    .jewmap__button
+        width: calc(4.167vw * 1.5)
+        height: calc(4.167vw * 1.5)
+        box-shadow: calc(0.313vw * 1.5) 0 calc(3.125vw * 1.5) 0 rgba(0, 0, 0, 0.5)
+
+    .jewmap__hamburger
+        top: calc(2.865vw * 1.5)
+        right: calc(2.865vw * 1.5 + 6.667vw * 1.5)
+
+    .jewmap__search
+        top: calc(2.865vw * 1.5)
+        right: calc(2.865vw * 1.5 + 6.667vw * 1.5 + 4.167vw * 1.5 + 1.042vw * 1.5)
+
+    .jewmap__hamburger,
+    .jewmap__search
+        &.move
+            transform: translateX(0)
+
+@media(max-width: 600px)
+    .jewmap__logo
+        display: none
+
+    .jewmap__button
+        width: 50px
+        height: 50px
+
+    .jewmap__hamburger
+        top: calc(50px + 15px)
+        right: 15px
+        
+    .jewmap__search
+        top: calc(50px + 15px)
+        right: calc(15px + 15px + 50px)
+
+

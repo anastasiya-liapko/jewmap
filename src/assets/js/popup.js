@@ -1,11 +1,15 @@
 $(function () {
+
+    // init scrollbar
+    $('.popup__main').scrollBox();
     
     // show popup on nav click
     $('#js-navListWrapper>ul>li>a').on('click', function () {
         var popup = $(this).attr('data-popup');
         if ($('#js-' + popup).hasClass('open')) return;
-        $('#js-jewmapHamburger').removeClass('open');
-        $('#js-jewmapHamburger').addClass('open');
+        // $('#js-jewmapHamburger').removeClass('move');
+        $('#js-jewmapHamburger').addClass('move');
+        $('#js-jewmapSearch').addClass('move');
         $('.popup').removeClass('open');
         $('#js-' + popup).addClass('open');
     });
@@ -13,7 +17,8 @@ $(function () {
     // hide popup on close click
     $('.popup__close').on('click', function () {
         $('.popup').removeClass('open');
-        $('#js-jewmapHamburger').removeClass('open');
+        $('#js-jewmapHamburger').removeClass('move');
+        $('#js-jewmapSearch').removeClass('move');
         $('#js-navListWrapper>ul>li>a').removeClass('active');
     });
 
@@ -23,7 +28,9 @@ $(function () {
         if ($(e.target).closest('#js-nav').length) return;
         if ($(e.target).closest('.popup').length) return;
         $('.popup').removeClass('open');
-        $('#js-jewmapHamburger').removeClass('open');
+        $('#js-jewmapHamburger').removeClass('move');
+        $('#js-jewmapSearch').removeClass('move');
+        $('#js-navListWrapper>ul>li>a').removeClass('active');
         event.stopPropagation();
         // }
     });

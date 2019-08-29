@@ -1,4 +1,55 @@
 $(function () {
+    var MOBILE_WIDTH = 600;
+
+    // show/hide classifier on jewmap hamburger click
+    $('.jewmap__hamburger').on('click', function () {
+        $('#js-jewmapHamburger').toggleClass('active');
+        $('#js-classifier').toggleClass('open');
+        if ($(window).width() <= MOBILE_WIDTH) {
+            $('.leaflet-control-container').toggleClass('hide');
+            $('#js-lang').toggleClass('hide');
+        }
+        if ($('.popup').hasClass('open')) {
+            $('.popup').removeClass('open');
+            $('#js-navListWrapper>ul>li>a').removeClass('active');
+        }
+    });
+
+    // hide classifier on nav click
+    $('#js-navListWrapper>ul>li>a').on('click', function () {
+        $('#js-jewmapHamburger').removeClass('active');
+        $('#js-classifier').removeClass('open');
+        if ($(window).width() <= MOBILE_WIDTH) {
+            $('.leaflet-control-container').removeClass('hide');
+            $('#js-lang').removeClass('hide');
+        }
+    });
+
+    // remove submit button default behavior
+    $('#js-classifier button[type="submit"]').click(function(e) {
+        e.preventDefault();
+    });
+
+    // show classifier items equal to entered by user
+    $('#js-classifier input[type="text"]').on('change keydown keyup', function() {
+        var input = $(this);
+        var cityToFind = input.val().toUpperCase();
+        var cityToFindLength = cityToFind.length;
+        
+        var block = $('#js-classifier ul')
+
+        block.find('a').each(function() {
+            var cityWrapper = $(this).closest('li');
+            var city = $(this).text().toUpperCase();
+            city = city.substring(0, cityToFindLength);
+    
+            if (city !== cityToFind) {
+                cityWrapper.hide();
+            } else {
+                cityWrapper.show();
+            }
+        })
+    });
     
     var citiesArray = [];
 
@@ -108,6 +159,7 @@ $(function () {
 
         // add one elem from each half at a time
         var interimArray = [];
+        
         for (var i = 0; i < halfLength; i++) {
             half[i] !== undefined ? interimArray.push(half[i]) : '';
             array[i] !== undefined ? interimArray.push(array[i]) : '';
@@ -115,18 +167,18 @@ $(function () {
 
         return array = interimArray;
     }
+
     sortedArray = sortArray(citiesArray);
 
     // create classifier from template and array
     var addPopup = function (array) {
-        var fragmentMenu = document.createDocumentFragment();
-        var template = document.querySelector('#js-templateClassifier').content.querySelector('.classifier');
-        var templateElement = template.cloneNode(true);
-        fragmentMenu.appendChild(templateElement);
-        $('#js-jewmap').append(fragmentMenu);
+        // var fragmentMenu = document.createDocumentFragment();
+        // var template = document.querySelector('#js-templateClassifier').content.querySelector('.classifier');
+        // var templateElement = template.cloneNode(true);
+        // fragmentMenu.appendChild(templateElement);
+        // $('#js-jewmap').append(fragmentMenu);
 
         Array.prototype.forEach.call(array, function (elem) {
-
             var fragmentMenuItem = document.createDocumentFragment();
             var template = document.querySelector('#js-templateClassifierItem').content.querySelector('.classifier__list-item');
             var templateElement = template.cloneNode(true);
@@ -136,12 +188,12 @@ $(function () {
             templateElement.querySelector('.classifier__list-link').setAttribute('data-person', elem.person);
             templateElement.querySelector('.classifier__list-link').setAttribute('data-phone', elem.phone);
             templateElement.querySelector('.classifier__list-link').setAttribute('data-point', elem.point);
-
             fragmentMenuItem.appendChild(templateElement);
             document.querySelector('.classifier__list').append(fragmentMenuItem);
         });
 
         $('#js-classifierScrollbar').scrollBox();
     }
+
     addPopup(sortedArray);
 });

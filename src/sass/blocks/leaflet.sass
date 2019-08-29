@@ -1,2 +1,86 @@
 .leaflet-control-container
+    opacity: 1
+    transition: opacity 0.3s 0.3s
+    pointer-events: auto
+    &>div
+        z-index: 30
+        top: auto
+        right: auto
+        // left: 74px
+        // bottom: 234px
+        left: 3.854vw
+        bottom: 12.188vw
+    &.hide
+        opacity: 0
+        pointer-events: none
+        transition: opacity 0.3s
+        
+.leaflet-control-zoom
+    margin: 0 !important
+    border: none !important
+    border-radius: 0 !important
+    
+.leaflet-control-attribution
     display: none
+
+.leaflet-bar
+    background: transparent
+
+.leaflet-bar a
+    position: relative
+    width: 4.167vw
+    height: 4.167vw
+    padding: 0
+    box-shadow: 0.313vw 0 3.125vw 0 rgba(0, 0, 0, 0.5)
+    background-color: rgba(255, 255, 255, 0.75)
+    background-image: none
+    opacity: 1
+    border: none
+    border-radius: 0
+    &::before,
+    &::after
+        content: ''
+        position: absolute
+        top: 50%
+        left: 50%
+        width: 30px
+        height: 4px
+        margin-left: -15px
+        margin-top: -2px
+        background-color: #000000
+        border-radius: 3px
+        transition: background-color 0.3s
+    &:hover
+        opacity: 1
+        background-color: rgba(255, 255, 255, 0.75)
+        border: none
+        border-radius: 0
+        &::before,
+        &::after
+            background-color: $color-main
+
+.leaflet-control-zoom-in
+    margin-bottom: 15px
+    &::after
+        transform: rotate(90deg)
+
+@media(max-width: 991px)
+    .leaflet-control-container
+        &>div
+            left: calc(3.854vw * 1.5)
+            bottom: calc(12.188vw * 1.5)
+
+    .leaflet-bar a
+        width: calc(4.167vw * 1.5)
+        height: calc(4.167vw * 1.5)
+        box-shadow: calc(0.313vw * 1.5) 0 calc(3.125vw * 1.5) 0 rgba(0, 0, 0, 0.5)
+
+@media(max-width: 600px)
+    .leaflet-control-container
+        &>div
+            left: 15px
+            bottom: 15px
+
+    .leaflet-bar a
+        width: 50px
+        height: 50px
