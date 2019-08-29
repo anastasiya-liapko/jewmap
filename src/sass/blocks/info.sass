@@ -1,0 +1,37 @@
+.info__button
+    z-index: 30
+    position: fixed
+    left: 3.854vw
+    top: 4.167vw
+    width: 30px
+    height: 30px
+    padding: 0
+    background-color: transparent
+    border: none
+    &:hover
+        cursor: pointer
+        .info__button-icon
+            &::before
+                color: $color-main
+                text-shadow: 0 0 2px #000000
+
+.info__button-icon
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 5px
+    height: 20px
+    &::before
+        font-size: 18px
+        text-shadow: 1px 1px 2px transparent
+        transition: color 0.3s, text-shadow 0.3s
+
+@media(max-width: 991px)
+    .info__button
+        left: calc(3.854vw * 1.5)
+        top: calc(4.167vw * 1.5)
+
+@media(max-width: 600px)
+    .info__button
+        left: 15px
+        top: calc(50px + 15px + 15px)
