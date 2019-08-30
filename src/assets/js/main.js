@@ -3,7 +3,7 @@ $(function () {
     var orgs = [];
     
     var ZOOM = 4;
-    var BOUNDS_RUSSIA = new L.LatLngBounds([30.0, 15.0], [78.0, 188.0]);
+    var BOUNDS_RUSSIA = new L.LatLngBounds([30.0, 15.0], [78.0, 190.0]);
     if ($(window).width() < 575) {
         BOUNDS_RUSSIA = new L.LatLngBounds([40.0, 25.0], [35.0, 180.0]);
     }
@@ -16,7 +16,7 @@ $(function () {
         zoomDelta: 0.25,
         zoomSnap: 0,
         // maxZoom: 10,
-        minZoom: 2,
+        minZoom: 3,
         // maxBounds: new L.LatLngBounds([10.0, 15.0],[25.0, 188.0]),
         // zoomSnap: 0,
         // maxBoundsViscosity: 1
@@ -27,7 +27,7 @@ $(function () {
     map.fitBounds(BOUNDS_RUSSIA, { padding: [20, 20] });
 
     var southWest = L.latLng(-89.98155760646617, -180),
-    northEast = L.latLng(89.99346179538875, 180);
+    northEast = L.latLng(89.99346179538875, 230);
     var bounds = L.latLngBounds(southWest, northEast);
 
     map.setMaxBounds(bounds);

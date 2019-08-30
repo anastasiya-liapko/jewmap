@@ -83,7 +83,8 @@
 .jewmap__hamburger,
 .jewmap__search
     &.move
-        transform: translateX(-600px)
+        // transform: translateX(-600px)
+        transform: translateX(-31.250vw)
 
 .jewmap__pin-icon 
     // background: #54ecea
@@ -147,7 +148,7 @@
     .jewmap__hamburger,
     .jewmap__search
         &.move
-            transform: translateX(0)
+            transform: translateX(calc(-31.250vw * 1.5))
 
 @media(max-width: 600px)
     .jewmap__logo
@@ -164,5 +165,10 @@
     .jewmap__search
         top: calc(50px + 15px)
         right: calc(15px + 15px + 50px)
+
+    .jewmap__hamburger,
+    .jewmap__search
+        &.move
+            transform: translateX(0)
 
 

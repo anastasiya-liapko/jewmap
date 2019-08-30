@@ -7,12 +7,12 @@
     right: calc(2.240vw + 6.667vw)
     display: flex
     flex-direction: column
-    width: 320px
+    width: 290px
     // height: 496px
     height: 50vh
     opacity: 0
     box-shadow: 0.313vw 0 3.125vw 0 rgba(0, 0, 0, 0.5)
-    background-color: rgba(255, 255, 255, 0.75)
+    background-color: rgba(255, 255, 255, 0.5)
     pointer-events: none
     transition: opacity 0.3s
     box-sizing: border-box
@@ -33,11 +33,11 @@
     justify-content: space-between
     width: inherit
     height: inherit
-    border: 1px solid #000000
+    border: none
 
 .classifier__search-input
     flex-grow: 1
-    padding: 0 26px
+    padding: 0 25px
     font-family: inherit
     font-size: 14px
     font-weight: 400
@@ -75,7 +75,7 @@
     flex-wrap: wrap
     margin: 0
     padding: 0
-    padding-left: 15px
+    padding-left: 25px
     list-style: none
 
 .classifier__list-item
@@ -84,11 +84,11 @@
 
 .classifier__list-link
     display: block
-    padding: 5px 0
+    padding: 3px 0
     font-family: inherit
-    font-size: 16px
+    font-size: 14px
     font-weight: 700
-    line-height: 16px
+    line-height: 14px
     color: #000000
     box-sizing: border-box
     transition: color 0.3s
@@ -111,6 +111,12 @@
 
     .classifier.open
         transition: opacity 0.3s 0.3s
+
+    .classifier__search-input
+        padding: 0 15px
+
+    .classifier__list
+        padding-left: 15px
 
     .classifier__list-link
         padding: 6px 0
