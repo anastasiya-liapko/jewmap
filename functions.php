@@ -27,6 +27,7 @@ function getOrgs($databaseLink)
     and tt.taxonomy='administrative-units'
     and parent<>0;
     ";
+
     if ($res = mysqli_query($databaseLink, $sql)) {
         $response = mysqli_fetch_all($res, MYSQLI_ASSOC);
     }

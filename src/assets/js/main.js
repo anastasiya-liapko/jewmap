@@ -22,7 +22,7 @@ $(function () {
         // maxBoundsViscosity: 1
     })
         .setView([63.674041, 99.742382], ZOOM)
-        .addLayer(L.mapbox.styleLayer('mapbox://styles/aliapko/cjzle879c057t1cn6tnldfw7p'));
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/aliapko/cjzxvvyag15gz1clh8id3o3dz'));
 
     map.fitBounds(BOUNDS_RUSSIA, { padding: [20, 20] });
 
@@ -46,7 +46,8 @@ $(function () {
           var obj = jQuery.parseJSON(msg);
           console.log(obj);
           getMarkersWithChildren(obj);
-          window.classifier.addClassifier(map, orgs);
+          var orgs2 = orgs.slice(0);
+          window.classifier.addClassifier(map, orgs2);
           addCitiesOnMap(orgs);
         });
 
@@ -54,10 +55,14 @@ $(function () {
     var getMarkersWithChildren = function (array) {
     
         Array.prototype.forEach.call(array, function (arrayItem, arrayItemIndex) {
+
             var parent = {
                 'id': arrayItemIndex,
                 'name': arrayItem['name_city'],
-                'point': [parseFloat(arrayItem['latitude_city']), parseFloat(arrayItem['longitude_city'])],
+                'point': [
+                    arrayItem['latitude_city'] === '' || arrayItem['latitude_city'] === null ? '' : parseFloat(arrayItem['latitude_city']),
+                    arrayItem['longitude_city'] === '' || arrayItem['longitude_city'] === null ? '' : parseFloat(arrayItem['longitude_city'])
+                ],
                 'status': arrayItem['status_city'],
                 'childs': []
             };
@@ -66,8 +71,8 @@ $(function () {
                 'name': arrayItem['post_title'],
                 'address': arrayItem['address'],
                 'point': [
-                    arrayItem['latitude'] === '' ? '' : parseFloat(arrayItem['latitude']),
-                    arrayItem['longitude'] === '' ? '' : parseFloat(arrayItem['longitude'])
+                    arrayItem['latitude'] === '' || arrayItem['latitude'] === null ? '' : parseFloat(arrayItem['latitude']),
+                    arrayItem['longitude'] === '' || arrayItem['longitude'] === null ? '' : parseFloat(arrayItem['longitude'])
                 ]
                 // 'person': place['person'],
                 // 'phone': place['phone']
@@ -113,52 +118,55 @@ $(function () {
         // add markers on layers
         Array.prototype.forEach.call(array, function (markerElem) { 
 
-            if (markerElem['status'] === '1') {
+            if (markerElem.point[0] !== '' || markerElem.point[1] !== '') {
 
-                if (markerElem['name'] === 'Москва') {
+                if (markerElem['status'] === '1') {
+
+                    if (markerElem['name'] === 'Москва') {
+                        var html = '<div class="jewmap__pin"><div class="jewmap__pin-icon"></div><span class="jewmap__pin-label">' + markerElem.name + '</span></div>';
+                        var marker = L.marker(markerElem.point, {
+                            icon: L.divIcon({
+                                html: html,
+                                className: 'capital'
+                            }),
+                            zIndexOffset: 40
+                        }).addTo(layer_0);
+                        marker.on('click', onClickCity);
+
+                    } else {
+                        var html = '<div class="jewmap__pin"><div class="jewmap__pin-icon"></div><span class="jewmap__pin-label">' + markerElem.name + '</span></div>';
+                        var marker = L.marker(markerElem.point, {
+                            icon: L.divIcon({
+                                html: html,
+                                className: 'district'
+                            }),
+                            zIndexOffset: 30
+                        }).addTo(layer_1);
+                        marker.on('click', onClickCity);
+                    }
+                    
+                } else if (markerElem['status'] === '2') {
                     var html = '<div class="jewmap__pin"><div class="jewmap__pin-icon"></div><span class="jewmap__pin-label">' + markerElem.name + '</span></div>';
                     var marker = L.marker(markerElem.point, {
                         icon: L.divIcon({
                             html: html,
-                            className: 'capital'
+                            className: 'region'
                         }),
-                        zIndexOffset: 40
-                    }).addTo(layer_0);
+                        zIndexOffset: 20
+                    }).addTo(layer_2);
                     marker.on('click', onClickCity);
 
-                } else {
+                } else if (markerElem['status'] === '3' || markerElem['status'] === null) {
                     var html = '<div class="jewmap__pin"><div class="jewmap__pin-icon"></div><span class="jewmap__pin-label">' + markerElem.name + '</span></div>';
                     var marker = L.marker(markerElem.point, {
                         icon: L.divIcon({
                             html: html,
-                            className: 'district'
+                            className: 'city'
                         }),
-                        zIndexOffset: 30
-                    }).addTo(layer_1);
+                        zIndexOffset: 10
+                    }).addTo(layer_3);
                     marker.on('click', onClickCity);
                 }
-                
-            } else if (markerElem['status'] === '2') {
-                var html = '<div class="jewmap__pin"><div class="jewmap__pin-icon"></div><span class="jewmap__pin-label">' + markerElem.name + '</span></div>';
-                var marker = L.marker(markerElem.point, {
-                    icon: L.divIcon({
-                        html: html,
-                        className: 'region'
-                    }),
-                    zIndexOffset: 20
-                }).addTo(layer_2);
-                marker.on('click', onClickCity);
-
-            } else if (markerElem['status'] === '3' || markerElem['status'] === null) {
-                var html = '<div class="jewmap__pin"><div class="jewmap__pin-icon"></div><span class="jewmap__pin-label">' + markerElem.name + '</span></div>';
-                var marker = L.marker(markerElem.point, {
-                    icon: L.divIcon({
-                        html: html,
-                        className: 'city'
-                    }),
-                    zIndexOffset: 10
-                }).addTo(layer_3);
-                marker.on('click', onClickCity);
             }
 
             Array.prototype.forEach.call(markerElem.childs, function (place) { 
