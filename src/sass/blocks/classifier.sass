@@ -1,5 +1,5 @@
 .classifier
-    z-index: 30
+    z-index: 40
     position: fixed
     // bottom: 64px
     // right: calc(43px + 6.667vw)
@@ -7,10 +7,12 @@
     right: calc(2.240vw + 6.667vw)
     display: flex
     flex-direction: column
-    width: 381px
+    width: 320px
     // height: 496px
     height: 50vh
     opacity: 0
+    box-shadow: 0.313vw 0 3.125vw 0 rgba(0, 0, 0, 0.5)
+    background-color: rgba(255, 255, 255, 0.75)
     pointer-events: none
     transition: opacity 0.3s
     box-sizing: border-box
@@ -73,6 +75,7 @@
     flex-wrap: wrap
     margin: 0
     padding: 0
+    padding-left: 15px
     list-style: none
 
 .classifier__list-item
@@ -81,11 +84,11 @@
 
 .classifier__list-link
     display: block
-    padding: 7px 0
+    padding: 5px 0
     font-family: inherit
-    font-size: 18px
+    font-size: 16px
     font-weight: 700
-    line-height: 18px
+    line-height: 16px
     color: #000000
     box-sizing: border-box
     transition: color 0.3s

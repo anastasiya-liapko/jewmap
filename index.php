@@ -56,6 +56,12 @@
 
             <div id="map" class="jewmap__map map" style="height: 100vh"></div>
 
+            <div id="js-overlay" class="jewmap__overlay overlay">
+                <div class="overlay__content">
+                    <p class="overlay__text"><strong>Еврейская община России</strong> сегодня - это многопрофильная    инфраструктура с охватом всех сфер национально-культурной жизни и представительствами во всех уголках страны: общинные, культурные  и научные центры, образовательные и просветительские учреждения,  благотворительные фонды, общественные, религиозные организации,  музеи ,  театры, издательства и многое другое. Данный портал призван максимально полно представить все многообразие Еврейской общины России</p>
+                    <button class="overlay__close" type="button">Закрыть</button>
+                </div>
+            </div>
 
             <div id="js-nav" class="jewmap__nav nav">
                 <button id="js-navHamburger" class="nav__hamburger hamburger hamburger_squeeze" type="button">

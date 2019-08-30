@@ -1,0 +1,59 @@
+.overlay
+    z-index: 100
+    position: fixed
+    display: none
+    top: 50%
+    left: 50%
+    // width: 400px
+    width: 20.833vw
+    height: auto
+    transform: translate(-50%, -50%)
+
+.overlay__text
+    margin-top: 0
+    font-family: inherit
+    // font-size: 16px
+    font-size: 0.833vw
+    font-weight: 400
+    line-height: normal
+    text-shadow: 0 0 3rem #fff
+    color: #000000
+
+.overlay__close
+    display: block
+    padding: 0
+    font-family: inherit
+    // font-size: 17px
+    font-size: 0.885vw
+    font-weight: 700
+    line-height: 1
+    text-shadow: 0 0 3rem #fff
+    color: #000000
+    background-color: transparent
+    border: none
+    // border-bottom: 4px solid #000
+    border-bottom: 0.208vw solid #000
+    &:hover
+        cursor: pointer
+
+@media(max-width: 991px)
+    .overlay
+        width: calc(20.833vw * 1.5)
+
+    .overlay__text
+        font-size: calc(0.833vw * 1.5)
+
+    .overlay__close
+        font-size: calc(0.885vw * 1.5)
+        border-bottom: calc(0.208vw * 1.5) solid #000
+
+@media(max-width: 600px)
+    .overlay
+        top: 52%
+        width: 290px
+
+    .overlay__text
+        font-size: 16px
+
+    .overlay__close
+        font-size: 16px
