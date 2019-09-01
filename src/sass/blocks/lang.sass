@@ -1,8 +1,8 @@
 .lang
     z-index: 30
     position: fixed
-    left: 3.854vw
-    bottom: 22.760vw
+    left: 4.2vw
+    bottom: 22.89vw
     display: flex
     flex-wrap: nowrap
     align-items: flex-end
@@ -19,17 +19,21 @@
 
 .lang__item
     &:first-child
-        // margin-right: 25px
-        margin-right: 1.302vw
+        // margin-right: 17.5px
+        margin-right: 0.911vw
 
 .lang__link
     position: relative
     display: block
-    padding-bottom: 6px
+    // padding-bottom: 11px
+    padding-bottom: 0.573vw
     font-family: 'Montserrat', sans-serif
-    font-size: 14px
-    font-weight: 700
-    line-height: 14px
+    // font-size: 14px
+    font-size: 0.729vw
+    font-weight: 900
+    // line-height: 14px
+    line-height: 0.729vw
+    text-shadow: 0 0 3rem #fff
     color: #555555
     transition: font-size 0.3s, color 0.3s
     &::after
@@ -38,7 +42,8 @@
         bottom: 0
         left: 0
         width: 100%
-        height: 1px
+        // height: 4px
+        height: 0.208vw
         background-color: #000000
         opacity: 0
         transition: opacity 0.3s
@@ -46,19 +51,30 @@
         cursor: pointer
 
 .lang__link.active
-    font-size: 17px
+    // font-size: 17px
+    font-size: 0.885vw
     color: #000000
     &::after
         opacity: 1
 
 @media(max-width: 991px)
     .lang
-        left: calc(3.854vw * 1.5)
-        bottom: calc(22.760vw * 1.5)
+        left: calc(4.2vw * 1.5)
+        bottom: calc(22.89vw * 1.5)
 
     .lang__item
         &:first-child
-            margin-right: calc(1.302vw * 1.5)
+            margin-right: calc(0.911vw * 1.5)
+
+    .lang__link
+        padding-bottom: calc(0.573vw * 1.5)
+        font-size: calc(0.729vw * 1.5)
+        line-height: calc(0.729vw * 1.5)
+        &::after
+            height: calc(0.208vw * 1.5)
+
+    .lang__link.active
+        font-size: calc(0.885vw * 1.5)
 
 @media(max-width: 600px)
     .lang
@@ -67,4 +83,14 @@
 
     .lang__item
         &:first-child
-            margin-right: 10px
+            margin-right: calc(17.5px / 1.5)
+
+    .lang__link
+        padding-bottom: calc(11px / 1.5)
+        font-size: calc(14px / 1.5)
+        line-height: calc(14px / 1.5)
+        &::after
+            height: calc(4px / 1.5)
+
+    .lang__link.active
+        font-size: calc(17px / 1.5)

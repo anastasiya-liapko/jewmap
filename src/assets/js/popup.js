@@ -4,7 +4,7 @@ $(function () {
     $('.popup__main').scrollBox();
     
     // show popup on nav click
-    $('#js-navListWrapper>ul>li>a').on('click', function () {
+    $('#js-navListWrapper ul>li>a').on('click', function () {
         var popup = $(this).attr('data-popup');
         if ($('#js-' + popup).hasClass('open')) return;
         // $('#js-jewmapHamburger').removeClass('move');
@@ -19,7 +19,7 @@ $(function () {
         $('.popup').removeClass('open');
         $('#js-jewmapHamburger').removeClass('move');
         $('#js-jewmapSearch').removeClass('move');
-        $('#js-navListWrapper>ul>li>a').removeClass('active');
+        $('#js-navListWrapper ul>li>a').removeClass('active');
     });
 
     // hide popup on outside click
@@ -30,7 +30,7 @@ $(function () {
         $('.popup').removeClass('open');
         $('#js-jewmapHamburger').removeClass('move');
         $('#js-jewmapSearch').removeClass('move');
-        $('#js-navListWrapper>ul>li>a').removeClass('active');
+        $('#js-navListWrapper ul>li>a').removeClass('active');
         event.stopPropagation();
         // }
     });

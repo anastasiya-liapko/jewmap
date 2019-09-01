@@ -43,12 +43,17 @@
         position: absolute
         top: 50%
         left: 50%
-        width: 24px
-        height: 4px
-        margin-left: -12px
-        margin-top: -2px
+        // width: 24px
+        // height: 4px
+        // margin-left: -11px
+        // margin-top: -2px
+        width: 1.250vw
+        height: 0.208vw
+        margin-left: -0.573vw
+        margin-top: -0.104vw
         background-color: #000000
-        border-radius: 3px
+        // border-radius: 3px
+        border-radius: 0.156vw
         transition: background-color 0.3s
     &:hover
         opacity: 1
@@ -60,7 +65,8 @@
             background-color: $color-main
 
 .leaflet-control-zoom-in
-    margin-bottom: 15px
+    // margin-bottom: 18px
+    margin-bottom: 0.938vw
     &::after
         transform: rotate(90deg)
 
@@ -74,6 +80,16 @@
         width: calc(4.167vw * 1.5)
         height: calc(4.167vw * 1.5)
         box-shadow: calc(0.313vw * 1.5) 0 calc(3.125vw * 1.5) 0 rgba(0, 0, 0, 0.5)
+        &::before,
+        &::after
+            width: calc(1.250vw * 1.5)
+            height: calc(0.208vw * 1.5)
+            margin-left: calc(-0.573vw * 1.5)
+            margin-top: calc(-0.104vw * 1.5)
+            border-radius: calc(0.156vw * 1.5)
+
+    .leaflet-control-zoom-in
+        margin-bottom: calc(0.938vw * 1.5)
 
 @media(max-width: 600px)
     .leaflet-control-container
@@ -84,3 +100,13 @@
     .leaflet-bar a
         width: 50px
         height: 50px
+        &::before,
+        &::after
+            width: 20px
+            height: 3px
+            margin-left: -10px
+            margin-top: -1.5px
+            border-radius: 3px
+
+    .leaflet-control-zoom-in
+        margin-bottom: 15px

@@ -16,7 +16,7 @@ $(function () {
     });
 
     // hide classifier on resize
-    $('#js-navListWrapper>ul>li>a').on('click', function () {
+    $('#js-navListWrapper ul>li>a').on('click', function () {
         hideClassifier();
     });
 
@@ -196,7 +196,7 @@ $(function () {
                 }
                 if ($('.popup').hasClass('open')) {
                     $('.popup').removeClass('open');
-                    $('#js-navListWrapper>ul>li>a').removeClass('active');
+                    $('#js-navListWrapper ul>li>a').removeClass('active');
                 }
             });
         }

@@ -1,10 +1,12 @@
 .info__button
     z-index: 30
     position: fixed
-    left: 3.854vw
-    top: 4.167vw
-    width: 30px
-    height: 30px
+    left: 4.45vw
+    top: 5.2vw
+    // width: 30px
+    // height: 30px
+    width: 1.563vw
+    height: 1.563vw
     padding: 0
     background-color: transparent
     border: none
@@ -13,25 +15,51 @@
         .info__button-icon
             &::before
                 color: $color-main
-                text-shadow: 0 0 2px #000000
+                // text-shadow: 0 0 2px #000000
+                text-shadow: 0 0 0.104vw #000000
 
 .info__button-icon
     display: flex
     align-items: center
     justify-content: center
-    width: 5px
-    height: 20px
+    width: 100%
+    height: 100%
     &::before
-        font-size: 18px
-        text-shadow: 1px 1px 2px transparent
+        // font-size: 22px
+        font-size: 1.146vw
+        font-weight: 500
+        // text-shadow: 1px 1px 2px transparent
+        text-shadow: 0.052vw 0.052vw 0.104vw transparent
         transition: color 0.3s, text-shadow 0.3s
 
 @media(max-width: 991px)
     .info__button
-        left: calc(3.854vw * 1.5)
-        top: calc(4.167vw * 1.5)
+        left: calc(4.45vw * 1.5)
+        top: calc(5.2vw * 1.5)
+        width: calc(1.563vw * 1.5)
+        height: calc(1.563vw * 1.5)
+        &:hover
+            .info__button-icon
+                &::before
+                    text-shadow: 0 0 calc(0.104vw * 1.5) #000000
+
+    .info__button-icon
+        &::before
+            font-size: calc(1.146vw * 1.5)
+            text-shadow: calc(0.052vw * 1.5) calc(0.052vw * 1.5) calc(0.104vw * 1.5) transparent
 
 @media(max-width: 600px)
     .info__button
         left: 15px
         top: calc(50px + 15px + 15px)
+        width: calc(30px / 1.5)
+        height: calc(30px / 1.5)
+        &:hover
+            .info__button-icon
+                &::before
+                    text-shadow: 0 0 calc(2px / 1.5) #000000
+
+    .info__button-icon
+        &::before
+            font-size: calc(22px / 1.5)
+            text-shadow: calc(1px / 1.5) calc(1px / 1.5) calc(2px / 1.5) transparent

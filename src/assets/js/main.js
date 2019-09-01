@@ -3,9 +3,9 @@ $(function () {
     var orgs = [];
     
     var ZOOM = 4;
-    var BOUNDS_RUSSIA = new L.LatLngBounds([30.0, 15.0], [78.0, 190.0]);
-    if ($(window).width() < 575) {
-        BOUNDS_RUSSIA = new L.LatLngBounds([40.0, 25.0], [35.0, 180.0]);
+    var BOUNDS_RUSSIA = new L.LatLngBounds([27.0, 14.5], [77.65, 168.5]);
+    if ($(window).width() <= 600) {
+        BOUNDS_RUSSIA = new L.LatLngBounds([40.0, 25.0], [55.0, 180.0]);
     }
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiYWxpYXBrbyIsImEiOiJjangyenVmeGMwcTFjM3lvNGhsdmUzejRoIn0.zdJYMN5sxS2SJXZV2Lb3aA';
@@ -16,13 +16,13 @@ $(function () {
         zoomDelta: 0.25,
         zoomSnap: 0,
         // maxZoom: 10,
-        minZoom: 3,
+        minZoom: 2,
         // maxBounds: new L.LatLngBounds([10.0, 15.0],[25.0, 188.0]),
         // zoomSnap: 0,
         // maxBoundsViscosity: 1
     })
         .setView([63.674041, 99.742382], ZOOM)
-        .addLayer(L.mapbox.styleLayer('mapbox://styles/aliapko/cjzxvvyag15gz1clh8id3o3dz'));
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/aliapko/ck0066wpr2azz1cpl59flq3df'));
 
     map.fitBounds(BOUNDS_RUSSIA, { padding: [20, 20] });
 

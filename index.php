@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="shortcut icon" href="#" type="image/png">
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,700,900&display=swap&subset=cyrillic-ext,latin-ext" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,500,700,900&display=swap&subset=cyrillic-ext,latin-ext" rel="stylesheet">
 		<!-- <link rel="stylesheet" href="/wp-content/themes/feor/public/css/scrollBar.css"> -->
 		<link href='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.css' rel='stylesheet' />
 		<!-- <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
@@ -73,23 +73,25 @@
                 <a class="nav__logo">Еврейская<br>Община России</a>
 
                 <div id="js-navListWrapper" class="nav__list-wrapper">
-                    <ul class="nav__list">
-                        <li class="nav__list-item">
-                            <a class="nav__list-link" data-popup="about">О нас</a>
-                        </li>
-                        <li class="nav__list-item">
-                            <a class="nav__list-link" data-popup="geo">География</a>
-                        </li>
-                        <li class="nav__list-item">
-                            <a class="nav__list-link" data-popup="orgs">Организации</a>
-                        </li>
-                        <li class="nav__list-item">
-                            <a class="nav__list-link" data-popup="traditions">Традиции</a>
-                        </li>
-                        <li class="nav__list-item">
-                            <a class="nav__list-link" data-popup="calendar">Календарь</a>
-                        </li>
-                    </ul>
+                    <div>
+                        <ul class="nav__list">
+                            <li class="nav__list-item">
+                                <a class="nav__list-link" data-popup="about">О нас</a>
+                            </li>
+                            <li class="nav__list-item">
+                                <a class="nav__list-link" data-popup="geo">География</a>
+                            </li>
+                            <li class="nav__list-item">
+                                <a class="nav__list-link" data-popup="orgs">Организации</a>
+                            </li>
+                            <li class="nav__list-item">
+                                <a class="nav__list-link" data-popup="traditions">Традиции</a>
+                            </li>
+                            <li class="nav__list-item">
+                                <a class="nav__list-link" data-popup="calendar">Календарь</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <!-- nav -->

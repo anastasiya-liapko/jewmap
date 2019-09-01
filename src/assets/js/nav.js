@@ -8,8 +8,8 @@ $(function () {
     }
 
     // show active nav item
-    $('#js-navListWrapper>ul>li>a').on('click', function () {
-        $('#js-navListWrapper>ul>li>a').removeClass('active');
+    $('#js-navListWrapper ul>li>a').on('click', function () {
+        $('#js-navListWrapper ul>li>a').removeClass('active');
         $(this).addClass('active');
         if ($(window).width() <= MOBILE_WIDTH) {
             hideNavList();

@@ -27,37 +27,46 @@
 
 .nav__list-wrapper
     display: block
+    &>div
+        display: flex
+        justify-content: flex-end
+        width: 100vh
+        // height: 128px
+        height: 6.667vw
+        transform: rotate(-90deg) translateY(-100vh)
+        transform-origin: right top
 
 .nav__list
     display: flex
     flex-direction: row-reverse
     align-items: center
-    justify-content: center
-    width: 100vh
-    // height: 128px
-    height: 6.667vw
+    justify-content: space-between
+    width: 82.5%
+    height: 100%
     margin: 0
+    // margin-right: 109px
+    margin-right: 5.677vw
     padding: 0
     list-style: none
-    transform: rotate(-90deg) translateY(-100vh)
-    transform-origin: right top
 
 .nav__list-item
+    flex-grow: 1
     height: inherit
 
 .nav__list-link
+    z-index: 1
     position: relative
-    display: inline-block
+    display: block
     width: inherit
     height: inherit
-    // padding: 0 30px
-    padding: 0 1.563vw
     font-family: inherit
     // font-size: 18px
-    font-size: 0.833vw
-    font-weight: 400
+    font-size: 0.938vw
+    font-weight: 500
     // line-height: 128px
-    line-height: 6.667vw
+    line-height: 6.067vw
+    // letter-spacing: 0.15px
+    letter-spacing: 0.008vw
     text-align: center
     text-transform: uppercase
     vertical-align: middle
@@ -78,14 +87,14 @@
     left: 50%
     bottom: 0
     width: 0
-    // height: 8px
-    height: 0.417vw
+    // height: 10px
+    height: 0.521vw
     background-color: #147eb3
     transition: width 0.25s, left 0.25s
 
 .nav__list-link:hover:before
-    left: 20%
-    width: 60%
+    left: 26%
+    width: 49%
 
 .nav__list-link:after
     content: ''
@@ -111,16 +120,17 @@
         width: calc(6.667vw * 1.5)
         box-shadow: calc(0.313vw * 1.5) 0 calc(3.125vw * 1.5) 0 rgba(0, 0, 0, 0.5)
 
-    .nav__list
-        height: calc(6.667vw * 1.5)
+    .nav__list-wrapper
+        &>div
+            height: calc(6.667vw * 1.5)
 
     .nav__list-link
-        padding: 0 calc(1.563vw * 1.5)
-        font-size: calc(0.833vw * 1.5)
-        line-height: calc(6.667vw * 1.5)
+        font-size: calc(0.938vw * 1.5)
+        line-height: calc(6.067vw * 1.5)
+        letter-spacing: calc(0.008vw * 1.5)
 
     .nav__list-link:before
-        height: calc(0.417vw * 1.5)
+        height: calc(0.521vw * 1.5)
 
 @media (max-width: 600px) 
     .nav
@@ -146,13 +156,17 @@
         width: inherit
         height: auto
         box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2)
+        &>div
+            width: inherit
+            height: auto
+            background-color: #f0f0f0
+            transform: rotate(0) translateY(0)
 
     .nav__list
         flex-direction: column
         width: inherit
-        height: auto
+        margin-right: 0
         background-color: #f0f0f0
-        transform: rotate(0) translateY(0)
 
     .nav__list-item
         width: 100%
@@ -166,7 +180,7 @@
         transition: color 0.5s
     
     .nav__list-link:before
-        height: calc(0.417vw * 2)
+        height: calc(0.521vw * 2)
 
     .nav__list-link:hover:before
         left: 0
