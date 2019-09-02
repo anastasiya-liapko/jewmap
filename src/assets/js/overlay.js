@@ -8,7 +8,7 @@ $(window).on('load', function () {
     // hide controls and lang
     if ($(window).width() <= MOBILE_WIDTH) {
         $('.leaflet-control-container').addClass('hide');
-        $('#js-lang').addClass('hide');
+        $('#js-infoButton').addClass('hide');
     }
 
     // hide info popup on close click
@@ -16,7 +16,7 @@ $(window).on('load', function () {
         $('#js-overlay').fadeOut();
         if ($(window).width() <= MOBILE_WIDTH) {
             $('.leaflet-control-container').removeClass('hide');
-            $('#js-lang').removeClass('hide');
+            $('#js-infoButton').removeClass('hide');
         }
     })
 
@@ -27,7 +27,7 @@ $(window).on('load', function () {
         event.stopPropagation();
         if ($(window).width() <= MOBILE_WIDTH) {
             $('.leaflet-control-container').removeClass('hide');
-            $('#js-lang').removeClass('hide');
+            $('#js-infoButton').removeClass('hide');
         }
     });
 });

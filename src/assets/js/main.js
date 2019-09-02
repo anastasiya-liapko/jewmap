@@ -3,7 +3,11 @@ $(function () {
     var orgs = [];
     
     var ZOOM = 4;
-    var BOUNDS_RUSSIA = new L.LatLngBounds([27.0, 14.5], [77.65, 168.5]);
+    // var BOUNDS_RUSSIA = new L.LatLngBounds([27.0, 14.5], [77.65, 168.5]);
+    // if ($(window).width() <= 600) {
+    //     BOUNDS_RUSSIA = new L.LatLngBounds([40.0, 25.0], [55.0, 180.0]);
+    // }
+    var BOUNDS_RUSSIA = new L.LatLngBounds([60.0, 21], [69.0, 167.0]);
     if ($(window).width() <= 600) {
         BOUNDS_RUSSIA = new L.LatLngBounds([40.0, 25.0], [55.0, 180.0]);
     }
@@ -46,9 +50,10 @@ $(function () {
           var obj = jQuery.parseJSON(msg);
           console.log(obj);
           getMarkersWithChildren(obj);
+          addCitiesOnMap(orgs);
           var orgs2 = orgs.slice(0);
           window.classifier.addClassifier(map, orgs2);
-          addCitiesOnMap(orgs);
+          window.geo.addGeo(map, orgs);
         });
 
     // transform list of orgs into array of cities with children
@@ -73,9 +78,10 @@ $(function () {
                 'point': [
                     arrayItem['latitude'] === '' || arrayItem['latitude'] === null ? '' : parseFloat(arrayItem['latitude']),
                     arrayItem['longitude'] === '' || arrayItem['longitude'] === null ? '' : parseFloat(arrayItem['longitude'])
-                ]
-                // 'person': place['person'],
-                // 'phone': place['phone']
+                ],
+                'phone': arrayItem['phone'],
+                'email': arrayItem['email'],
+                'site': arrayItem['site']
             };
         
             if (orgs.length === 0){
@@ -109,10 +115,49 @@ $(function () {
         var layer_3 = L.mapbox.featureLayer();
         var layerWithOrgs = L.mapbox.featureLayer();
 
+        // create popup
+        var markerHeight = 20, markerRadius = 10, linearOffset = 25;
+        var popupOffsets = {
+         'top': [0, 20],
+         'top-left': [0,0],
+         'top-right': [0,0],
+         'bottom': [0, -markerHeight],
+         'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+         'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+         'left': [markerRadius, (markerHeight - markerRadius) * -1],
+         'right': [-markerRadius, (markerHeight - markerRadius) * -1]
+         };
+
+        var popup = new L.popup({
+            offset: popupOffsets,
+            closeButton: true,
+            closeOnClick: true
+        });
+
         // handle click event
         function onClickCity(e) {
-            var point = e.target._latlng
-            window.util.flyTo(map, [point.lat, point.lng])
+            var point = e.target._latlng;
+            window.util.flyTo(map, [point.lat, point.lng]);
+        }
+
+        function onClickPlace(e) {
+            var point = e.target._latlng;
+            var name = e.target.options.name;
+            var address = e.target.options.address;
+            var phone = JSON.parse(e.target.options.phone);
+            var email = e.target.options.email;
+            var site = e.target.options.site;
+            console.log(phone)
+            window.util.flyTo(map, [point.lat, point.lng]);
+            window.util.addPopup(map, popup, {
+                'name': name,
+                'lng': parseFloat(point.lng),
+                'lat': parseFloat(point.lat),
+                'address': address,
+                'phone': phone,
+                'email': email,
+                'site': site
+            });
         }
 
         // add markers on layers
@@ -172,45 +217,38 @@ $(function () {
             Array.prototype.forEach.call(markerElem.childs, function (place) { 
 
                 if (place.point[0] !== '' || place.point[1] !== '') {
-                    
+                    var phoneArray = [];
+
                     if (place.phone !== undefined) {
-                        var firstPart = place.phone.split('(').pop().split(')').shift()
-                        var secondPart = place.phone.split(')').pop()
-                        var thirdPart = secondPart.split(' ').pop().split('-')
-                        var phoneLink = 8 + firstPart + thirdPart[0] + thirdPart[1] + thirdPart[2]
+                        var phones = place.phone.split(';');
+
+                        if (phones.length !== 0) {
+
+                            Array.prototype.forEach.call(phones, function (phone) { 
+                                var phoneLink = phone.split(' ').join('').split('(').join('').split(')').join('').split('-').join('').split('?').join('');
+        
+                                phoneArray.push({
+                                    'phone': phone,
+                                    'phoneLink': phoneLink
+                                });
+                            });
+                        }
                     }
                     
-                    var yandexLink = 'https://yandex.by/maps/?text=' + place.name.split(' ').join('%20').split('"').join('%20');
-                    var html = '';
-                    html += '<div class="popup popup-place d-flex flex-column">' +
-                        '<p class="popup__name">' + place.name + '</p>'
-                        if (place.person !== '') {
-                            html += '<p class="popup__person d-flex align-items-start">' +
-                                '<span class="popup__icon icon-map-person d-flex align-items-center justify-content-center"></span>' +
-                                '<span class="popup__text d-flex align-items-center">' + place.person + '</span>' +
-                            '</p>'
-                        }
-                        html += '<a href="' + yandexLink + '" class="popup__address d-flex align-items-start" target="_blank">' +
-                            '<span class="popup__icon icon-map d-flex align-items-center justify-content-center"></span>' +
-                            '<span class="popup__text d-flex align-items-center">' + place.address + '</span>' +
-                        '</a>' +
-                        '<a href="tel:' + phoneLink + '" class="popup__phone d-flex align-items-start">' +
-                            '<span class="popup__icon icon-phone d-flex align-items-center justify-content-center"></span>' +
-                            '<span class="popup__text d-flex align-items-center">' + place.phone + '</span>' +
-                        '</div>' +
-                    '</div>'
-
                     var marker = L.marker(place.point, {
                         icon: L.divIcon({
                             html: '<div class="jewmap__pin"><div class="jewmap__pin-icon"></div></div>',
                             className: 'org'
                         }),
-                        id: place.id
+                        id: place.id,
+                        name: place.name,
+                        address: place.address,
+                        phone: JSON.stringify(phoneArray),
+                        email: place.email,
+                        site: place.site
                     }).addTo(layerWithOrgs);
-                    // marker.bindPopup(html);
-                    // marker.on('click', function (e) {
-                    //     onClickPlace(place.city)
-                    // });
+
+                    marker.on('click', onClickPlace);
                 }
             });
         })

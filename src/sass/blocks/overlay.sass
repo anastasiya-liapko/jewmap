@@ -18,7 +18,10 @@
     color: #000000
 
 .overlay__close
+    position: relative
     display: block
+    width: 1.250vw
+    height: 1.250vw
     padding: 0
     font-family: inherit
     font-size: 16px
@@ -28,9 +31,54 @@
     color: #000000
     background-color: transparent
     border: none
-    border-bottom: 4px solid #000
+    &::before,
+    &::after
+        content: ''
+        position: absolute
+        top: 50%
+        left: 50%
+        // width: 24px
+        // height: 4px
+        // margin-left: -11px
+        // margin-top: -2px
+        width: 1.250vw
+        height: 0.208vw
+        margin-left: -0.573vw
+        margin-top: -0.104vw
+        background-color: #000000
+        // border-radius: 3px
+        border-radius: 0.156vw
+        transition: background-color 0.3s
+    &::before
+        transform: rotate(-45deg)
+    &::after
+        transform: rotate(45deg)
     &:hover
         cursor: pointer
+
+@media(max-width: 991px)
+    .overlay__close
+        width: calc(1.250vw * 1.5)
+        height: calc(1.250vw * 1.5)
+        &::before,
+        &::after
+            width: calc(1.250vw * 1.5)
+            height: calc(0.208vw * 1.5)
+            margin-left: calc(-0.573vw * 1.5)
+            margin-top: calc(-0.104vw * 1.5)
+            border-radius: calc(0.156vw * 1.5)
+
+@media(max-width: 600px)
+    .overlay__close
+        width: 20px
+        height: 20px
+        &::before,
+        &::after
+            width: 20px
+            height: 3px
+            margin-left: -10px
+            margin-top: -1.5px
+            border-radius: 3px
 
 @media(max-width: 600px)
     .overlay

@@ -18,6 +18,9 @@ function getOrgs($databaseLink)
     ,(select meta_value from wpc_termmeta mklat where mklat.meta_key ='latitude' and mklat.term_id=tt.term_id) latitude_city
     ,(select meta_value from wpc_termmeta mklng where mklng.meta_key ='longitude' and mklng.term_id=tt.term_id) longitude_city
     ,(select meta_value from wpc_termmeta status where status.meta_key ='status' and status.term_id=tt.term_id) status_city
+    ,(select meta_value from wpc_postmeta phone where phone.meta_key ='phone' and phone.post_id=p.id) phone
+    ,(select meta_value from wpc_postmeta email where email.meta_key ='email' and email.post_id=p.id) email
+    ,(select meta_value from wpc_postmeta site where site.meta_key ='site_url' and site.post_id=p.id) site
     from wpc_posts p
     join wpc_term_relationships as tr on tr.object_id = p.id
     join wpc_term_taxonomy as tt on tt.term_taxonomy_id=tr.term_taxonomy_id
