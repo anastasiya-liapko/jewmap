@@ -14,19 +14,19 @@ $(function () {
 
         var html = '';
 
-        html += '<div class="sina-popup d-flex flex-column">' +
-            '<p class="sina-popup__name mb-1"><strong>' + object.name + '</strong></p>';
+        html += '<div class="jewmap-popup">' +
+            '<p class="jewmap-popup__name"><strong>' + object.name + '</strong></p>';
 
-        object.address !== '' ? html += '<a href="' + yandexLink + '" class="sina-popup__text sina-popup__address d-flex align-items-start mb-1">' + object.address + '</p>' : '';
+        object.address !== '' ? html += '<a href="' + yandexLink + '" class="jewmap-popup__text jewmap-popup__address">' + object.address + '</a>' : '';
 
         Array.prototype.forEach.call(object.phone, function (elem, i) { 
-            html += '<a href="tel:' + elem.phoneLink + '" class="sina-popup__text sina-popup__phone d-flex align-items-start mb-1">' + elem.phone + '</a>';
+            html += '<a href="tel:' + elem.phoneLink + '" class="jewmap-popup__text jewmap-popup__phone">' + elem.phone + '</a>';
             i < object.phone.length - 1 ? html += ', ' : '';
         });
             
-        object.email !== '' ? html += '<a href="mailto:' + object.email + '" class="sina-popup__text sina-popup__email d-flex align-items-start mb-1">' + object.email + '</p>' : '';
+        object.email !== '' ? html += '<a href="mailto:' + object.email + '" class="jewmap-popup__text jewmap-popup__email">' + object.email + '</a>' : '';
 
-        object.site !== '' ? html += '<a href="' + object.site + '" class="sina-popup__text sina-popup__site d-flex align-items-start mb-1">' + object.site + '</a>' : '';
+        object.site !== '' ? html += '<a href="' + object.site + '" class="jewmap-popup__text jewmap-popup__site">' + object.site + '</a>' : '';
 
         html += '</div>';
 

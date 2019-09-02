@@ -2,6 +2,7 @@ $(function () {
     
     var orgs = [];
     
+    var PIN = 'public/img/pin-new.png';
     var ZOOM = 4;
     // var BOUNDS_RUSSIA = new L.LatLngBounds([27.0, 14.5], [77.65, 168.5]);
     // if ($(window).width() <= 600) {
@@ -116,22 +117,23 @@ $(function () {
         var layerWithOrgs = L.mapbox.featureLayer();
 
         // create popup
-        var markerHeight = 20, markerRadius = 10, linearOffset = 25;
-        var popupOffsets = {
-         'top': [0, 20],
-         'top-left': [0,0],
-         'top-right': [0,0],
-         'bottom': [0, -markerHeight],
-         'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-         'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-         'left': [markerRadius, (markerHeight - markerRadius) * -1],
-         'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-         };
+        // var markerHeight = 20, markerRadius = 10, linearOffset = 25;
+        // var popupOffsets = {
+        //  'top': [0, 20],
+        //  'top-left': [0,0],
+        //  'top-right': [0,0],
+        //  'bottom': [0, -markerHeight],
+        //  'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+        //  'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+        //  'left': [markerRadius, (markerHeight - markerRadius) * -1],
+        //  'right': [-markerRadius, (markerHeight - markerRadius) * -1]
+        //  };
 
         var popup = new L.popup({
-            offset: popupOffsets,
+            // offset: popupOffsets,
             closeButton: true,
-            closeOnClick: true
+            closeOnClick: true,
+            keepInView: true
         });
 
         // handle click event
@@ -236,9 +238,15 @@ $(function () {
                     }
                     
                     var marker = L.marker(place.point, {
-                        icon: L.divIcon({
-                            html: '<div class="jewmap__pin"><div class="jewmap__pin-icon"></div></div>',
-                            className: 'org'
+                        // icon: L.divIcon({
+                        //     html: '<div class="jewmap__pin"><div class="jewmap__pin-icon"></div></div>',
+                        //     className: 'org'
+                        // }),
+                        icon: L.icon({
+                            iconUrl: PIN,
+                            iconSize: [33, 48],
+                            iconAnchor: [16, 48],
+                            popupAnchor: [38, 0]
                         }),
                         id: place.id,
                         name: place.name,
@@ -294,6 +302,7 @@ $(function () {
                     showLabel('.region');
                     map.addLayer(layer_3);
                     showLabel('.city');
+                    map.closePopup();
                 } else if ( zoom < 2) {
                     map.addLayer(layer_0);
                     map.addLayer(layer_1);
@@ -328,6 +337,7 @@ $(function () {
                     showLabel('.region');
                     map.addLayer(layer_3);
                     showLabel('.city');
+                    map.closePopup();
                 } else if ( zoom < 4) {
                     map.addLayer(layer_0);
                     map.addLayer(layer_1);
