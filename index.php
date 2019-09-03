@@ -117,20 +117,172 @@
             <div id="js-geo" class="popup geo">
                 <div class="popup__content">
                     <div class="popup__header">
-                        <h2 class="popup__title">География</h2>
+                        <h2 class="popup__title">
+                            <span>География</span>
+                            <span class="geo__district">
+                                <span class="geo__decor">|</span>
+                                <span class="geo__district-text">Дальневосточный</span>
+                            </span>
+                        </h2>
                         <button class="popup__close" type="button"></button>
                     </div>
+                    
                     <div class="popup__main">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        </p>
-                        <p>
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a
-                        </p>
+                        <!-- <span class="geo__city">Москва</span>
+
+                        <div class="geo__orgs-wrapper">
+                        <div class="geo__orgs">
+                            <p class="geo__orgs-type">
+                                <span class="geo__decor">|</span>
+                                <span>Издательства и медиа</span>
+                            </p>
+                            <div class="geo__org">
+                                <p class="geo__org-name">Представительно главнного равината России в г.Челябинске и Челябинской области</p>
+                                <p class="geo__org-rabbi">
+                                    <span class="geo__org-icon icon-user"></span>
+                                    <span class="geo__org-text">Имя Равина</span>
+                                </p>
+                                <a href="#" class="geo__org-address">
+                                    <span class="geo__org-icon icon-address"></span>
+                                    <span class="geo__org-text">Московская область, Центральный федеральный </span>
+                                </a>
+                                <a href="#" class="geo__org-phone">
+                                    <span class="geo__org-icon icon-phone"></span>
+                                    <span class="geo__org-text">(495) 995-57-74</span>
+                                </a>
+                            </div>
+
+                            <div class="geo__org">
+                                <p class="geo__org-name">Представительно главнного равината России в г.Челябинске и Челябинской области</p>
+                                <p class="geo__org-rabbi">
+                                    <span class="geo__org-icon icon-user"></span>
+                                    <span class="geo__org-text">Имя Равина</span>
+                                </p>
+                                <a href="#" class="geo__org-address">
+                                    <span class="geo__org-icon icon-address"></span>
+                                    <span class="geo__org-text">Московская область, Центральный федеральный </span>
+                                </a>
+                                <a href="#" class="geo__org-phone">
+                                    <span class="geo__org-icon icon-phone"></span>
+                                    <span class="geo__org-text">(495) 995-57-74</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="geo__orgs">
+                            <p class="geo__orgs-type">
+                                <span class="geo__decor">|</span>
+                                <span>Издательства и медиа</span>
+                            </p>
+                            <div class="geo__org">
+                                <p class="geo__org-name">Представительно главнного равината России в г.Челябинске и Челябинской области</p>
+                                <p class="geo__org-rabbi">
+                                    <span class="geo__org-icon icon-user"></span>
+                                    <span class="geo__org-text">Имя Равина</span>
+                                </p>
+                                <a href="#" class="geo__org-address">
+                                    <span class="geo__org-icon icon-address"></span>
+                                    <span class="geo__org-text">Московская область, Центральный федеральный </span>
+                                </a>
+                                <a href="#" class="geo__org-phone">
+                                    <span class="geo__org-icon icon-phone"></span>
+                                    <span class="geo__org-text">(495) 995-57-74</span>
+                                </a>
+                            </div>
+
+                            <div class="geo__org">
+                                <p class="geo__org-name">Представительно главнного равината России в г.Челябинске и Челябинской области</p>
+                                <p class="geo__org-rabbi">
+                                    <span class="geo__org-icon icon-user"></span>
+                                    <span class="geo__org-text">Имя Равина</span>
+                                </p>
+                                <a href="#" class="geo__org-address">
+                                    <span class="geo__org-icon icon-address"></span>
+                                    <span class="geo__org-text">Московская область, Центральный федеральный </span>
+                                </a>
+                                <a href="#" class="geo__org-phone">
+                                    <span class="geo__org-icon icon-phone"></span>
+                                    <span class="geo__org-text">(495) 995-57-74</span>
+                                </a>
+                            </div>
+                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
             <!-- geo -->
+
+            <div id="js-geoDistricts" class="popup geo">
+                <div class="popup__content">
+                    <div class="popup__header">
+                        <h2 class="popup__title">
+                            <span>География</span>
+                            <span class="geo__district">
+                                <span class="geo__decor">|</span>
+                                <span class="geo__district-text">Дальневосточный</span>
+                            </span>
+                        </h2>
+                        <button class="popup__close" type="button"></button>
+                    </div>
+                    
+                    <div class="popup__main">
+                        <!-- <ul class="geo__districts">
+                            <li class="geo__district-wrapper">
+                                <a class="geo__district">Дальневосточный</a>
+                            </li>
+                            <li class="geo__district-wrapper">
+                                <a class="geo__district">Дальневосточный</a>
+                            </li>
+                            <li class="geo__district-wrapper">
+                                <a class="geo__district">Дальневосточный</a>
+                            </li>
+                            <li class="geo__district-wrapper">
+                                <a class="geo__district">Дальневосточный</a>
+                            </li>
+                            <li class="geo__district-wrapper">
+                                <a class="geo__district">Дальневосточный</a>
+                            </li>
+                        </ul> -->
+                    </div>
+                </div>
+            </div>
+            <!-- geo districts -->
+
+            <div id="js-geoCities" class="popup geo">
+                <div class="popup__content">
+                    <div class="popup__header">
+                        <h2 class="popup__title">
+                            <span>География</span>
+                            <span class="geo__district">
+                                <span class="geo__decor">|</span>
+                                <span class="geo__district-text">Дальневосточный</span>
+                            </span>
+                        </h2>
+                        <button class="popup__close" type="button"></button>
+                    </div>
+                    
+                    <div class="popup__main">
+                        <!-- <ul class="geo__cities">
+                            <li class="geo__city-wrapper">
+                                <a class="geo__city">Москва</a>
+                            </li>
+                            <li class="geo__city-wrapper">
+                                <a class="geo__city">Москва</a>
+                            </li>
+                            <li class="geo__city-wrapper">
+                                <a class="geo__city">Москва</a>
+                            </li>
+                            <li class="geo__city-wrapper">
+                                <a class="geo__city">Москва</a>
+                            </li>
+                            <li class="geo__city-wrapper">
+                                <a class="geo__city">Москва</a>
+                            </li>
+                        </ul> -->
+                    </div>
+                </div>
+            </div>
+            <!-- geo cities -->
 
             <div id="js-orgs" class="popup orgs">
                 <div class="popup__content">

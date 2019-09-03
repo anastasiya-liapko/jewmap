@@ -12,6 +12,7 @@ $(function () {
         $('#js-jewmapSearch').addClass('move');
         $('.popup').removeClass('open');
         $('#js-' + popup).addClass('open');
+        $('#js-geo .popup__title .geo__district').css('display', 'none');
     });
 
     // hide popup on close click
@@ -20,19 +21,18 @@ $(function () {
         $('#js-jewmapHamburger').removeClass('move');
         $('#js-jewmapSearch').removeClass('move');
         $('#js-navListWrapper ul>li>a').removeClass('active');
+        $('#js-geo .popup__title .geo__district').css('display', 'none');
     });
 
     // hide popup on outside click
-    $(document).click(function(e) {
-        // if ($(window).width() <= MOBILE_WIDTH) {
-        if ($(e.target).closest('#js-nav').length) return;
-        if ($(e.target).closest('.popup').length) return;
-        $('.popup').removeClass('open');
-        $('#js-jewmapHamburger').removeClass('move');
-        $('#js-jewmapSearch').removeClass('move');
-        $('#js-navListWrapper ul>li>a').removeClass('active');
-        event.stopPropagation();
-        // }
-    });
+    // $(document).click(function(e) {
+    //     if ($(e.target).closest('#js-nav').length) return;
+    //     if ($(e.target).closest('.popup').length) return;
+    //     $('.popup').removeClass('open');
+    //     $('#js-jewmapHamburger').removeClass('move');
+    //     $('#js-jewmapSearch').removeClass('move');
+    //     $('#js-navListWrapper ul>li>a').removeClass('active');
+    //     event.stopPropagation();
+    // });
 
 });

@@ -1,0 +1,45 @@
+.about 
+    .popup__main
+        .sb-scrollbar-container,
+        .sb-scrollbar
+            background: transparent
+        p
+            margin-top: 0
+            font-family: inherit
+            // font-size: 22px
+            font-size: 1.146vw
+            font-weight: 400
+            // line-height: 29.5px
+            // letter-spacing: 0.15px
+            line-height: 1.536vw
+            letter-spacing: 0.008vw
+            color: #ffffff
+        p:first-child
+            // margin-bottom: 57px
+            margin-bottom: 2.969vw
+            font-weight: 700
+            letter-spacing: normal
+            // line-height: 29px
+            line-height: 1.52vw
+
+@media(max-width: 991px)
+    .about
+        .popup__main
+            p
+                font-size: calc(1.146vw * 1.5)
+                line-height: calc(1.536vw * 1.5)
+                letter-spacing: calc(0.008vw * 1.5)
+            p:first-child
+                margin-bottom: calc(2.969vw * 1.5)
+                line-height: calc(1.52vw * 1.5)
+
+@media(max-width: 600px)
+    .about
+        .popup__main
+            p
+                font-size: 18px
+                line-height: normal
+                letter-spacing: normal
+            p:first-child
+                margin-bottom: 15px
+                line-height: normal

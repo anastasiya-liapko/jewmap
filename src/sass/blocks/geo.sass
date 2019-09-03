@@ -1,0 +1,270 @@
+.geo
+    .sb-content
+        padding-right: 30%
+    .popup__content
+        // padding-left: 70px
+        // padding-right: 45px
+        // padding-bottom: 30px
+        padding-left: 3.646vw
+        padding-right: 2.344vw
+        padding-bottom: 1.563vw
+    .popup__header
+        // margin-bottom: 31px
+        // padding-right: 18px
+        margin-bottom: 1.615vw
+        padding-right: 0.938vw
+    .sb-scrollbar-container
+        // top: 70px
+        // bottom: 70px
+        top: 3.646vw
+        bottom: 3.646vw
+        background: rgba(216,216,216,0.29)
+    .sb-scrollbar
+        background: #ffffff
+
+.geo__decor
+    display: inline-block
+    // margin-right: 11px
+    margin-right: 0.573vw
+    font-family: inherit
+    // font-size: 17px
+    font-size: 0.885vw
+    line-height: 1
+    color: #ffffff
+
+.geo__city
+    display: block
+    // margin-bottom: 30px
+    margin-bottom: 1.563vw
+    font-family: inherit
+    // font-size: 22px
+    font-size: 1.146vw
+    font-weight: 700
+    line-height: 1
+    color: #ffffff
+    opacity: 1
+    transition: opacity 0.3s
+    white-space: nowrap
+    &:hover
+        opacity: 0.7
+        cursor: pointer
+
+.geo__orgs
+    // margin-bottom: 24px
+    margin-bottom: 1.250vw
+
+.geo__orgs-type
+    margin: 0
+    // margin-bottom: 22px
+    margin-bottom: 1.146vw
+    font-family: inherit
+    // font-size: 18px
+    font-size: 0.938vw
+    font-weight: 700
+    line-height: 1
+    color: #ffffff
+
+.geo__org
+    display: flex
+    flex-direction: column
+    // margin-bottom: 30px
+    // padding-right: 90px
+    // padding-bottom: 25px
+    border-bottom: 1px solid #979797
+    margin-bottom: 1.563vw
+    padding-right: 4.688vw
+    padding-bottom: 1.302vw
+    &:last-child
+        margin-bottom: 0
+
+.geo__org-name
+    margin-top: 0
+    // margin-bottom: 28px
+    margin-bottom: 1.458vw
+    font-family: inherit
+    // font-size: 18px
+    font-size: 0.938vw
+    font-weight: 700
+    line-height: 1
+    color: #ffffff
+
+.geo__org-rabbi,
+.geo__org-address,
+.geo__org-phone
+    display: flex
+    flex-wrap: nowrap
+    align-items: flex-start
+    margin-top: 0
+    // margin-bottom: 18px
+    margin-bottom: 0.938vw
+    text-decoration: none
+
+.geo__org-icon
+    flex-shrink: 0
+    // width: 23px
+    // height: 23px
+    // margin-right: 15px
+    // font-size: 20px
+    // line-height: 20px
+    width: 1.198vw
+    height: 1.198vw
+    margin-right: 0.781vw
+    font-size: 1.042vw
+    line-height: 1.042vw
+    text-align: center
+
+.geo__org-text
+    font-family: inherit
+    // font-size: 18px
+    font-size: 0.938vw
+    font-weight: 400
+    line-height: 1.3
+    color: #ffffff
+
+.geo__district
+    font-family: inherit
+    // font-size: 32px
+    font-size: 1.667vw
+    font-weight: 700
+    line-height: 1
+    color: #ffffff
+    opacity: 1
+    transition: opacity 0.3s
+    white-space: nowrap
+    .geo__decor
+        font-family: inherit
+        // font-size: 32px
+        font-size: 1.667vw
+        font-weight: 700
+        line-height: 1
+        color: #ffffff
+    &:hover
+        opacity: 0.7
+        cursor: pointer
+
+.geo__districts,
+.geo__cities
+    margin: 0
+    margin-top: 30px
+    padding: 0
+    list-style: none
+    .geo__district-wrapper,
+    .geo__city-wrapper
+        margin-bottom: 15px
+    .geo__district,
+    .geo__city
+        margin-bottom: 0
+
+@media(max-width: 991px)
+    .geo
+        .popup__content
+            padding-left: calc(3.646vw * 1.5)
+            padding-right: calc(2.344vw * 1.5)
+            padding-bottom: calc(1.563vw * 1.5)
+        .popup__header
+            margin-bottom: calc(1.615vw * 1.5)
+            padding-right: calc(0.938vw * 1.5)
+        .sb-scrollbar-container
+            top: calc(3.646vw * 1.5)
+            bottom: calc(3.646vw * 1.5)
+
+    .geo__decor
+        margin-right: calc(0.573vw * 1.5)
+        font-size: calc(0.885vw * 1.5)
+
+    .geo__city
+        margin-bottom: calc(1.563vw * 1.5)
+        font-size: calc(1.146vw * 1.5)
+
+    .geo__orgs
+        margin-bottom: calc(1.250vw * 1.5)
+
+    .geo__orgs-type
+        margin-bottom: calc(1.146vw * 1.5)
+        font-size: calc(0.938vw * 1.5)
+
+    .geo__org
+        margin-bottom: calc(1.563vw * 1.5)
+        padding-right: calc(4.688vw * 1.5)
+        padding-bottom: calc(1.302vw * 1.5)
+
+    .geo__org-name
+        margin-bottom: calc(1.458vw * 1.5)
+        font-size: calc(0.938vw * 1.5)
+
+    .geo__org-rabbi,
+    .geo__org-address,
+    .geo__org-phone
+        margin-bottom: calc(0.938vw * 1.5)
+
+    .geo__org-icon
+        width: calc(1.198vw * 1.5)
+        height: calc(1.198vw * 1.5)
+        margin-right: calc(0.781vw * 1.5)
+        font-size: calc(1.042vw * 1.5)
+        line-height: calc(1.042vw * 1.5)
+
+    .geo__org-text
+        font-size: calc(0.938vw * 1.5)
+
+    .geo__district
+        font-size: calc(1.667vw * 1.5)
+        .geo__decor
+            font-size: calc(1.667vw * 1.5)
+
+@media(max-width: 600px)
+    .geo
+        .popup__content
+            padding-left: 15px
+            padding-right: 15px
+            padding-bottom: 15px
+        .popup__header
+            margin-bottom: 15px
+            padding-right: 0
+        .sb-scrollbar-container
+            top: 0
+            bottom: 0
+
+    .geo__decor
+        margin-right: 11px
+        font-size: 17px
+
+    .geo__city
+        margin-bottom: 30px
+        font-size: 22px
+
+    .geo__orgs
+        margin-bottom: 30px
+
+    .geo__orgs-type
+        margin-bottom: 30px
+        font-size: 18px
+
+    .geo__org
+        margin-bottom: 30px
+        padding-right: 0
+        padding-bottom: 15px
+
+    .geo__org-name
+        margin-bottom: 28px
+        font-size: 18px
+
+    .geo__org-rabbi,
+    .geo__org-address,
+    .geo__org-phone
+        margin-bottom: 18px
+
+    .geo__org-icon
+        width: 23px
+        height: 23px
+        margin-right: 15px
+        font-size: 20px
+        line-height: 20px
+
+    .geo__org-text
+        font-size: 18px
+
+    .geo__district
+        font-size: 24px
+        .geo__decor
+            font-size: 24px

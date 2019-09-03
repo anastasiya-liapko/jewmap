@@ -16,18 +16,16 @@ $(function () {
 
         html += '<div class="jewmap-popup">' +
             '<p class="jewmap-popup__name"><strong>' + object.name + '</strong></p>';
-
         object.address !== '' ? html += '<a href="' + yandexLink + '" class="jewmap-popup__text jewmap-popup__address">' + object.address + '</a>' : '';
 
+        object.phone !== '' ? html += '<div class="jewmap-popup__phone-wrapper">' : '';
         Array.prototype.forEach.call(object.phone, function (elem, i) { 
             html += '<a href="tel:' + elem.phoneLink + '" class="jewmap-popup__text jewmap-popup__phone">' + elem.phone + '</a>';
             i < object.phone.length - 1 ? html += ', ' : '';
-        });
-            
+        }); 
+        object.phone !== '' ? html += '</div>' : '';
         object.email !== '' ? html += '<a href="mailto:' + object.email + '" class="jewmap-popup__text jewmap-popup__email">' + object.email + '</a>' : '';
-
         object.site !== '' ? html += '<a href="' + object.site + '" class="jewmap-popup__text jewmap-popup__site">' + object.site + '</a>' : '';
-
         html += '</div>';
 
         popup.setLatLng([object.lat, object.lng])

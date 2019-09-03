@@ -34,11 +34,11 @@
 .popup__header
     display: flex
     flex-wrap: nowrap
-    align-items: center
+    align-items: flex-start
     justify-content: space-between
     // height: 35px
     // margin-bottom: 46px
-    height: 1.823vw
+    // height: 1.823vw
     margin-bottom: 2.396vw
 
 .popup__title
@@ -88,24 +88,6 @@
     .sb-scrollbar-container,
     .sb-scrollbar
         background: transparent
-    p
-        margin-top: 0
-        font-family: inherit
-        // font-size: 22px
-        font-size: 1.146vw
-        font-weight: 400
-        // line-height: 29.5px
-        // letter-spacing: 0.15px
-        line-height: 1.536vw
-        letter-spacing: 0.008vw
-        color: #ffffff
-    p:first-child
-        // margin-bottom: 57px
-        margin-bottom: 2.969vw
-        font-weight: 700
-        letter-spacing: normal
-        // line-height: 29px
-        line-height: 1.52vw
 
 @media(max-width: 991px)
     .popup
@@ -120,7 +102,7 @@
         padding-bottom: calc(3.958vw * 1.5)
 
     .popup__header
-        height: calc(1.823vw * 1.5)
+        // height: calc(1.823vw * 1.5)
         margin-bottom: calc(2.396vw * 1.5)
 
     .popup__title
@@ -134,15 +116,6 @@
             width: calc(2.604vw * 1.5)
             margin-left: calc(-0.469vw * 1.5)
 
-    .popup__main
-        p
-            font-size: calc(1.146vw * 1.5)
-            line-height: calc(1.536vw * 1.5)
-            letter-spacing: calc(0.008vw * 1.5)
-        p:first-child
-            margin-bottom: calc(2.969vw * 1.5)
-            line-height: calc(1.52vw * 1.5)
-
 @media(max-width: 600px)
     .popup
         top: 50px
@@ -155,7 +128,7 @@
         padding: 15px
 
     .popup__header
-        height: auto
+        // height: auto
         margin-bottom: 15px
 
     .popup__close
@@ -173,10 +146,3 @@
 
     .popup__main
         padding-right: 20px
-        p
-            font-size: 18px
-            line-height: normal
-            letter-spacing: normal
-        p:first-child
-            margin-bottom: 15px
-            line-height: normal

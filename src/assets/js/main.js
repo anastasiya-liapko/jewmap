@@ -2,7 +2,7 @@ $(function () {
     
     var orgs = [];
     
-    var PIN = 'public/img/pin-new.png';
+    var PIN = 'public/img/pin.png';
     var ZOOM = 4;
     // var BOUNDS_RUSSIA = new L.LatLngBounds([27.0, 14.5], [77.65, 168.5]);
     // if ($(window).width() <= 600) {
@@ -54,7 +54,7 @@ $(function () {
           addCitiesOnMap(orgs);
           var orgs2 = orgs.slice(0);
           window.classifier.addClassifier(map, orgs2);
-          window.geo.addGeo(map, orgs);
+        //   window.geo.addGeo(map, orgs);
         });
 
     // transform list of orgs into array of cities with children
