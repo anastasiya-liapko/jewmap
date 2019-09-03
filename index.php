@@ -119,14 +119,14 @@
                     <div class="popup__header">
                         <h2 class="popup__title">
                             <span>География</span>
-                            <span class="geo__district">
+                            <span class="geo__district geo__district_title">
                                 <span class="geo__decor">|</span>
                                 <span class="geo__district-text">Дальневосточный</span>
                             </span>
                         </h2>
                         <button class="popup__close" type="button"></button>
                     </div>
-                    
+                    <span class="geo__city geo__city_title">Москва</span>
                     <div class="popup__main">
                         <!-- <span class="geo__city">Москва</span>
 

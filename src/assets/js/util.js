@@ -33,12 +33,19 @@ $(function () {
             .openOn(map);
     };
 
+    function  getPhonesWithLinks(array) {
+        
+    }
+
     window.util = {
         flyTo: function (map, point, zoom) {
             flyTo(map, point, zoom);
         },
         addPopup: function (map, popup, object) {
             addPopup(map, popup, object);
+        },
+        getPhonesWithLinks: function (phones) {
+            getPhonesWithLinks(phones);
         }
     }
 });

@@ -13,6 +13,9 @@ switch(intval($_GET['request'])){
   case 3:
     $response = getCities($db, $_GET['district']);
     break;
+  case 4:
+    $response = getGeoOrgs($db, $_GET['city']);
+    break;
 }
 
 die(json_encode($response));
