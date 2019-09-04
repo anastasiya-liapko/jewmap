@@ -1,7 +1,10 @@
 $(function () {
 
     // init scrollbar
-    $('.popup__main').scrollBox();
+    // $('.popup__main').scrollBox({
+    //     "autoScrollSize": true, 
+    //     "autoUpdate": true
+    // });
     
     // show popup on nav click
     $('#js-navListWrapper ul>li>a').on('click', function () {
@@ -12,7 +15,6 @@ $(function () {
         $('#js-jewmapSearch').addClass('move');
         $('.popup').removeClass('open');
         $('#js-' + popup).addClass('open');
-        $('#js-geo .popup__title .geo__district').css('display', 'none');
     });
 
     // hide popup on close click
@@ -21,7 +23,6 @@ $(function () {
         $('#js-jewmapHamburger').removeClass('move');
         $('#js-jewmapSearch').removeClass('move');
         $('#js-navListWrapper ul>li>a').removeClass('active');
-        $('#js-geo .popup__title .geo__district').css('display', 'none');
     });
 
     // hide popup on outside click

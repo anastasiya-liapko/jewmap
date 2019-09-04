@@ -40,6 +40,28 @@ $(function () {
         map.panInsideBounds(bounds, { animate: false });
     });
 
+    // create popup
+    // var markerHeight = 20, markerRadius = 10, linearOffset = 25;
+    // var popupOffsets = {
+    //  'top': [0, 20],
+    //  'top-left': [0,0],
+    //  'top-right': [0,0],
+    //  'bottom': [0, -markerHeight],
+    //  'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+    //  'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+    //  'left': [markerRadius, (markerHeight - markerRadius) * -1],
+    //  'right': [-markerRadius, (markerHeight - markerRadius) * -1]
+    //  };
+
+    var popup = new L.popup({
+        // offset: popupOffsets,
+        closeButton: true,
+        closeOnClick: true,
+        keepInView: true
+    });
+
+    window.geo.addGeo(map, popup)
+
     $.ajax({
         method: "GET",
         url: "post.php",
@@ -115,26 +137,6 @@ $(function () {
         var layer_2 = L.mapbox.featureLayer();
         var layer_3 = L.mapbox.featureLayer();
         var layerWithOrgs = L.mapbox.featureLayer();
-
-        // create popup
-        // var markerHeight = 20, markerRadius = 10, linearOffset = 25;
-        // var popupOffsets = {
-        //  'top': [0, 20],
-        //  'top-left': [0,0],
-        //  'top-right': [0,0],
-        //  'bottom': [0, -markerHeight],
-        //  'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-        //  'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-        //  'left': [markerRadius, (markerHeight - markerRadius) * -1],
-        //  'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-        //  };
-
-        var popup = new L.popup({
-            // offset: popupOffsets,
-            closeButton: true,
-            closeOnClick: true,
-            keepInView: true
-        });
 
         // handle click event
         function onClickCity(e) {

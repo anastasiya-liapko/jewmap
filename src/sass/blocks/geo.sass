@@ -32,7 +32,8 @@
     line-height: 1
     color: #ffffff
 
-.geo__city
+.geo__city-item,
+.geo__city-title
     display: block
     // margin-bottom: 30px
     margin-bottom: 1.563vw
@@ -126,7 +127,8 @@
     color: #ffffff
     text-decoration: none
 
-.geo__district
+.geo__district-item,
+.geo__district-title
     font-family: inherit
     // font-size: 32px
     font-size: 1.667vw
@@ -147,8 +149,8 @@
         opacity: 0.7
         cursor: pointer
 
-.geo__districts,
-.geo__cities
+.geo__district-list,
+.geo__city-list
     margin: 0
     margin-top: 30px
     padding: 0
@@ -156,8 +158,8 @@
     .geo__district-wrapper,
     .geo__city-wrapper
         margin-bottom: 15px
-    .geo__district,
-    .geo__city
+    .geo__district-item,
+    .geo__city-item
         margin-bottom: 0
 
 @media(max-width: 991px)
@@ -177,7 +179,8 @@
         margin-right: calc(0.573vw * 1.5)
         font-size: calc(0.885vw * 1.5)
 
-    .geo__city
+    .geo__city-item,
+    .geo__city-title
         margin-bottom: calc(1.563vw * 1.5)
         font-size: calc(1.146vw * 1.5)
 
@@ -212,7 +215,7 @@
     .geo__org-text
         font-size: calc(0.938vw * 1.5)
 
-    .geo__district
+    .geo__district-title
         font-size: calc(1.667vw * 1.5)
         .geo__decor
             font-size: calc(1.667vw * 1.5)
@@ -234,7 +237,8 @@
         margin-right: 11px
         font-size: 17px
 
-    .geo__city
+    .geo__city-item,
+    .geo__city-title
         margin-bottom: 30px
         font-size: 22px
 
@@ -269,7 +273,7 @@
     .geo__org-text
         font-size: 18px
 
-    .geo__district
+    .geo__district-title
         font-size: 24px
         .geo__decor
             font-size: 24px

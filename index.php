@@ -79,7 +79,7 @@
                                 <a class="nav__list-link" data-popup="about">О нас</a>
                             </li>
                             <li class="nav__list-item">
-                                <a class="nav__list-link" data-popup="geo">География</a>
+                                <a class="nav__list-link" data-popup="geoDistricts">География</a>
                             </li>
                             <li class="nav__list-item">
                                 <a class="nav__list-link" data-popup="orgs">Организации</a>
@@ -119,14 +119,14 @@
                     <div class="popup__header">
                         <h2 class="popup__title">
                             <span>География</span>
-                            <span class="geo__district geo__district_title">
+                            <span class="geo__district-title">
                                 <span class="geo__decor">|</span>
                                 <span class="geo__district-text">Дальневосточный</span>
                             </span>
                         </h2>
                         <button class="popup__close" type="button"></button>
                     </div>
-                    <span class="geo__city geo__city_title">Москва</span>
+                    <span class="geo__city-title">Москва</span>
                     <div class="popup__main">
                         <!-- <span class="geo__city">Москва</span>
 
@@ -217,10 +217,10 @@
                     <div class="popup__header">
                         <h2 class="popup__title">
                             <span>География</span>
-                            <span class="geo__district">
+                            <!-- <span class="geo__district-title">
                                 <span class="geo__decor">|</span>
                                 <span class="geo__district-text">Дальневосточный</span>
-                            </span>
+                            </span> -->
                         </h2>
                         <button class="popup__close" type="button"></button>
                     </div>
@@ -253,7 +253,7 @@
                     <div class="popup__header">
                         <h2 class="popup__title">
                             <span>География</span>
-                            <span class="geo__district">
+                            <span class="geo__district-title">
                                 <span class="geo__decor">|</span>
                                 <span class="geo__district-text">Дальневосточный</span>
                             </span>
