@@ -1,11 +1,8 @@
 $(function () {
 
     // init scrollbar
-    // $('.popup__main').scrollBox({
-    //     "autoScrollSize": true, 
-    //     "autoUpdate": true
-    // });
-    
+    $(".popup__main").niceScroll();
+
     // show popup on nav click
     $('#js-navListWrapper ul>li>a').on('click', function () {
         var popup = $(this).attr('data-popup');

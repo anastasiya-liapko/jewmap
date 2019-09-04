@@ -50,6 +50,10 @@ gulp.task('fonts', () => gulp.src('src/assets/fonts/**/*')
   .pipe(newer('public/fonts'))
   .pipe(gulp.dest('public/fonts')));
 
+  gulp.task('plugins', () => gulp.src('src/plugins/**/*')
+  .pipe(newer('public/plugins'))
+  .pipe(gulp.dest('public/plugins')));
+
 gulp.task('clean', () => del([
   'public',
 ]));
@@ -96,9 +100,10 @@ gulp.task('watch', () => {
   gulp.watch('src/assets/js/**/*.js', { usePolling: true }, gulp.series('js'));
   gulp.watch('src/assets/img/*.{png,jpg,svg}', { usePolling: true }, gulp.series('images'));
   gulp.watch('src/assets/fonts/**/*', { usePolling: true }, gulp.series('fonts'));
+  gulp.watch('src/plugins/**/*', { usePolling: true }, gulp.series('plugins'));
 });
 
-gulp.task('build', gulp.series('clean', gulp.parallel('styles', 'js', 'fonts', 'images')));
+gulp.task('build', gulp.series('clean', gulp.parallel('styles', 'js', 'fonts', 'images', 'plugins')));
 
 gulp.task('serve', function() {
     browserSync.init({

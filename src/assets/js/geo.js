@@ -2,7 +2,7 @@ $(function () {
 
     var addGeo = function (map, popup) {
 
-        var addOrgs = function (array, city, district) {
+        var addOrgs = function (array, city, district, district_id) {
             $('#js-geo .popup__main').html('');
 
             var html = '';
@@ -82,12 +82,16 @@ $(function () {
 
                 html += '</div>';
                 // </div>
+            } else {
+                html += '<div class="geo__orgs-wrapper">'
+                html += '<div class="geo__orgs"><p>Ничего не найдено.</p>'
+                html += '</div></div>'
             }
 
             $('#js-geo .geo__district-title .geo__district-text').text(district);
             $('#js-geo .geo__city-title').text(city);
+            $('#js-geo .geo__city-title').attr('id', district_id);
             $('#js-geo .popup__main').append(html);
-            // $('#js-geo .geo__orgs').scrollBox();
             $('.popup').removeClass('open');
             $('#js-geo').addClass('open');
 
@@ -100,8 +104,10 @@ $(function () {
                 var address = $(this).attr('data-address');
                 var email = $(this).attr('data-email');
                 var site = $(this).attr('data-site');
+
+                $('.popup').removeClass('open');
         
-                window.util.flyTo(map, [lat, lng]);
+                window.util.flyTo(map, [lat, lng], 13);
                 window.util.addPopup(map, popup, {
                     'name': name,
                     'lng': parseFloat(lng),
@@ -115,7 +121,7 @@ $(function () {
             })
         }
 
-        var addCities = function (array, district) {
+        var addCities = function (array, district, district_id) {
             $('#js-geoCities .popup__main').html('');
 
             var html = '';
@@ -133,7 +139,6 @@ $(function () {
 
             $('#js-geoCities .geo__district-title .geo__district-text').text(district);
             $('#js-geoCities .popup__main').append(html);
-            // $('#js-geoCities .geo__city-list').scrollBox();
             $('.popup').removeClass('open');
             $('#js-geoCities').addClass('open');
 
@@ -152,7 +157,8 @@ $(function () {
                     .done(function( msg ) {
                         var obj = jQuery.parseJSON(msg);
                         console.log(obj);
-                        obj !== '' ? addOrgs(obj, name, district) : '';
+                        // obj.length !== 0 ? addOrgs(obj, name, district, district_id) : '';
+                        addOrgs(obj, name, district, district_id);
                     });
             })
         }
@@ -174,7 +180,6 @@ $(function () {
             }
 
             $('#js-geoDistricts .popup__main').append(html);
-            // $('#js-geoDistricts .geo__district-list').scrollBox();
             $('.popup').removeClass('open');
             $('#js-geoDistricts').addClass('open');
 
@@ -193,7 +198,7 @@ $(function () {
                     .done(function( msg ) {
                         var obj = jQuery.parseJSON(msg);
                         console.log(obj);
-                        obj !== '' ? addCities(obj, name) : '';
+                        obj !== '' ? addCities(obj, name, id) : '';
                     });
             })
         }

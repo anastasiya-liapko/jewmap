@@ -398,6 +398,8 @@
         <!-- <script type="text/javascript" src="/wp-content/themes/feor/public/js/map-page-mapbox/fill_template_popup_menu.js"> </script> -->
         <!-- <script type="text/javascript" src="/wp-content/themes/feor/public/js/map-page-mapbox/add_popup_menu.js"> </script> -->
         <!-- <script type="text/javascript" src="/wp-content/themes/feor/public/js/map-page-mapbox/util.js"> </script> -->
+        <script type="text/javascript" src="public/plugins/nicescroll/jquery.nicescroll.iframehelper.min.js"> </script>
+        <script type="text/javascript" src="public/plugins/nicescroll/jquery.nicescroll.min.js"> </script>
         <script type="text/javascript" src="public/js/main.min.js"> </script>
     </body>
 </html>
