@@ -117,8 +117,9 @@ $(function () {
                 $('.popup').removeClass('open');
                 $('#js-jewmapHamburger').removeClass('move');
                 $('#js-jewmapSearch').removeClass('move');
+                $('#js-navListWrapper ul>li>a').removeClass('active');
         
-                window.util.flyTo(map, [lat, lng], 13);
+                window.util.flyTo(map, [lat, lng], 12);
                 window.util.addPopup(map, popup, {
                     'name': name,
                     'lng': lng,
