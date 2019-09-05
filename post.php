@@ -16,6 +16,9 @@ switch(intval($_GET['request'])){
   case 4:
     $response = getGeoOrgs($db, $_GET['city']);
     break;
+  case 5:
+    $response = getOrgsTypes($db);
+    break;
 }
 
 die(json_encode($response));

@@ -87,6 +87,7 @@
     font-size: 0.938vw
     font-weight: 700
     line-height: 1
+    text-decoration: none
     color: #ffffff
 
 .geo__org-rabbi,
@@ -99,6 +100,14 @@
     // margin-bottom: 18px
     margin-bottom: 0.938vw
     text-decoration: none
+    opacity: 1
+    transition: opacity 0.3s
+
+.geo__org-address,
+.geo__org-phone
+    &:hover
+        opacity: 0.7
+        cursor: pointer
 
 .geo__org-phone-content
     display: flex

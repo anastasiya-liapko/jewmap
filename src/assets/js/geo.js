@@ -2,86 +2,96 @@ $(function () {
 
     var addGeo = function (map, popup) {
 
-        var addOrgs = function (array, city, district, district_id) {
-            $('#js-geo .popup__main').html('');
+        var getPhonesWithLinks = function (phones) {
+            var phoneArray = [];
+            Array.prototype.forEach.call(phones, function (phone) { 
+                var phoneLink = phone.split(' ').join('').split('(').join('').split(')').join('').split('-').join('').split('?').join('');
 
+                phoneArray.push({
+                    'phone': phone,
+                    'phoneLink': phoneLink
+                });
+            });
+            return phoneArray;
+        }
+
+        var addOrgs = function (array, city, district, district_id) {
+            console.log(array);
+            $('#js-geo .popup__main').html('');
             var html = '';
 
             if (array.length !== 0) {
                 html += '<div class="geo__orgs-wrapper">'
-
                 html += '<div class="geo__orgs">'
-                //     <p class="geo__orgs-type">
-                //         <span class="geo__decor">|</span>
-                //         <span>Издательства и медиа</span>
-                //     </p>
-                    
-                Array.prototype.forEach.call(array, function (item, i) {
+                
+                Array.prototype.forEach.call(array, function (parent, parent_i) {
 
-                    html += '<div class="geo__org">'
-                    if (item['latitude'] !== '' || item['longitude'] !== '') {
-                        html += '<a href="#"'
-                            + ' data-lat="' + item['latitude']
-                            + '" data-lng="' + item['longitude'] 
-                            + '" data-address="' + item['address']
-                            + '" data-email="' + item['email']
-                            + '" data-site="' + item['site']
-                            + '" class="geo__org-name">' + item['post_title'] + '</a>'
-                    } else {
-                        html += '<p class="geo__org-name">' + item['post_title'] + '</p>'
-                    }
+                    html += '<p class="geo__orgs-type">'
+                        + '<span class="geo__decor">|</span>'
+                        + '<span>' + parent['name_type'] + '</span>'
+                    + '</p>'
 
-                    if (item['rabbi'] !== '' && item['rabbi'] !== null) {
-                    html += '<p class="geo__org-rabbi">'
-                            + '<span class="geo__org-icon icon-user"></span>'
-                            + '<span class="geo__org-text">' + item['rabbi'] + '</span>'
-                        + '</p>'
-                    }
-
-                    if (item['address'] !== '') {
-                        if (item['latitude'] !== '' || item['longitude'] !== '') {
-                            var yandexLink = 'https://yandex.by/maps/?ll=' + item['longitude'] + ',' + item['latitude'] + '&z=16&text=' + item['post_title'].split(' ').join('%20'); 
-                            html += '<a href="' + yandexLink +'" class="geo__org-address">'
-                                    + '<span class="geo__org-icon icon-address"></span>'
-                                    + '<span class="geo__org-text">' + item['address'] + '</span>'
-                                + '</a>'
+                    Array.prototype.forEach.call(parent.childs, function (child, child_i) {
+                        html += '<div class="geo__org">'
+                        if (child['lat'] !== '' || child['lng'] !== '') {
+                            html += '<a href="#"'
+                                + ' data-lat="' + child['lat']
+                                + '" data-lng="' + child['lng'] 
+                                + '" data-address="' + child['address']
+                                + '" data-phone="' + child['phone']
+                                + '" data-email="' + child['email']
+                                + '" data-site="' + child['site']
+                                + '" class="geo__org-name">' + child['name'] + '</a>'
                         } else {
-                            html += '<p class="geo__org-address">'
-                                    + '<span class="geo__org-icon icon-address"></span>'
-                                    + '<span class="geo__org-text">' + item['address'] + '</span>'
-                                + '</p>'
+                            html += '<p class="geo__org-name">' + child['name'] + '</p>'
                         }
-                    }
 
-                    if (item['phone'] !== '') {
-                        var phoneArray = [];
-                        var phones = item['phone'].split(';');
-                
-                        if (phones.length !== 0) {
-                
-                            Array.prototype.forEach.call(phones, function (phone) { 
-                                var phoneLink = phone.split(' ').join('').split('(').join('').split(')').join('').split('-').join('').split('?').join('');
-                
-                                phoneArray.push({
-                                    'phone': phone,
-                                    'phoneLink': phoneLink
-                                });
-                            });
-                            console.log(phoneArray);
-                            html += '<div class="geo__org-phone"><span class="geo__org-icon icon-phone"></span><div class="geo__org-phone-content">';
-
-                            Array.prototype.forEach.call(phoneArray, function (elem, i) { 
-                                html += '<a href="tel:' + elem.phoneLink + '" class="geo__org-text">' + elem.phone + '</a>';
-                                // i < phoneArray.length - 1 ? html += ', ' : '';
-                            }); 
-                            html += '</div></div>';
+                        if (child['rabbi'] !== '' && child['rabbi'] !== null) {
+                        html += '<p class="geo__org-rabbi">'
+                                + '<span class="geo__org-icon icon-user"></span>'
+                                + '<span class="geo__org-text">' + child['rabbi'] + '</span>'
+                            + '</p>'
                         }
-                    }
-                    html += '</div>';
+
+                        if (child['address'] !== '') {
+                            if (child['lat'] !== '' || child['lng'] !== '') {
+                                var yandexLink = 'https://yandex.by/maps/?ll=' + child['lng'] + ',' + child['lat'] + '&z=16&text=' + child['name'].split(' ').join('%20'); 
+                                html += '<a href="' + yandexLink +'" class="geo__org-address">'
+                                        + '<span class="geo__org-icon icon-address"></span>'
+                                        + '<span class="geo__org-text">' + child['address'] + '</span>'
+                                    + '</a>'
+                            } else {
+                                html += '<p class="geo__org-address">'
+                                        + '<span class="geo__org-icon icon-address"></span>'
+                                        + '<span class="geo__org-text">' + child['address'] + '</span>'
+                                    + '</p>'
+                            }
+                        }
+
+                        if (child['phone'] !== '') {
+                            
+                            var phones = child['phone'].split(';');
+                    
+                            if (phones.length !== 0) {
+                                var phoneArray = getPhonesWithLinks(phones);
+                                // console.log(phoneArray)
+
+                                html += '<div class="geo__org-phone"><span class="geo__org-icon icon-phone"></span><div class="geo__org-phone-content">';
+
+                                Array.prototype.forEach.call(phoneArray, function (elem, i) { 
+                                    html += '<a href="tel:' + elem.phoneLink + '" class="geo__org-text">' + elem.phone + '</a>';
+                                    // i < phoneArray.length - 1 ? html += ', ' : '';
+                                }); 
+                                html += '</div></div>';
+                            }
+                        }
+                        html += '</div>';
+                    });
+                    
                 });
-
                 html += '</div>';
-                // </div>
+                html += '</div>';
+    
             } else {
                 html += '<div class="geo__orgs-wrapper">'
                 html += '<div class="geo__orgs"><p>Ничего не найдено.</p>'
@@ -99,25 +109,25 @@ $(function () {
                 var lat = parseFloat($(this).attr('data-lat'));
                 var lng = parseFloat($(this).attr('data-lng'));
                 var name = $(this).text();
-                console.log(name, lat, lng);
-
                 var address = $(this).attr('data-address');
+                var phone = $(this).attr('data-phone');
                 var email = $(this).attr('data-email');
                 var site = $(this).attr('data-site');
 
                 $('.popup').removeClass('open');
+                $('#js-jewmapHamburger').removeClass('move');
+                $('#js-jewmapSearch').removeClass('move');
         
                 window.util.flyTo(map, [lat, lng], 13);
                 window.util.addPopup(map, popup, {
                     'name': name,
-                    'lng': parseFloat(lng),
-                    'lat': parseFloat(lat),
+                    'lng': lng,
+                    'lat': lat,
                     'address': address,
-                    'phone': '',
+                    'phone': phone,
                     'email': email,
                     'site': site
                 });
-
             })
         }
 
@@ -145,21 +155,89 @@ $(function () {
             $('#js-geoCities .geo__city-item').on('click', function (e) {
                 var id = $(this).attr('id');
                 var name = $(this).text();
+                var orgsArray = [];
 
                 $.ajax({
                     method: "GET",
                     url: "post.php",
                     data: {
-                        request: 4,
-                        city: id
+                        request: 5
                     }
                 })
                     .done(function( msg ) {
-                        var obj = jQuery.parseJSON(msg);
-                        console.log(obj);
-                        // obj.length !== 0 ? addOrgs(obj, name, district, district_id) : '';
-                        addOrgs(obj, name, district, district_id);
-                    });
+                        var types = jQuery.parseJSON(msg);
+                        // console.log(types);
+                    
+                        $.ajax({
+                            method: "GET",
+                            url: "post.php",
+                            data: {
+                                request: 4,
+                                city: id
+                            }
+                        })
+                            .done(function( msg ) {
+                                var obj = jQuery.parseJSON(msg);
+                                // console.log(obj);
+
+                                Array.prototype.forEach.call(types, function (type, type_i) {
+
+                                var parent = {
+                                    'id_type': type['term_type_id'],
+                                    'name_type': type['name_type'],
+                                    'childs': []
+                                };
+
+                                var child = '';
+                    
+                                Array.prototype.forEach.call(obj, function (obj_item, obj_i) {
+                                    if (obj_item['ID'] === type['ID']) {
+                                        child = {
+                                            'id': obj_item['ID'],
+                                            'name': obj_item['post_title'],
+                                            'lat': obj_item['latitude'],
+                                            'lng': obj_item['longitude'],
+                                            'address': obj_item['address'],
+                                            'phone': obj_item['phone'],
+                                            'rabbi': obj_item['rabbi'],
+                                            'email': obj_item['email'],
+                                            'site': obj_item['site']
+                                        };
+                                    }
+                                });
+                            
+                                if (orgsArray.length === 0){
+                                    orgsArray.push(parent);
+                                    child !== '' ? orgsArray[0].childs.push(child) : '';
+                                } else {
+                                    var value = false;
+                    
+                                    Array.prototype.forEach.call(orgsArray, function (item, item_i) {
+                                        
+                                        if (item['name_type'] === type['name_type']) {
+                                            value = true;
+                                            child !== '' ? item.childs.push(child) : '';
+                                        }
+                                    })
+                    
+                                    if (value === false) {
+                                        orgsArray.push(parent);
+                                        child !== '' ? orgsArray[orgsArray.length - 1].childs.push(child) : '';
+                                    }
+                                }
+                            })
+
+                            var orgsArrayClone = [];
+                            Array.prototype.forEach.call(orgsArray, function (item, item_i) {
+                                if (item.childs.length !== 0) {
+                                    orgsArrayClone.push(item)
+                                }
+                            })
+                            
+                            // obj.length !== 0 ? addOrgs(obj, name, district, district_id) : '';
+                            addOrgs(orgsArrayClone, name, district, district_id);
+                        });
+                    })
             })
         }
 
@@ -180,6 +258,8 @@ $(function () {
             }
 
             $('#js-geoDistricts .popup__main').append(html);
+            $('#js-jewmapHamburger').addClass('move');
+            $('#js-jewmapSearch').addClass('move');
             $('.popup').removeClass('open');
             $('#js-geoDistricts').addClass('open');
 
@@ -197,7 +277,7 @@ $(function () {
                 })
                     .done(function( msg ) {
                         var obj = jQuery.parseJSON(msg);
-                        console.log(obj);
+                        // console.log(obj);
                         obj !== '' ? addCities(obj, name, id) : '';
                     });
             })
@@ -216,7 +296,7 @@ $(function () {
                 })
                     .done(function( msg ) {
                         var obj = jQuery.parseJSON(msg);
-                        console.log(obj);
+                        // console.log(obj);
                         localStorage.setItem('districts', JSON.stringify(obj));
                         addDistricts(JSON.parse(localStorage.getItem('districts')));
                     });

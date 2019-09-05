@@ -137,3 +137,32 @@ function getOrgs($databaseLink)
 }
 
 ;
+
+/**
+ * Return list of organizations
+ *
+ * @param $databaseLink
+ * @return array of organizations
+ */
+function getOrgsTypes($databaseLink)
+{
+    $response = [];
+
+    $sql = "
+    select p.*,t.name name_type,t.term_id term_type_id
+    from wpc_posts p
+    join wpc_term_relationships as tr on tr.object_id = p.id
+    join wpc_term_taxonomy as tt on tt.term_taxonomy_id=tr.term_taxonomy_id
+    join wpc_terms as t on t.term_id=tt.term_id
+    where p.post_type='organizations'
+    and p.post_status='publish'
+    and tt.taxonomy='types';
+    ";
+
+    if ($res = mysqli_query($databaseLink, $sql)) {
+        $response = mysqli_fetch_all($res, MYSQLI_ASSOC);
+    }
+    return $response;
+}
+
+;
