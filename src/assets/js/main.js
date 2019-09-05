@@ -148,7 +148,7 @@ $(function () {
             var point = e.target._latlng;
             var name = e.target.options.name;
             var address = e.target.options.address;
-            var phone = JSON.parse(e.target.options.phone);
+            var phone = e.target.options.phone;
             var email = e.target.options.email;
             var site = e.target.options.site;
             console.log(phone)
@@ -221,23 +221,23 @@ $(function () {
             Array.prototype.forEach.call(markerElem.childs, function (place) { 
 
                 if (place.point[0] !== '' || place.point[1] !== '') {
-                    var phoneArray = [];
+                    // var phoneArray = [];
 
-                    if (place.phone !== undefined) {
-                        var phones = place.phone.split(';');
+                    // if (place.phone !== undefined) {
+                    //     var phones = place.phone.split(';');
 
-                        if (phones.length !== 0) {
+                    //     if (phones.length !== 0) {
 
-                            Array.prototype.forEach.call(phones, function (phone) { 
-                                var phoneLink = phone.split(' ').join('').split('(').join('').split(')').join('').split('-').join('').split('?').join('');
+                    //         Array.prototype.forEach.call(phones, function (phone) { 
+                    //             var phoneLink = phone.split(' ').join('').split('(').join('').split(')').join('').split('-').join('').split('?').join('');
         
-                                phoneArray.push({
-                                    'phone': phone,
-                                    'phoneLink': phoneLink
-                                });
-                            });
-                        }
-                    }
+                    //             phoneArray.push({
+                    //                 'phone': phone,
+                    //                 'phoneLink': phoneLink
+                    //             });
+                    //         });
+                    //     }
+                    // }
                     
                     var marker = L.marker(place.point, {
                         // icon: L.divIcon({
@@ -253,7 +253,7 @@ $(function () {
                         id: place.id,
                         name: place.name,
                         address: place.address,
-                        phone: JSON.stringify(phoneArray),
+                        phone: place.phone,
                         email: place.email,
                         site: place.site
                     }).addTo(layerWithOrgs);
