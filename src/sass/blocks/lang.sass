@@ -18,14 +18,14 @@
         pointer-events: none
         transition: opacity 0.3s
 
-.lang__item
-    &:first-child
-        // margin-right: 17.5px
-        margin-right: 0.911vw
+// .lang__item
+//     &:first-child
+//         // margin-right: 17.5px
+//         margin-right: 0.911vw
 
 .lang__link
     position: relative
-    display: block
+    display: none
     // padding-bottom: 11px
     padding-bottom: 0.573vw
     font-family: 'Montserrat', sans-serif
@@ -52,6 +52,7 @@
         cursor: pointer
 
 .lang__link.active
+    display: block
     // font-size: 17px
     font-size: 0.885vw
     color: #000000
@@ -64,9 +65,9 @@
         top: calc(5.2vw * 1.5)
         // bottom: calc(22.89vw * 1.5)
 
-    .lang__item
-        &:first-child
-            margin-right: calc(0.911vw * 1.5)
+    // .lang__item
+    //     &:first-child
+    //         margin-right: calc(0.911vw * 1.5)
 
     .lang__link
         padding-bottom: calc(0.573vw * 1.5)
@@ -84,9 +85,9 @@
         top: calc(50px + 15px + 15px)
         // bottom: calc(15px + 50px + 15px + 50px + 15px)
 
-    .lang__item
-        &:first-child
-            margin-right: calc(17.5px / 1.5)
+    // .lang__item
+    //     &:first-child
+    //         margin-right: calc(17.5px / 1.5)
 
     .lang__link
         padding-bottom: calc(11px / 1.5)

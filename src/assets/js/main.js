@@ -3,11 +3,8 @@ $(function () {
     var orgs = [];
     
     var PIN = 'public/img/pin.png';
+    var BUILDING = 'public/img/building.png';
     var ZOOM = 4;
-    // var BOUNDS_RUSSIA = new L.LatLngBounds([27.0, 14.5], [77.65, 168.5]);
-    // if ($(window).width() <= 600) {
-    //     BOUNDS_RUSSIA = new L.LatLngBounds([40.0, 25.0], [55.0, 180.0]);
-    // }
     var BOUNDS_RUSSIA = new L.LatLngBounds([60.0, 21], [69.0, 167.0]);
     if ($(window).width() <= 600) {
         BOUNDS_RUSSIA = new L.LatLngBounds([40.0, 25.0], [55.0, 180.0]);
@@ -73,6 +70,7 @@ $(function () {
           var obj = jQuery.parseJSON(msg);
           console.log(obj);
           getMarkersWithChildren(obj);
+          console.log(orgs);
           addCitiesOnMap(orgs);
           var orgs2 = orgs.slice(0);
           window.classifier.addClassifier(map, orgs2);
@@ -109,7 +107,13 @@ $(function () {
         
             if (orgs.length === 0){
                 orgs.push(parent);
-                orgs[0].childs.push(child);
+                // orgs[0].childs.push(child);
+
+                orgs[0].childs.push({
+                    coords: child.point,
+                    childsItems: []
+                });
+                orgs[0].childs[0].childsItems.push(child);
             } else {
                 var value = false;
 
@@ -117,13 +121,38 @@ $(function () {
                     
                     if (item['name'] === arrayItem['name_city']) {
                         value = true;
-                        item.childs.push(child);
+                        // item.childs.push(child);
+
+                        var childValue = false;
+                        Array.prototype.forEach.call(item.childs, function (itemChild, itemChildIndex) {
+
+                            if (itemChild['coords'][0] === child['point'][0]
+                            && itemChild['coords'][1] === child['point'][1]) {
+                                childValue = true;
+                                itemChild.childsItems.push(child);
+                            }
+                        });
+
+                        if (childValue === false) {
+                            item.childs.push({
+                                coords: child.point,
+                                childsItems: []
+                            });
+                            item.childs[item.childs.length - 1].childsItems.push(child);
+                        }
+                        
                     }
                 })
 
                 if (value === false) {
                     orgs.push(parent);
-                    orgs[orgs.length - 1].childs.push(child);
+                    // orgs[orgs.length - 1].childs.push(child);
+
+                    orgs[orgs.length - 1].childs.push({
+                        coords: child.point,
+                        childsItems: []
+                    });
+                    orgs[orgs.length - 1].childs[0].childsItems.push(child);
                 }
             }
         });
@@ -131,7 +160,7 @@ $(function () {
 
     var addCitiesOnMap = function (array) {
 
-        // create lauers with cities
+        // create layers with cities
         var layer_0 = L.mapbox.featureLayer();
         var layer_1 = L.mapbox.featureLayer();
         var layer_2 = L.mapbox.featureLayer();
@@ -145,23 +174,30 @@ $(function () {
         }
 
         function onClickPlace(e) {
+            e.target._icon.classList.add('icon-hidden')
             var point = e.target._latlng;
             var name = e.target.options.name;
             var address = e.target.options.address;
             var phone = e.target.options.phone;
             var email = e.target.options.email;
             var site = e.target.options.site;
-            console.log(phone)
             window.util.flyTo(map, [point.lat, point.lng]);
             window.util.addPopup(map, popup, {
                 'name': name,
-                'lng': parseFloat(point.lng),
-                'lat': parseFloat(point.lat),
+                'point': [parseFloat(point.lat),parseFloat(point.lng)],
                 'address': address,
                 'phone': phone,
                 'email': email,
                 'site': site
             });
+            map.on('popupclose', function(ev) {
+                e.target._icon !== null ? e.target._icon.classList.remove('icon-hidden') : '';
+            });
+        }
+
+        function onClickPlaces(object) {
+            window.util.flyTo(map, object[0].point);
+            window.util.addPopup(map, popup, object, 1);
         }
 
         // add markers on layers
@@ -215,50 +251,65 @@ $(function () {
                         zIndexOffset: 10
                     }).addTo(layer_3);
                     marker.on('click', onClickCity);
+                } else {
+                    var html = '<div class="jewmap__pin"><div class="jewmap__pin-icon"></div><span class="jewmap__pin-label">' + markerElem.name + '</span></div>';
+                    var marker = L.marker(markerElem.point, {
+                        icon: L.divIcon({
+                            html: html,
+                            className: 'city'
+                        }),
+                        zIndexOffset: 10
+                    }).addTo(layer_3);
+                    marker.on('click', onClickCity);
                 }
             }
 
-            Array.prototype.forEach.call(markerElem.childs, function (place) { 
+            Array.prototype.forEach.call(markerElem.childs, function (childs) { 
 
-                if (place.point[0] !== '' || place.point[1] !== '') {
-                    // var phoneArray = [];
-
-                    // if (place.phone !== undefined) {
-                    //     var phones = place.phone.split(';');
-
-                    //     if (phones.length !== 0) {
-
-                    //         Array.prototype.forEach.call(phones, function (phone) { 
-                    //             var phoneLink = phone.split(' ').join('').split('(').join('').split(')').join('').split('-').join('').split('?').join('');
-        
-                    //             phoneArray.push({
-                    //                 'phone': phone,
-                    //                 'phoneLink': phoneLink
-                    //             });
-                    //         });
-                    //     }
-                    // }
+                if (childs.childsItems.length > 1) {
                     
-                    var marker = L.marker(place.point, {
-                        // icon: L.divIcon({
-                        //     html: '<div class="jewmap__pin"><div class="jewmap__pin-icon"></div></div>',
-                        //     className: 'org'
-                        // }),
-                        icon: L.icon({
-                            iconUrl: PIN,
-                            iconSize: [33, 48],
-                            iconAnchor: [16, 48],
-                            popupAnchor: [38, 0]
-                        }),
-                        id: place.id,
-                        name: place.name,
-                        address: place.address,
-                        phone: place.phone,
-                        email: place.email,
-                        site: place.site
-                    }).addTo(layerWithOrgs);
+                        var marker = L.marker(childs.coords, {
+                            icon: L.divIcon({
+                                html: '<div class="jewmap__pin_orgs"><div class="jewmap__pin-icon"></div><div class="jewmap__pin-quantity"><strong>' + childs.childsItems.length + '<strong></div></div>',
+                                className: 'orgs'
+                            }),
+                            // icon: L.icon({
+                            //     iconUrl: PIN,
+                            //     iconSize: [33, 48],
+                            //     iconAnchor: [16, 48],
+                            //     popupAnchor: [38, 0]
+                            // }),
+                            zIndexOffset: 50
+                        }).addTo(layerWithOrgs);
 
-                    marker.on('click', onClickPlace);
+                        marker.on('click', function () {
+                            onClickPlaces(childs.childsItems)
+                        });
+                } else {
+                    var place = childs.childsItems[0];
+                    if (place.point[0] !== '' || place.point[1] !== '') {
+                    
+                        var marker = L.marker(place.point, {
+                            // icon: L.divIcon({
+                            //     html: '<div class="jewmap__pin"><div class="jewmap__pin-icon"></div></div>',
+                            //     className: 'org'
+                            // }),
+                            icon: L.icon({
+                                iconUrl: BUILDING,
+                                iconSize: [25, 25],
+                                iconAnchor: [12, 25],
+                                popupAnchor: [25, 25]
+                            }),
+                            id: place.id,
+                            name: place.name,
+                            address: place.address,
+                            phone: place.phone,
+                            email: place.email,
+                            site: place.site
+                        }).addTo(layerWithOrgs);
+
+                        marker.on('click', onClickPlace);
+                    }
                 }
             });
         })
@@ -358,7 +409,7 @@ $(function () {
         setLayer(ZOOM)
         
         // handle zoomend event
-        map.on('zoomend', function(e) {
+        map.on('moveend, zoomend, zoomlevelschange', function(e) {
             var zoom = e.target._zoom;
             setLayer(zoom)
         });

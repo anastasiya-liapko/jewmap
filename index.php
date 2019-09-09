@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="shortcut icon" href="#" type="image/png">
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,500,700,900&display=swap&subset=cyrillic-ext,latin-ext" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:300i,400,500,700,900&display=swap&subset=cyrillic-ext,latin-ext" rel="stylesheet">
 		<!-- <link rel="stylesheet" href="/wp-content/themes/feor/public/css/scrollBar.css"> -->
 		<link href='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.css' rel='stylesheet' />
 		<!-- <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
@@ -45,10 +45,10 @@
 
             <ul id="js-lang" class="jewmap__lang lang">
                 <li class="lang__item">
-                    <a class="lang__link active">Ru</a>
+                    <a class="lang__link active">RU</a>
                 </li>
                 <li class="lang__item">
-                    <a class="lang__link">Eng</a>
+                    <a class="lang__link">EN</a>
                 </li>
             </ul>
 
@@ -104,182 +104,70 @@
                     </div>
                     <div class="popup__main">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Еврейская община России-многопрофильная структура с охватом всех сфер национальной жизни на всей территории нашей страны.
+                        Данный портал - это универсальный навигатор по Еврейской карте России, призванный объединить и сделать доступной информацию о еврейских организациях, учреждениях и объединениях.
                         </p>
                         <p>
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a
+                        Развитая инфраструктура Общины дает возможность людям, исповедующим иудаизм, в полной мере соблюдать еврейский закон, хранить традиции своих предков, это многочисленные культурные и просветительские проекты, позволяющие каждому желающему узнать больше об истории еврейского народа, познакомиться с обычаями и мировоззрением евреев.
+                        Сегодня еврейская община России - одна из самых процветающих и развитых общин в мире. Еврейские организации охватывают религиозную, культурную, благотворительную, просветительскую и социальную сферу общественной жизни.
+                        У российских евреев есть возможность соблюсти весь цикл жизни согласно еврейскому закону: от рождения и брит-милы у мальчиков до проведения еврейской свадьбы и организации еврейских похорон. В синагогах звучат праздничные и шабатние молитвы, проводятся торжественные трапезы. Родители могут выбирать, какого уровня еврейское образование дать своему ребёнку: от воскресных школ, в игровой форме знакомящих с традициями и историей народа, до религиозных классов, в которых подробно изучаются священные тексты. Продолжить еврейское образование можно в высших учебных заведениях - факультеты по изучению иудаики представлены как в негосударственных, так и в государственных вузах.
+                        Фундаментальные труды еврейской философии впервые издаются на русском языке, тем самым выводя российскую иудаику на мировой уровень. Еврейские музеи, театры, культурные центры открывают свои двери для всех желающих. Здесь можно узнать не только об иудаизме и истории евреев России, но и проследить развитие еврейской культуры, познакомиться с современным искусством.
+                        Действуют многочисленные социальные и благотворительные программы направленные на оказание необходимой помощи нуждающимся.
+                        </p>
+                        <p>Портал «Еврейская община России» является некоммерческим проектом, деятельность которого ведется в благотворительных целях на волонтерских основах. Справочная информация сайта постоянно пополняется.
+                        Мы будем признательны Вам за участие в его работе и предоставление актуальных и проверенных сведений.
                         </p>
                     </div>
                 </div>
             </div>
             <!-- about -->
 
-            <div id="js-geo" class="popup geo">
+            <div id="js-geo" class="popup geo popup_geo">
                 <div class="popup__content">
                     <div class="popup__header">
                         <h2 class="popup__title">
                             <span>География</span>
-                            <span class="geo__district-title">
-                                <span class="geo__decor">|</span>
-                                <span class="geo__district-text">Дальневосточный</span>
-                            </span>
                         </h2>
                         <button class="popup__close" type="button"></button>
                     </div>
-                    <span class="geo__city-title">Москва</span>
-                    <div class="popup__main">
-                        <!-- <span class="geo__city">Москва</span>
-
-                        <div class="geo__orgs-wrapper">
-                        <div class="geo__orgs">
-                            <p class="geo__orgs-type">
-                                <span class="geo__decor">|</span>
-                                <span>Издательства и медиа</span>
-                            </p>
-                            <div class="geo__org">
-                                <p class="geo__org-name">Представительно главнного равината России в г.Челябинске и Челябинской области</p>
-                                <p class="geo__org-rabbi">
-                                    <span class="geo__org-icon icon-user"></span>
-                                    <span class="geo__org-text">Имя Равина</span>
-                                </p>
-                                <a href="#" class="geo__org-address">
-                                    <span class="geo__org-icon icon-address"></span>
-                                    <span class="geo__org-text">Московская область, Центральный федеральный </span>
-                                </a>
-                                <a href="#" class="geo__org-phone">
-                                    <span class="geo__org-icon icon-phone"></span>
-                                    <span class="geo__org-text">(495) 995-57-74</span>
-                                </a>
-                            </div>
-
-                            <div class="geo__org">
-                                <p class="geo__org-name">Представительно главнного равината России в г.Челябинске и Челябинской области</p>
-                                <p class="geo__org-rabbi">
-                                    <span class="geo__org-icon icon-user"></span>
-                                    <span class="geo__org-text">Имя Равина</span>
-                                </p>
-                                <a href="#" class="geo__org-address">
-                                    <span class="geo__org-icon icon-address"></span>
-                                    <span class="geo__org-text">Московская область, Центральный федеральный </span>
-                                </a>
-                                <a href="#" class="geo__org-phone">
-                                    <span class="geo__org-icon icon-phone"></span>
-                                    <span class="geo__org-text">(495) 995-57-74</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="geo__orgs">
-                            <p class="geo__orgs-type">
-                                <span class="geo__decor">|</span>
-                                <span>Издательства и медиа</span>
-                            </p>
-                            <div class="geo__org">
-                                <p class="geo__org-name">Представительно главнного равината России в г.Челябинске и Челябинской области</p>
-                                <p class="geo__org-rabbi">
-                                    <span class="geo__org-icon icon-user"></span>
-                                    <span class="geo__org-text">Имя Равина</span>
-                                </p>
-                                <a href="#" class="geo__org-address">
-                                    <span class="geo__org-icon icon-address"></span>
-                                    <span class="geo__org-text">Московская область, Центральный федеральный </span>
-                                </a>
-                                <a href="#" class="geo__org-phone">
-                                    <span class="geo__org-icon icon-phone"></span>
-                                    <span class="geo__org-text">(495) 995-57-74</span>
-                                </a>
-                            </div>
-
-                            <div class="geo__org">
-                                <p class="geo__org-name">Представительно главнного равината России в г.Челябинске и Челябинской области</p>
-                                <p class="geo__org-rabbi">
-                                    <span class="geo__org-icon icon-user"></span>
-                                    <span class="geo__org-text">Имя Равина</span>
-                                </p>
-                                <a href="#" class="geo__org-address">
-                                    <span class="geo__org-icon icon-address"></span>
-                                    <span class="geo__org-text">Московская область, Центральный федеральный </span>
-                                </a>
-                                <a href="#" class="geo__org-phone">
-                                    <span class="geo__org-icon icon-phone"></span>
-                                    <span class="geo__org-text">(495) 995-57-74</span>
-                                </a>
-                            </div>
-                        </div>
-                        </div> -->
-                    </div>
+                    <!-- <span class="geo__district-title">
+                        <span class="geo__decor">|</span>
+                        <span class="geo__district-text">Дальневосточный</span>
+                    </span>
+                    <span class="geo__city-title">Москва</span> -->
+                    <div class="popup__main popup__main_padding"></div>
                 </div>
             </div>
             <!-- geo -->
 
-            <div id="js-geoDistricts" class="popup geo">
+            <div id="js-geoDistricts" class="popup geo popup_geo">
                 <div class="popup__content">
                     <div class="popup__header">
                         <h2 class="popup__title">
                             <span>География</span>
-                            <!-- <span class="geo__district-title">
-                                <span class="geo__decor">|</span>
-                                <span class="geo__district-text">Дальневосточный</span>
-                            </span> -->
                         </h2>
                         <button class="popup__close" type="button"></button>
                     </div>
                     
-                    <div class="popup__main">
-                        <!-- <ul class="geo__districts">
-                            <li class="geo__district-wrapper">
-                                <a class="geo__district">Дальневосточный</a>
-                            </li>
-                            <li class="geo__district-wrapper">
-                                <a class="geo__district">Дальневосточный</a>
-                            </li>
-                            <li class="geo__district-wrapper">
-                                <a class="geo__district">Дальневосточный</a>
-                            </li>
-                            <li class="geo__district-wrapper">
-                                <a class="geo__district">Дальневосточный</a>
-                            </li>
-                            <li class="geo__district-wrapper">
-                                <a class="geo__district">Дальневосточный</a>
-                            </li>
-                        </ul> -->
-                    </div>
+                    <div class="popup__main"></div>
                 </div>
             </div>
             <!-- geo districts -->
 
-            <div id="js-geoCities" class="popup geo">
+            <div id="js-geoCities" class="popup geo popup_geo">
                 <div class="popup__content">
                     <div class="popup__header">
                         <h2 class="popup__title">
                             <span>География</span>
-                            <span class="geo__district-title">
-                                <span class="geo__decor">|</span>
-                                <span class="geo__district-text">Дальневосточный</span>
-                            </span>
                         </h2>
                         <button class="popup__close" type="button"></button>
                     </div>
                     
-                    <div class="popup__main">
-                        <!-- <ul class="geo__cities">
-                            <li class="geo__city-wrapper">
-                                <a class="geo__city">Москва</a>
-                            </li>
-                            <li class="geo__city-wrapper">
-                                <a class="geo__city">Москва</a>
-                            </li>
-                            <li class="geo__city-wrapper">
-                                <a class="geo__city">Москва</a>
-                            </li>
-                            <li class="geo__city-wrapper">
-                                <a class="geo__city">Москва</a>
-                            </li>
-                            <li class="geo__city-wrapper">
-                                <a class="geo__city">Москва</a>
-                            </li>
-                        </ul> -->
-                    </div>
+                    <!-- <span class="geo__district-title">
+                        <span class="geo__decor">|</span>
+                        <span class="geo__district-text">Дальневосточный</span>
+                    </span> -->
+                    <div class="popup__main popup__main_padding"></div>
                 </div>
             </div>
             <!-- geo cities -->
@@ -391,13 +279,9 @@
             </template> -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <!-- <script src="/wp-content/themes/feor/public/js/scrollBar.js"></script> -->
         <script src='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.js'></script>
         <!-- <script src="https://unpkg.com/rbush@2.0.1/rbush.min.js"></script> -->
         <!-- <script src="https://unpkg.com/labelgun@6.0.0/lib/labelgun.min.js"></script> -->
-        <!-- <script type="text/javascript" src="/wp-content/themes/feor/public/js/map-page-mapbox/fill_template_popup_menu.js"> </script> -->
-        <!-- <script type="text/javascript" src="/wp-content/themes/feor/public/js/map-page-mapbox/add_popup_menu.js"> </script> -->
-        <!-- <script type="text/javascript" src="/wp-content/themes/feor/public/js/map-page-mapbox/util.js"> </script> -->
         <script type="text/javascript" src="public/plugins/nicescroll/jquery.nicescroll.iframehelper.min.js"> </script>
         <script type="text/javascript" src="public/plugins/nicescroll/jquery.nicescroll.min.js"> </script>
         <script type="text/javascript" src="public/js/main.min.js"> </script>

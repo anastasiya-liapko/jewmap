@@ -1,6 +1,11 @@
 $(function () {
     $('#js-lang a').on('click', function () {
-        $('#js-lang a').removeClass('active');
-        $(this).addClass('active');
+        $(this).removeClass('active');
+        var elem = $(this)
+        $('#js-lang a').each(function () {
+            if ($(elem).text() !== $(this).text()) {
+                $(this).addClass('active')
+            }
+        })
     })
 });

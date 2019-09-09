@@ -13,6 +13,8 @@ function getCities($databaseLink, $district)
 
     $sql = "
     select t.name name_city,t.term_id term_city_id
+    ,(select meta_value from wpc_termmeta mklat where mklat.meta_key ='latitude' and mklat.term_id=tt.term_id) latitude_city
+    ,(select meta_value from wpc_termmeta mklng where mklng.meta_key ='longitude' and mklng.term_id=tt.term_id) longitude_city
     from wpc_terms as t
     join wpc_term_taxonomy as tt on tt.term_id=t.term_id
     and tt.taxonomy='administrative-units'

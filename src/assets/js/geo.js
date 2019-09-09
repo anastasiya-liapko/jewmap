@@ -1,24 +1,111 @@
 $(function () {
 
+    // var BOUNDS_DALNEVOSTOCHNYJ = new L.LatLngBounds([65.0, 70.0], [62.0, 210.0]);
+    // var BOUNDS_PRIVOLZHSKIJ = new L.LatLngBounds([45.0, 51.0], [64.0, 54.0]);
+    // var BOUNDS_SEVERO_ZAPADNYJ = new L.LatLngBounds([50.0, 51.0], [74.0, 34.0]);
+    // var BOUNDS_SEVERO_KAVKAZKIJ = new L.LatLngBounds([45.0, 57.0], [43.0, 30.0]);
+    // var BOUNDS_SIBIRSKIJ = new L.LatLngBounds([40.0, 55.0], [78.0, 148.0]);
+    // var BOUNDS_URALSKIJ = new L.LatLngBounds([49.0, 55.0], [75.0, 87.0]);
+    // var BOUNDS_CZENTRALNYJ = new L.LatLngBounds([47.0, 41.0], [60.0, 34.0]);
+    // var BOUNDS_YUZHNYJ = new L.LatLngBounds([53.0, 44.0], [42.0, 45.0]);
+    var COORDS_DALNEVOSTOCHNYJ = [64.825365, 144.878838];
+    var COORDS_PRIVOLZHSKIJ = [56.189357,51.733371];
+    var COORDS_SEVERO_ZAPADNYJ = [70.600608, 44.406038];
+    var COORDS_SEVERO_KAVKAZKIJ = [43.765150,44.735885];
+    var COORDS_SIBIRSKIJ = [70.886952,94.748395];
+    var COORDS_URALSKIJ = [64.871851,71.569335];
+    var COORDS_CZENTRALNYJ = [54.905772,39.195997];
+    var COORDS_YUZHNYJ = [47.401426,41.055524];
+
+    var sortArray = function (array) {
+
+        // sort by alphabet
+        array.sort(function(a, b){
+            if(a.name < b.name) { return -1; }
+            if(a.name > b.name) { return 1; }
+            return 0;
+        });
+
+        // get index of center elem
+        var halfLength = Math.ceil(array.length / 2);
+
+        // cut array on two halves (half - first half, array - second half)
+        var half = array.splice(0, halfLength);
+
+        // add one elem from each half at a time
+        var interimArray = [];
+        
+        for (var i = 0; i < halfLength; i++) {
+            half[i] !== undefined ? interimArray.push(half[i]) : '';
+            array[i] !== undefined ? interimArray.push(array[i]) : '';
+        };
+
+        return array = interimArray;
+    }
+
+    var getPhonesWithLinks = function (phones) {
+        var phoneArray = [];
+        Array.prototype.forEach.call(phones, function (phone) { 
+            var phoneLink = phone.split(' ').join('').split('(').join('').split(')').join('').split('-').join('').split('?').join('');
+
+            phoneArray.push({
+                'phone': phone,
+                'phoneLink': phoneLink
+            });
+        });
+        return phoneArray;
+    }
+
+
     var addGeo = function (map, popup) {
 
-        var getPhonesWithLinks = function (phones) {
-            var phoneArray = [];
-            Array.prototype.forEach.call(phones, function (phone) { 
-                var phoneLink = phone.split(' ').join('').split('(').join('').split(')').join('').split('-').join('').split('?').join('');
-
-                phoneArray.push({
-                    'phone': phone,
-                    'phoneLink': phoneLink
+        var handleDistrictClick = function () {
+            if (localStorage.getItem('districts') === null) {
+                $.ajax({
+                    method: "GET",
+                    url: "post.php",
+                    data: {
+                        request: 2
+                    }
+                })
+                    .done(function( msg ) {
+                        var obj = jQuery.parseJSON(msg);
+                        // console.log(obj);
+                        localStorage.setItem('districts', JSON.stringify(obj));
+                        addDistricts(JSON.parse(localStorage.getItem('districts')));
+                    });
+            } else {
+                addDistricts(JSON.parse(localStorage.getItem('districts')));
+            }
+        }
+    
+        var handleCityClick = function (id, name) {
+            $.ajax({
+                method: "GET",
+                url: "post.php",
+                data: {
+                    request: 3,
+                    district: id
+                }
+            })
+                .done(function( msg ) {
+                    var obj = jQuery.parseJSON(msg);
+                    // console.log(obj);
+                    obj !== '' ? addCities(obj, name, id) : '';
                 });
-            });
-            return phoneArray;
         }
 
         var addOrgs = function (array, city, district, district_id) {
-            console.log(array);
+
             $('#js-geo .popup__main').html('');
             var html = '';
+
+            html += '<span class="geo__district-title">'
+                    //  + '<span class="geo__decor">|</span>'
+                     + '<span class="geo__district-text">' + district + '</span>'
+                     + '<span class="geo__district-item-descr">федеральный округ</span>'
+                     + '</span>'
+                     + '<span id="' + district_id + '" class="geo__city-title">' + city + '</span>'
 
             if (array.length !== 0) {
                 html += '<div class="geo__orgs-wrapper">'
@@ -98,12 +185,22 @@ $(function () {
                 html += '</div></div>'
             }
 
-            $('#js-geo .geo__district-title .geo__district-text').text(district);
-            $('#js-geo .geo__city-title').text(city);
-            $('#js-geo .geo__city-title').attr('id', district_id);
+            // $('#js-geo .geo__district-title .geo__district-text').text(district);
+            // $('#js-geo .geo__city-title').text(city);
+            // $('#js-geo .geo__city-title').attr('id', district_id);
             $('#js-geo .popup__main').append(html);
             $('.popup').removeClass('open');
             $('#js-geo').addClass('open');
+
+            $('#js-geo .geo__district-title').on('click', function () {
+                handleDistrictClick();
+            });
+
+            $('#js-geo .geo__city-title').on('click', function (e) {
+                var id = $(this).attr('id');
+                var name = $(this).text();
+                handleCityClick(id, name);
+            })
 
             $('#js-geo a.geo__org-name').on('click', function (e) {
                 var lat = parseFloat($(this).attr('data-lat'));
@@ -137,25 +234,39 @@ $(function () {
 
             var html = '';
 
+            var cities = array.slice(0);
+            var sortedArray = sortArray(array);
+
             if (array.length !== 0) {
+                html += '<span class="geo__district-title">'
+                    //  + '<span class="geo__decor">|</span>'
+                     + '<span class="geo__district-text">' + district + '</span>'
+                     + '<span class="geo__district-item-descr">федеральный округ</span>'
+                     + '</span>'
                 html += '<ul class="geo__city-list">'
 
-                Array.prototype.forEach.call(array, function (item, i) {
+                Array.prototype.forEach.call(sortedArray, function (item, i) {
                     html += '<li class="geo__city-wrapper">'
-                        + '<a id="' + item['term_city_id'] + '" class="geo__city-item">' + item['name_city'] + '</a>'
+                        + '<a id="' + item['term_city_id'] + '" class="geo__city-item" data-lat="' + item['latitude_city'] + '" data-lng="' + item['longitude_city'] + '">' + item['name_city'] + '</a>'
                         + '</li>'
                 });
                 html += '</ul>'
             }
 
-            $('#js-geoCities .geo__district-title .geo__district-text').text(district);
+            // $('#js-geoCities .geo__district-title .geo__district-text').text(district);
             $('#js-geoCities .popup__main').append(html);
             $('.popup').removeClass('open');
             $('#js-geoCities').addClass('open');
 
+            $('#js-geoCities .geo__district-title').on('click', function () {
+                handleDistrictClick();
+            });
+
             $('#js-geoCities .geo__city-item').on('click', function (e) {
                 var id = $(this).attr('id');
                 var name = $(this).text();
+                var lat = parseFloat($(this).attr('data-lat'));
+                var lng = parseFloat($(this).attr('data-lng'));
                 var orgsArray = [];
 
                 $.ajax({
@@ -239,6 +350,8 @@ $(function () {
                             addOrgs(orgsArrayClone, name, district, district_id);
                         });
                     })
+
+                window.util.flyTo(map, [lat, lng], 9);
             })
         }
 
@@ -253,6 +366,7 @@ $(function () {
                 Array.prototype.forEach.call(array, function (item, i) {
                     html += '<li class="geo__district-wrapper">'
                         + '<a id="' + item['term_district_id'] + '" class="geo__district-item">' + item['name_district'] + '</a>'
+                        + '<span class="geo__district-item-descr">федеральный округ</span>'
                         + '</li>'
                 });
                 html += '</ul>'
@@ -264,46 +378,52 @@ $(function () {
             $('.popup').removeClass('open');
             $('#js-geoDistricts').addClass('open');
 
-            $('#js-geoDistricts .geo__district-item, #js-geo .geo__city-title').on('click', function (e) {
+            $('#js-geoDistricts .geo__district-item').on('click', function (e) {
                 var id = $(this).attr('id');
                 var name = $(this).text();
-
-                $.ajax({
-                    method: "GET",
-                    url: "post.php",
-                    data: {
-                        request: 3,
-                        district: id
-                    }
-                })
-                    .done(function( msg ) {
-                        var obj = jQuery.parseJSON(msg);
-                        // console.log(obj);
-                        obj !== '' ? addCities(obj, name, id) : '';
-                    });
+                handleCityClick(id, name);
+                var coords = '';
+                var zoom = '';
+                switch(id) {
+                    case '31':
+                        coords = COORDS_CZENTRALNYJ
+                        zoom = 5
+                        break
+                    case '32':
+                        coords = COORDS_SIBIRSKIJ
+                        zoom = 4;
+                        break
+                    case '33':
+                        coords = COORDS_URALSKIJ
+                        zoom = 4.5
+                        break
+                    case '34':
+                        coords = COORDS_SEVERO_ZAPADNYJ
+                        zoom = 4
+                        break
+                    case '35':
+                        coords = COORDS_PRIVOLZHSKIJ
+                        zoom = 5
+                        break
+                    case '36':
+                        coords = COORDS_YUZHNYJ
+                        zoom = 5.5
+                        break
+                    case '37':
+                        coords = COORDS_SEVERO_KAVKAZKIJ
+                        zoom = 5.5
+                        break
+                    case '38':
+                        coords = COORDS_DALNEVOSTOCHNYJ
+                        zoom= 4
+                        break
+                  }
+                window.util.flyTo(map, coords, zoom);
             })
         }
 
-
-        $('#js-nav a[data-popup="geoDistricts"], #js-geoCities .geo__district-title, #js-geo .geo__district-title').on('click', function () {
-
-            if (localStorage.getItem('districts') === null) {
-                $.ajax({
-                    method: "GET",
-                    url: "post.php",
-                    data: {
-                        request: 2
-                    }
-                })
-                    .done(function( msg ) {
-                        var obj = jQuery.parseJSON(msg);
-                        // console.log(obj);
-                        localStorage.setItem('districts', JSON.stringify(obj));
-                        addDistricts(JSON.parse(localStorage.getItem('districts')));
-                    });
-            } else {
-                addDistricts(JSON.parse(localStorage.getItem('districts')));
-            }
+        $('#js-nav a[data-popup="geoDistricts"]').on('click', function () {
+            handleDistrictClick();
         });
     };
 
