@@ -334,21 +334,26 @@ $(function () {
         // show/hide layer on zoom value
         var setLayer = function (zoom) {
             if ($(window).width() < 575) {
-                if ( zoom > 2 && zoom < 3) {
+                if ( zoom >= 2 && zoom < 3) {
                     map.addLayer(layer_2)
                     hideLabel('.region');
                     map.removeLayer(layer_3);
-                } else if (zoom > 3 && zoom < 4) {
+                    map.closePopup();
+                    map.removeLayer(layerWithOrgs);
+                } else if (zoom >= 3 && zoom < 4) {
                     map.addLayer(layer_2)
                     showLabel('.region');
                     map.removeLayer(layer_3);
-                } else if ( zoom > 4 && zoom < 5) {
+                    map.closePopup();
+                    map.removeLayer(layerWithOrgs);
+                } else if ( zoom >= 4 && zoom < 5) {
                     map.addLayer(layer_2)
                     showLabel('.region');
                     map.addLayer(layer_3);
                     hideLabel('.city');
-                } else if ( zoom > 5 && zoom < 10) {
+                    map.closePopup();
                     map.removeLayer(layerWithOrgs);
+                } else if ( zoom >= 5 && zoom < 10) {
                     map.addLayer(layer_0);
                     map.addLayer(layer_1);
                     map.addLayer(layer_2)
@@ -356,11 +361,14 @@ $(function () {
                     map.addLayer(layer_3);
                     showLabel('.city');
                     map.closePopup();
+                    map.removeLayer(layerWithOrgs);
                 } else if ( zoom < 2) {
                     map.addLayer(layer_0);
                     map.addLayer(layer_1);
                     map.removeLayer(layer_2);
                     map.removeLayer(layer_3);
+                    map.closePopup();
+                    map.removeLayer(layerWithOrgs);
                 } else if ( zoom >= 10) {
                     map.addLayer(layerWithOrgs);
                     map.removeLayer(layer_0);
@@ -369,21 +377,26 @@ $(function () {
                     map.removeLayer(layer_3);
                 }
             } else {
-                if ( zoom > 4 && zoom < 5) {
+                if ( zoom >= 4 && zoom < 5) {
                     map.addLayer(layer_2)
                     hideLabel('.region');
                     map.removeLayer(layer_3);
-                } else if (zoom > 5 && zoom < 6) {
+                    map.closePopup();
+                    map.removeLayer(layerWithOrgs);
+                } else if (zoom >= 5 && zoom < 6) {
                     map.addLayer(layer_2)
                     showLabel('.region');
                     map.removeLayer(layer_3);
-                } else if ( zoom > 6 && zoom < 7) {
+                    map.closePopup();
+                    map.removeLayer(layerWithOrgs);
+                } else if ( zoom >= 6 && zoom < 7) {
                     map.addLayer(layer_2)
                     showLabel('.region');
                     map.addLayer(layer_3);
                     hideLabel('.city');
-                } else if ( zoom > 7 && zoom < 10) {
+                    map.closePopup();
                     map.removeLayer(layerWithOrgs);
+                } else if ( zoom >= 7 && zoom < 10) {
                     map.addLayer(layer_0);
                     map.addLayer(layer_1);
                     map.addLayer(layer_2)
@@ -391,11 +404,14 @@ $(function () {
                     map.addLayer(layer_3);
                     showLabel('.city');
                     map.closePopup();
+                    map.removeLayer(layerWithOrgs);
                 } else if ( zoom < 4) {
                     map.addLayer(layer_0);
                     map.addLayer(layer_1);
                     map.removeLayer(layer_2);
                     map.removeLayer(layer_3);
+                    map.closePopup();
+                    map.removeLayer(layerWithOrgs);
                 } else if ( zoom >= 10) {
                     map.addLayer(layerWithOrgs);
                     map.removeLayer(layer_0);
@@ -409,7 +425,7 @@ $(function () {
         setLayer(ZOOM)
         
         // handle zoomend event
-        map.on('moveend, zoomend, zoomlevelschange', function(e) {
+        map.on('zoomend', function(e) {
             var zoom = e.target._zoom;
             setLayer(zoom)
         });

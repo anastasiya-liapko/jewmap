@@ -198,7 +198,7 @@ $(function () {
 
             $('#js-geo .geo__city-title').on('click', function (e) {
                 var id = $(this).attr('id');
-                var name = $(this).text();
+                var name = $('.geo__district-text').text();
                 handleCityClick(id, name);
             })
 
@@ -232,31 +232,135 @@ $(function () {
         var addCities = function (array, district, district_id) {
             $('#js-geoCities .popup__main').html('');
 
-            var html = '';
+            // var html = '';
 
             var cities = array.slice(0);
             var sortedArray = sortArray(array);
 
-            if (array.length !== 0) {
-                html += '<span class="geo__district-title">'
-                    //  + '<span class="geo__decor">|</span>'
-                     + '<span class="geo__district-text">' + district + '</span>'
-                     + '<span class="geo__district-item-descr">федеральный округ</span>'
-                     + '</span>'
-                html += '<ul class="geo__city-list">'
+            var addCitiesHtml = function (array) {
+                var html = '';
 
-                Array.prototype.forEach.call(sortedArray, function (item, i) {
-                    html += '<li class="geo__city-wrapper">'
-                        + '<a id="' + item['term_city_id'] + '" class="geo__city-item" data-lat="' + item['latitude_city'] + '" data-lng="' + item['longitude_city'] + '">' + item['name_city'] + '</a>'
-                        + '</li>'
-                });
-                html += '</ul>'
+                if (array.length !== 0) {
+                    html += '<span class="geo__district-title">'
+                        //  + '<span class="geo__decor">|</span>'
+                         + '<span class="geo__district-text">' + district + '</span>'
+                         + '<span class="geo__district-item-descr">федеральный округ</span>'
+                         + '</span>'
+                    html += '<ul class="geo__city-list">'
+    
+                    Array.prototype.forEach.call(array, function (item, i) {
+                        html += '<li class="geo__city-wrapper">'
+                            + '<a id="' + item['term_city_id'] + '" class="geo__city-item" data-lat="' + item['latitude_city'] + '" data-lng="' + item['longitude_city'] + '">' + item['name_city'] + '</a>'
+                            + '</li>'
+                    });
+                    html += '</ul>'
+                }
+    
+                // $('#js-geoCities .geo__district-title .geo__district-text').text(district);
+                $('#js-geoCities .popup__main').append(html);
+                $('.popup').removeClass('open');
+                $('#js-geoCities').addClass('open');
             }
 
-            // $('#js-geoCities .geo__district-title .geo__district-text').text(district);
-            $('#js-geoCities .popup__main').append(html);
-            $('.popup').removeClass('open');
-            $('#js-geoCities').addClass('open');
+            $.ajax({
+                method: "GET",
+                url: "post.php",
+                data: {
+                    request: 5
+                }
+            })
+                .done(function( msg ) {
+                    var types = jQuery.parseJSON(msg);
+                    
+                    Array.prototype.forEach.call(sortedArray, function (cityItem, icityItem_i) {
+                        cityItem.orgs = []
+                        
+                        $.ajax({
+                            method: "GET",
+                            url: "post.php",
+                            data: {
+                                request: 4,
+                                city: cityItem['term_city_id']
+                            }
+                        })
+                        .done(function( msg ) {
+                            var obj = jQuery.parseJSON(msg);
+
+                            if (obj.length !== 0) {
+
+                                Array.prototype.forEach.call(types, function (type, type_i) {
+
+                                    var parent = {
+                                        'id_type': type['term_type_id'],
+                                        'name_type': type['name_type'],
+                                        'childs': []
+                                    };
+
+                                    var child = '';
+                    
+                                    Array.prototype.forEach.call(obj, function (obj_item, obj_i) {
+                                        if (obj_item['ID'] === type['ID']) {
+                                            child = {
+                                                'id': obj_item['ID'],
+                                                'name': obj_item['post_title'],
+                                                'lat': obj_item['latitude'],
+                                                'lng': obj_item['longitude'],
+                                                'address': obj_item['address'],
+                                                'phone': obj_item['phone'],
+                                                'rabbi': obj_item['rabbi'],
+                                                'email': obj_item['email'],
+                                                'site': obj_item['site']
+                                            };
+                                        }
+                                    });
+                            
+                                    if (cityItem.orgs.length === 0){
+                                        cityItem.orgs.push(parent);
+                                        child !== '' ? cityItem.orgs[0].childs.push(child) : '';
+                                    } else {
+                                        var value = false;
+                        
+                                        Array.prototype.forEach.call(cityItem.orgs, function (item, item_i) {
+                                            
+                                            if (item['name_type'] === type['name_type']) {
+                                                value = true;
+                                                child !== '' ? item.childs.push(child) : '';
+                                            }
+                                        })
+                        
+                                        if (value === false) {
+                                            cityItem.orgs.push(parent);
+                                            child !== '' ? cityItem.orgs[cityItem.orgs.length - 1].childs.push(child) : '';
+                                        }
+                                    }
+                                })
+                            }
+                        });
+                    });
+                    console.log('sortedArray', sortedArray)
+                    addCitiesHtml(sortedArray);
+                })
+
+            // if (array.length !== 0) {
+            //     html += '<span class="geo__district-title">'
+            //         //  + '<span class="geo__decor">|</span>'
+            //          + '<span class="geo__district-text">' + district + '</span>'
+            //          + '<span class="geo__district-item-descr">федеральный округ</span>'
+            //          + '</span>'
+            //     html += '<ul class="geo__city-list">'
+
+            //     Array.prototype.forEach.call(sortedArray, function (item, i) {
+            //         html += '<li class="geo__city-wrapper">'
+            //             + '<a id="' + item['term_city_id'] + '" class="geo__city-item" data-lat="' + item['latitude_city'] + '" data-lng="' + item['longitude_city'] + '">' + item['name_city'] + '</a>'
+            //             + '</li>'
+            //     });
+            //     html += '</ul>'
+            // }
+
+            // // $('#js-geoCities .geo__district-title .geo__district-text').text(district);
+            // $('#js-geoCities .popup__main').append(html);
+            // $('.popup').removeClass('open');
+            // $('#js-geoCities').addClass('open');
 
             $('#js-geoCities .geo__district-title').on('click', function () {
                 handleDistrictClick();
@@ -267,6 +371,7 @@ $(function () {
                 var name = $(this).text();
                 var lat = parseFloat($(this).attr('data-lat'));
                 var lng = parseFloat($(this).attr('data-lng'));
+
                 var orgsArray = [];
 
                 $.ajax({
@@ -278,8 +383,7 @@ $(function () {
                 })
                     .done(function( msg ) {
                         var types = jQuery.parseJSON(msg);
-                        // console.log(types);
-                    
+                        
                         $.ajax({
                             method: "GET",
                             url: "post.php",
@@ -290,68 +394,67 @@ $(function () {
                         })
                             .done(function( msg ) {
                                 var obj = jQuery.parseJSON(msg);
-                                // console.log(obj);
 
                                 Array.prototype.forEach.call(types, function (type, type_i) {
 
-                                var parent = {
-                                    'id_type': type['term_type_id'],
-                                    'name_type': type['name_type'],
-                                    'childs': []
-                                };
+                                    var parent = {
+                                        'id_type': type['term_type_id'],
+                                        'name_type': type['name_type'],
+                                        'childs': []
+                                    };
 
-                                var child = '';
+                                    var child = '';
                     
-                                Array.prototype.forEach.call(obj, function (obj_item, obj_i) {
-                                    if (obj_item['ID'] === type['ID']) {
-                                        child = {
-                                            'id': obj_item['ID'],
-                                            'name': obj_item['post_title'],
-                                            'lat': obj_item['latitude'],
-                                            'lng': obj_item['longitude'],
-                                            'address': obj_item['address'],
-                                            'phone': obj_item['phone'],
-                                            'rabbi': obj_item['rabbi'],
-                                            'email': obj_item['email'],
-                                            'site': obj_item['site']
-                                        };
-                                    }
-                                });
-                            
-                                if (orgsArray.length === 0){
-                                    orgsArray.push(parent);
-                                    child !== '' ? orgsArray[0].childs.push(child) : '';
-                                } else {
-                                    var value = false;
-                    
-                                    Array.prototype.forEach.call(orgsArray, function (item, item_i) {
-                                        
-                                        if (item['name_type'] === type['name_type']) {
-                                            value = true;
-                                            child !== '' ? item.childs.push(child) : '';
+                                    Array.prototype.forEach.call(obj, function (obj_item, obj_i) {
+                                        if (obj_item['ID'] === type['ID']) {
+                                            child = {
+                                                'id': obj_item['ID'],
+                                                'name': obj_item['post_title'],
+                                                'lat': obj_item['latitude'],
+                                                'lng': obj_item['longitude'],
+                                                'address': obj_item['address'],
+                                                'phone': obj_item['phone'],
+                                                'rabbi': obj_item['rabbi'],
+                                                'email': obj_item['email'],
+                                                'site': obj_item['site']
+                                            };
                                         }
-                                    })
-                    
-                                    if (value === false) {
-                                        orgsArray.push(parent);
-                                        child !== '' ? orgsArray[orgsArray.length - 1].childs.push(child) : '';
-                                    }
-                                }
-                            })
-
-                            var orgsArrayClone = [];
-                            Array.prototype.forEach.call(orgsArray, function (item, item_i) {
-                                if (item.childs.length !== 0) {
-                                    orgsArrayClone.push(item)
-                                }
-                            })
+                                    });
                             
-                            // obj.length !== 0 ? addOrgs(obj, name, district, district_id) : '';
-                            addOrgs(orgsArrayClone, name, district, district_id);
-                        });
+                                    if (orgsArray.length === 0){
+                                        orgsArray.push(parent);
+                                        child !== '' ? orgsArray[0].childs.push(child) : '';
+                                    } else {
+                                        var value = false;
+                        
+                                        Array.prototype.forEach.call(orgsArray, function (item, item_i) {
+                                            
+                                            if (item['name_type'] === type['name_type']) {
+                                                value = true;
+                                                child !== '' ? item.childs.push(child) : '';
+                                            }
+                                        })
+                        
+                                        if (value === false) {
+                                            orgsArray.push(parent);
+                                            child !== '' ? orgsArray[orgsArray.length - 1].childs.push(child) : '';
+                                        }
+                                    }
+                                })
+
+                                var orgsArrayClone = [];
+                                Array.prototype.forEach.call(orgsArray, function (item, item_i) {
+                                    if (item.childs.length !== 0) {
+                                        orgsArrayClone.push(item)
+                                    }
+                                })
+                            
+                                // obj.length !== 0 ? addOrgs(obj, name, district, district_id) : '';
+                                addOrgs(orgsArrayClone, name, district, district_id);
+                            });
                     })
 
-                window.util.flyTo(map, [lat, lng], 9);
+                    window.util.flyTo(map, [lat, lng], 9);
             })
         }
 

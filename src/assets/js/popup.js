@@ -1,7 +1,9 @@
 $(function () {
 
     // init scrollbar
-    $(".popup__main").niceScroll();
+    $(".popup__main").niceScroll({
+        horizrailenabled: false
+    });
 
     // show popup on nav click
     $('#js-navListWrapper ul>li>a').on('click', function () {
