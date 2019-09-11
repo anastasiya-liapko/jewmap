@@ -65,7 +65,7 @@ $(function () {
 
         $('.jewmap-popup__list').niceScroll();
         map.on('popupclose', function(ev) {
-            console.log($('.jewmap-popup__list').getNiceScroll().remove());
+            $('.jewmap-popup__list').getNiceScroll().remove();
         });
     
         $('.jewmap-popup__list-link').on('click', function (e) {

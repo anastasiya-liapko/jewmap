@@ -45,10 +45,10 @@
 
             <ul id="js-lang" class="jewmap__lang lang">
                 <li class="lang__item">
-                    <a class="lang__link active">RU</a>
+                    <a class="lang__link">RU</a>
                 </li>
                 <li class="lang__item">
-                    <a class="lang__link">EN</a>
+                    <a class="lang__link active">EN</a>
                 </li>
             </ul>
 

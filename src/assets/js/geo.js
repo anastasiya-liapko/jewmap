@@ -91,7 +91,6 @@ $(function () {
             })
                 .done(function( msg ) {
                     var obj = jQuery.parseJSON(msg);
-                    // console.log(obj);
 
                     var citiesArray = [];
 
@@ -151,7 +150,7 @@ $(function () {
                 Array.prototype.forEach.call(array, function (parent, parent_i) {
 
                     html += '<p class="geo__orgs-type">'
-                        + '<span class="geo__decor">|</span>'
+                        // + '<span class="geo__decor">|</span>'
                         + '<span id="' + parent['id_type'] + '">' + parent['name_type'] + '</span>'
                     + '</p>'
 
@@ -281,7 +280,7 @@ $(function () {
 
                 Array.prototype.forEach.call(sortedArray, function (item, i) {
                     html += '<li class="geo__city-wrapper">'
-                        + '<a id="' + i + '" class="geo__city-item" data-lat="' + item['latitude_city'] + '" data-lng="' + item['longitude_city'] + '">' + item['name_city'] + '</a>'
+                        + '<a id="' + item['term_city_id'] + '" class="geo__city-item" data-lat="' + item['latitude_city'] + '" data-lng="' + item['longitude_city'] + '">' + item['name_city'] + '</a>'
                         + '</li>'
                 });
                 html += '</ul>'
@@ -297,7 +296,7 @@ $(function () {
             });
 
             $('#js-geoCities .geo__city-item').on('click', function (e) {
-                var id = parseInt($(this).attr('id'));
+                var id = $(this).attr('id');
                 var name = $(this).text();
                 var lat = parseFloat($(this).attr('data-lat'));
                 var lng = parseFloat($(this).attr('data-lng'));
@@ -323,8 +322,16 @@ $(function () {
                             };
 
                             var child = '';
-            
-                            Array.prototype.forEach.call(cities[id + 1].orgs, function (obj_item, obj_i) {
+                            var city = '';
+
+                            Array.prototype.forEach.call(cities, function (citiesItem, citiesItem_i) {
+                                if (citiesItem['term_city_id'] === id) {
+                                    city = citiesItem;
+                                    return false;
+                                }
+                            });
+
+                            Array.prototype.forEach.call(city.orgs, function (obj_item, obj_i) {
                                 if (obj_item['ID'] === type['ID']) {
                                     child = {
                                         'id': obj_item['ID'],
@@ -360,6 +367,7 @@ $(function () {
                                 }
                             }
                         })
+
                         var orgsArrayClone = [];
                         Array.prototype.forEach.call(orgsArray, function (item, item_i) {
                             if (item.childs.length !== 0) {
