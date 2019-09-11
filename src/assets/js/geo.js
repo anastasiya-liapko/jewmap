@@ -302,6 +302,34 @@ $(function () {
                 var lng = parseFloat($(this).attr('data-lng'));
 
                 var orgsArray = [];
+                var religOrg = '';
+
+                $.ajax({
+                    method: "GET",
+                    url: "post.php",
+                    data: {
+                        request: 6,
+                        city: id
+                    }
+                })
+                    .done(function( msg ) {
+                        var relig = jQuery.parseJSON(msg);
+                        console.log('relig', relig)
+                        var empty = 1;
+                        $.each( relig, function( key, value ) {
+                            if (value !== '') {
+                                return empty = 0;
+                            }
+                        });
+
+                        if (empty === 0) {
+                            religOrg = relig;
+                            religOrg['lat'] = '';
+                            religOrg['lng'] = '';
+                            religOrg['site'] = '';
+                        }
+                        
+                    });
 
                 $.ajax({
                     method: "GET",
@@ -330,6 +358,7 @@ $(function () {
                                     return false;
                                 }
                             });
+
 
                             Array.prototype.forEach.call(city.orgs, function (obj_item, obj_i) {
                                 if (obj_item['ID'] === type['ID']) {
@@ -369,6 +398,17 @@ $(function () {
                         })
 
                         var orgsArrayClone = [];
+
+                        if (religOrg !== '') {
+                            Array.prototype.forEach.call(orgsArray, function (item, item_i) {
+        
+                                if (item['id_type'] === '190') {
+                                    item.childs.unshift(religOrg);
+                                    return false;
+                                }
+                            });
+                        }
+                        
                         Array.prototype.forEach.call(orgsArray, function (item, item_i) {
                             if (item.childs.length !== 0) {
                                 
@@ -413,7 +453,7 @@ $(function () {
                         addOrgs(orgsArrayClone, name, district, district_id);
                     })
 
-                    window.util.flyTo(map, [lat, lng], 9);
+                    window.util.flyTo(map, [lat, lng], 13);
             })
         }
 

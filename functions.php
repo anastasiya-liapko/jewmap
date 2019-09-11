@@ -1,5 +1,68 @@
 <?php
 
+
+/**
+ * Return list of religion org by city id
+ *
+ * @param $databaseLink
+ * @param $city
+ * @return object of org data
+ */
+function getReligionOrgs($databaseLink, $city)
+{
+    $response = [];
+    $city = intval($city);
+
+    $sql = "
+    SELECT * FROM `wpc_termmeta` WHERE `term_id` = '{$city}' and meta_key = 'chief_rabbi_ru';
+    ";
+
+    if ($res = mysqli_query($databaseLink, $sql)) {
+        $item = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        $response['rabbi'] = $item[0]['meta_value'];
+    }
+
+    $sql = "
+    SELECT * FROM `wpc_termmeta` WHERE `term_id` = '{$city}' and meta_key = 'phone';
+    ";
+
+    if ($res = mysqli_query($databaseLink, $sql)) {
+        $item = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        $response['phone'] = $item[0]['meta_value'];
+    }
+
+    $sql = "
+    SELECT * FROM `wpc_termmeta` WHERE `term_id` = '{$city}' and meta_key = 'email';
+    ";
+
+    if ($res = mysqli_query($databaseLink, $sql)) {
+        $item = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        $response['email'] = $item[0]['meta_value'];
+    }
+
+    $sql = "
+    SELECT * FROM `wpc_termmeta` WHERE `term_id` = '{$city}' and meta_key = 'address_ru';
+    ";
+
+    if ($res = mysqli_query($databaseLink, $sql)) {
+        $item = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        $response['address'] = $item[0]['meta_value'];
+    }
+
+    $sql = "
+    SELECT * FROM `wpc_termmeta` WHERE `term_id` = '{$city}' and meta_key = 'community_title_ru';
+    ";
+
+    if ($res = mysqli_query($databaseLink, $sql)) {
+        $item = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        $response['name'] = $item[0]['meta_value'];
+    }
+
+    return $response;
+}
+
+;
+
 /**
  * Return list of cities by district
  *

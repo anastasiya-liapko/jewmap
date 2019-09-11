@@ -19,6 +19,9 @@ switch(intval($_GET['request'])){
   case 5:
     $response = getOrgsTypes($db);
     break;
+  case 6:
+    $response = getReligionOrgs($db, $_GET['city']);
+    break;
 }
 
 die(json_encode($response));
