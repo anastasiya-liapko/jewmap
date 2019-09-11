@@ -3,13 +3,12 @@ $(function () {
     var flyTo = function (map, point, zoom) {
         if (zoom === undefined) {
             zoom = map.getZoom();
-            zoom = zoom <= 10 ? 10 : zoom;
+            zoom = zoom <= 13 ? 13 : zoom;
         }
         map.flyTo([point[0], point[1]], zoom, {duration: 1.1, easeLinearity: 0.45})
     };
 
     var addPopup = function (map, popup, object, type) {
-        console.log(object)
 
         $('.jewmap-popup').html('');
 

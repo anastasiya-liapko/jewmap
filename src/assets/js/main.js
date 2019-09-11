@@ -3,7 +3,7 @@ $(function () {
     var orgs = [];
     
     var PIN = 'public/img/pin.png';
-    var BUILDING = 'public/img/building.png';
+    var BUILDING = 'public/img/building-blue.png';
     var ZOOM = 4;
     var BOUNDS_RUSSIA = new L.LatLngBounds([60.0, 21], [69.0, 167.0]);
     if ($(window).width() <= 600) {
@@ -353,7 +353,7 @@ $(function () {
                     hideLabel('.city');
                     map.closePopup();
                     map.removeLayer(layerWithOrgs);
-                } else if ( zoom >= 5 && zoom < 10) {
+                } else if ( zoom >= 5 && zoom < 13) {
                     map.addLayer(layer_0);
                     map.addLayer(layer_1);
                     map.addLayer(layer_2)
@@ -369,7 +369,7 @@ $(function () {
                     map.removeLayer(layer_3);
                     map.closePopup();
                     map.removeLayer(layerWithOrgs);
-                } else if ( zoom >= 10) {
+                } else if ( zoom >= 13) {
                     map.addLayer(layerWithOrgs);
                     map.removeLayer(layer_0);
                     map.removeLayer(layer_1);
@@ -396,7 +396,7 @@ $(function () {
                     hideLabel('.city');
                     map.closePopup();
                     map.removeLayer(layerWithOrgs);
-                } else if ( zoom >= 7 && zoom < 10) {
+                } else if ( zoom >= 7 && zoom < 13) {
                     map.addLayer(layer_0);
                     map.addLayer(layer_1);
                     map.addLayer(layer_2)
@@ -412,7 +412,7 @@ $(function () {
                     map.removeLayer(layer_3);
                     map.closePopup();
                     map.removeLayer(layerWithOrgs);
-                } else if ( zoom >= 10) {
+                } else if ( zoom >= 13) {
                     map.addLayer(layerWithOrgs);
                     map.removeLayer(layer_0);
                     map.removeLayer(layer_1);

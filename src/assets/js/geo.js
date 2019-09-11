@@ -250,11 +250,10 @@ $(function () {
                 $('#js-jewmapSearch').removeClass('move');
                 $('#js-navListWrapper ul>li>a').removeClass('active');
         
-                window.util.flyTo(map, [lat, lng], 12);
+                window.util.flyTo(map, [lat, lng], 13);
                 window.util.addPopup(map, popup, {
                     'name': name,
-                    'lng': lng,
-                    'lat': lat,
+                    'point': [lat,lng],
                     'address': address,
                     'phone': phone,
                     'email': email,
