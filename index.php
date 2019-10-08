@@ -96,7 +96,21 @@
             </div>
             <!-- nav -->
 
-            <div id="js-about" class="popup about">
+            <div id="js-about" class="popup about about_menu">
+                <div class="popup__content">
+                    <div class="popup__header">
+                        <a href="#" data-popup="aboutDescr" class="popup__title">О нас</a>
+                        <button class="popup__close" type="button"></button>
+                    </div>
+                    <div class="popup__main">
+                        <a href="#" data-popup="aboutContacts" class="popup__title">Контакты</a>
+                        <a href="#" data-popup="aboutPolicy" class="popup__title">Политика деятельности</a>
+                    </div>
+                </div>
+            </div>
+            <!-- about menu -->
+
+            <div id="js-aboutDescr" class="popup about about_descr">
                 <div class="popup__content">
                     <div class="popup__header">
                         <h2 class="popup__title">О нас</h2>
@@ -121,6 +135,51 @@
                 </div>
             </div>
             <!-- about -->
+
+            <div id="js-aboutContacts" class="popup about">
+                <div class="popup__content">
+                    <div class="popup__header">
+                        <h2 class="popup__title">Контакты</h2>
+                        <button class="popup__close" type="button"></button>
+                    </div>
+                    <div class="popup__main">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+                        <form>
+                            <input type="text">
+                            <input type="text">
+                            <textarea></textarea>
+                            <button type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- about contacts -->
+
+            <div id="js-aboutPolicy" class="popup about">
+                <div class="popup__content">
+                    <div class="popup__header">
+                        <h2 class="popup__title">Политика деятельности</h2>
+                        <button class="popup__close" type="button"></button>
+                    </div>
+                    <div class="popup__main">
+                        <p>
+                        Еврейская община России-многопрофильная структура с охватом всех сфер национальной жизни на всей территории нашей страны.
+                        Данный портал - это универсальный навигатор по Еврейской карте России, призванный объединить и сделать доступной информацию о еврейских организациях, учреждениях и объединениях.
+                        </p>
+                        <p>
+                        Развитая инфраструктура Общины дает возможность людям, исповедующим иудаизм, в полной мере соблюдать еврейский закон, хранить традиции своих предков, это многочисленные культурные и просветительские проекты, позволяющие каждому желающему узнать больше об истории еврейского народа, познакомиться с обычаями и мировоззрением евреев.
+                        Сегодня еврейская община России - одна из самых процветающих и развитых общин в мире. Еврейские организации охватывают религиозную, культурную, благотворительную, просветительскую и социальную сферу общественной жизни.
+                        У российских евреев есть возможность соблюсти весь цикл жизни согласно еврейскому закону: от рождения и брит-милы у мальчиков до проведения еврейской свадьбы и организации еврейских похорон. В синагогах звучат праздничные и шабатние молитвы, проводятся торжественные трапезы. Родители могут выбирать, какого уровня еврейское образование дать своему ребёнку: от воскресных школ, в игровой форме знакомящих с традициями и историей народа, до религиозных классов, в которых подробно изучаются священные тексты. Продолжить еврейское образование можно в высших учебных заведениях - факультеты по изучению иудаики представлены как в негосударственных, так и в государственных вузах.
+                        Фундаментальные труды еврейской философии впервые издаются на русском языке, тем самым выводя российскую иудаику на мировой уровень. Еврейские музеи, театры, культурные центры открывают свои двери для всех желающих. Здесь можно узнать не только об иудаизме и истории евреев России, но и проследить развитие еврейской культуры, познакомиться с современным искусством.
+                        Действуют многочисленные социальные и благотворительные программы направленные на оказание необходимой помощи нуждающимся.
+                        </p>
+                        <p>Портал «Еврейская община России» является некоммерческим проектом, деятельность которого ведется в благотворительных целях на волонтерских основах. Справочная информация сайта постоянно пополняется.
+                        Мы будем признательны Вам за участие в его работе и предоставление актуальных и проверенных сведений.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- about policy -->
 
             <div id="js-geo" class="popup geo popup_geo">
                 <div class="popup__content">
@@ -284,6 +343,8 @@
         <!-- <script src="https://unpkg.com/labelgun@6.0.0/lib/labelgun.min.js"></script> -->
         <script type="text/javascript" src="public/plugins/nicescroll/jquery.nicescroll.iframehelper.min.js"> </script>
         <script type="text/javascript" src="public/plugins/nicescroll/jquery.nicescroll.min.js"> </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
         <script type="text/javascript" src="public/js/main.min.js"> </script>
     </body>
 </html>
